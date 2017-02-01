@@ -1,0 +1,21 @@
+T_LANGUAGES
+	1,en
+	2,ru
+	
+T_PART_OF_SPEECHES
+	1,noun
+	2,verb
+	
+T_WORDS
+	1,replay,1
+	2,переигровка,2
+	3,переиграть,2
+	
+T_WORDS_PART_OF_SPEECHES
+	1,1,1
+	2,2,1
+	3,3,2
+	
+T_TRANSLATES
+	1,1,2
+	2,1,3
