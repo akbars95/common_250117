@@ -7,3 +7,8 @@
     color: green;
     font-size: 25px;
 }
+
+div#header{
+    width: 100%;
+    height: 50px;
+}

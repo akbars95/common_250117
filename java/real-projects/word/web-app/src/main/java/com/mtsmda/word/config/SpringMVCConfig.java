@@ -94,7 +94,7 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter implements Applicat
     public MessageSource getMessageSource() {
         ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource = new ReloadableResourceBundleMessageSource();
         reloadableResourceBundleMessageSource.setDefaultEncoding("UTF-8");
-        reloadableResourceBundleMessageSource.setBasename("classpath:i18n/word_messages");
+        reloadableResourceBundleMessageSource.setBasename("classpath:/i18n/word_messages");
         return reloadableResourceBundleMessageSource;
     }
 

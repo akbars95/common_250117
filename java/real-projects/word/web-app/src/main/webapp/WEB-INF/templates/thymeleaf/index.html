@@ -2,16 +2,20 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
-    <link rel="stylesheet" th:href="@{/resources/css/style.css}"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"/>
+    <title th:text="#{index.page.name}"></title>
+    <th:block th:include="fragments/f_head_css_js :: head"></th:block>
+
 </head>
 <body>
 
-<p class="pMain">
-    Hello <span th:text="${recipient}">Peter</span>!!!
-</p>
+<div class="container" >
+    <th:block th:include="fragments/f_header :: header"></th:block>
+    <th:block th:include="fragments/f_menu :: menu"></th:block>
+    <div class="content">
 
+    </div>
+    <th:block th:include="fragments/f_footer :: footer"></th:block>
+</div>
 
 </body>
 </html>
