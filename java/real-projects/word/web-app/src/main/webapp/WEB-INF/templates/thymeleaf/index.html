@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title th:text="#{index.page.name}"></title>
     <th:block th:include="fragments/f_head_css_js :: head"></th:block>
-
 </head>
 <body>
 
@@ -12,7 +10,10 @@
     <th:block th:include="fragments/f_header :: header"></th:block>
     <th:block th:include="fragments/f_menu :: menu"></th:block>
     <div class="content">
-
+        <a th:href="@{?language=ru}"><span th:text="#{application.language.ru}"></span></a>
+        <a th:href="@{?language=en}"><span th:text="#{application.language.en}"></span></a>
+addsfds
+        раопврповапва
     </div>
     <th:block th:include="fragments/f_footer :: footer"></th:block>
 </div>

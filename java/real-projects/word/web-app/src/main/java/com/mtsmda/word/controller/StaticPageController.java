@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by dminzat on 2/5/2017.
  */
 @Controller
-@RequestMapping("/")
 public class StaticPageController {
 
     private static final Logger LOGGER = Logger.getLogger(StaticPageController.class);
@@ -20,6 +19,13 @@ public class StaticPageController {
         model.addAttribute("recipient", "Hello");
         LOGGER.info("get index page");
         return "index";
+    }
+
+    @GetMapping({"/home"})
+    public String home(Model model) {
+        model.addAttribute("recipient", "Hello");
+        LOGGER.info("get home page");
+        return "home";
     }
 
 }

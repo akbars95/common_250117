@@ -7,16 +7,20 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
+
+import java.util.Locale;
 
 /**
  * Created by dminzat on 2/5/2017.
@@ -25,14 +29,8 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 @ComponentScan("com.mtsmda.word")
 @EnableWebMvc
 @PropertySource("classpath:spring/properties/database.properties")
-public class SpringMVCConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
-
-    private ApplicationContext applicationContext;
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
+@Import(ThymeleafConfig.class)
+public class SpringMVCConfig extends WebMvcConfigurerAdapter  {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -47,49 +45,32 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter implements Applicat
         configurer.enable();
     }
 
-    @Bean("internalResourceViewResolver")
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(getLocaleChangeInterceptor());
+    }
+
+    //*******************************************************************************************************
+
+    /*@Bean
     @Description("view resolver for jsp")
     public InternalResourceViewResolver getInternalResourceViewResolver() {
-        return new InternalResourceViewResolver("/WEB-INF/templates/jsp/", ".jsp");
-    }
+        InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+        internalResourceViewResolver.setPrefix("/WEB-INF/templates/jsp/");
+        internalResourceViewResolver.setSuffix(".jsp");
+        internalResourceViewResolver.setViewClass(JstlView.class);
+        internalResourceViewResolver.setViewNames("*.jsp");
+//        internalResourceViewResolver.setOrder(99);
+        return internalResourceViewResolver;
+    }*/
 
     @Bean("commonsMultipartResolver")
     @Description("when send post multipart forms")
-    public CommonsMultipartResolver getCommonsMultipartResolver(){
+    public CommonsMultipartResolver getCommonsMultipartResolver() {
         return new CommonsMultipartResolver();
     }
 
-    @Bean("thymeleafViewResolver")
-    @Description("add support view resolver")
-    public ThymeleafViewResolver getThymeleafViewResolver() {
-        ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
-        thymeleafViewResolver.setTemplateEngine(getSpringTemplateEngine());
-        thymeleafViewResolver.setOrder(1);
-        thymeleafViewResolver.setCharacterEncoding("UTF-8");
-        return thymeleafViewResolver;
-    }
-
-    @Bean("springTemplateEngine")
-    @Description("settings spring template engine")
-    public SpringTemplateEngine getSpringTemplateEngine() {
-        SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
-        springTemplateEngine.setTemplateResolver(getITemplateResolver());
-        springTemplateEngine.setEnableSpringELCompiler(true);
-        return springTemplateEngine;
-    }
-
-    @Bean(name = "servletContextTemplateResolver")
-    @Description("add thymeleaf view resolver")
-    public ITemplateResolver getITemplateResolver() {
-        SpringResourceTemplateResolver springResourceTemplateResolver = new SpringResourceTemplateResolver();
-        springResourceTemplateResolver.setApplicationContext(applicationContext);
-        springResourceTemplateResolver.setPrefix("/WEB-INF/templates/thymeleaf/");
-        springResourceTemplateResolver.setSuffix(".html");
-        springResourceTemplateResolver.setTemplateMode(TemplateMode.HTML);
-        return springResourceTemplateResolver;
-    }
-
-    @Bean("reloadableResourceBundleMessageSource")
+    @Bean("messageSource")
     @Description("internationalization")
     public MessageSource getMessageSource() {
         ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource = new ReloadableResourceBundleMessageSource();
@@ -98,12 +79,26 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter implements Applicat
         return reloadableResourceBundleMessageSource;
     }
 
-    /*@Bean(name = "servletContextTemplateResolver")
-    public ServletContextTemplateResolver getServletContextTemplateResolver() {
-        ServletContextTemplateResolver servletContextTemplateResolver = new ServletContextTemplateResolver();
-        servletContextTemplateResolver.setPrefix("/WEB-INF/templates/");
-        servletContextTemplateResolver.setSuffix(".html");
-        servletContextTemplateResolver.setTemplateMode("HTML5");
-        return servletContextTemplateResolver;
+    @Bean("localeChangeInterceptor")
+    public LocaleChangeInterceptor getLocaleChangeInterceptor() {
+        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        localeChangeInterceptor.setParamName("language");
+        return localeChangeInterceptor;
+    }
+
+    /*@Bean("localeResolver")
+    public SessionLocaleResolver getSessionLocaleResolver() {
+        SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
+        sessionLocaleResolver.setDefaultLocale(new Locale("en"));
+        return sessionLocaleResolver;
     }*/
+
+    @Bean
+    public LocaleResolver localeResolver(){
+        CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
+        cookieLocaleResolver.setDefaultLocale(new Locale("en"));
+        cookieLocaleResolver.setCookieName("localeCookie");
+        cookieLocaleResolver.setCookieMaxAge(5 * 60);
+        return cookieLocaleResolver;
+    }
 }
