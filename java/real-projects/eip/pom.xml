@@ -8,15 +8,102 @@
     <artifactId>eip</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>apache-camel</module>
-    </modules>
-    <name>EIP pattern - Root module</name>
 
     <parent>
         <groupId>com.mtsmda.workpiece.maven</groupId>
         <artifactId>common</artifactId>
-        <version>4.3.RELEASE.12012017</version>
+        <version>4.4.RELEASE.11022017</version>
     </parent>
+
+    <modules>
+        <module>eip-apache-camel</module>
+    </modules>
+
+    <!--<repositories>
+        <repository>
+            <id>central</id>
+            <url>http://central.maven.org/maven2/</url>
+        </repository>
+    </repositories>-->
+
+    <dependencies>
+        <!--apache.camel-->
+        <dependency>
+            <groupId>${org.apache.camel.groupId}</groupId>
+            <artifactId>${camel.artifactId}-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.apache.camel.groupId}</groupId>
+            <artifactId>${camel.artifactId}-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.apache.camel.groupId}</groupId>
+            <artifactId>${camel.artifactId}-stream</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.apache.camel.groupId}</groupId>
+            <artifactId>${camel.artifactId}-jms</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>${org.apache.camel.groupId}</groupId>
+            <artifactId>${camel.artifactId}-spring</artifactId>
+            <version>${org.apache.camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${org.apache.camel.groupId}</groupId>
+            <artifactId>${camel.artifactId}-test-spring</artifactId>
+            <version>${org.apache.camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${org.apache.camel.groupId}</groupId>
+            <artifactId>${camel.artifactId}-spring-javaconfig</artifactId>
+            <version>${org.apache.camel.version}</version>
+        </dependency>
+
+        <!--slf4j-->
+        <dependency>
+            <groupId>${org.slf4j.groupId}</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${org.slf4j.groupId}</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${org.slf4j.groupId}</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!--spring-->
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-expression</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
