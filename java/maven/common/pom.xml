@@ -131,7 +131,6 @@
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
-
     </properties>
 
     <dependencyManagement>
@@ -260,8 +259,6 @@
                 <artifactId>${camel.artifactId}-spring-javaconfig</artifactId>
                 <version>${org.apache.camel.version}</version>
             </dependency>
-
-
 
             <!--spring-integration-->
             <dependency>
@@ -591,6 +588,16 @@
             </dependency>
             <dependency>
                 <groupId>${org.springframework.groupId}</groupId>
+                <artifactId>${spring.artifactId}-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.springframework.groupId}</groupId>
+                <artifactId>${spring.artifactId}-expression</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.springframework.groupId}</groupId>
                 <artifactId>${spring.artifactId}-test</artifactId>
                 <version>${spring.version}</version>
             </dependency>
@@ -612,16 +619,6 @@
             <dependency>
                 <groupId>${org.springframework.groupId}</groupId>
                 <artifactId>${spring.artifactId}-tx</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${org.springframework.groupId}</groupId>
-                <artifactId>${spring.artifactId}-context-support</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${org.springframework.groupId}</groupId>
-                <artifactId>${spring.artifactId}-expression</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
@@ -853,6 +850,11 @@
             <dependency>
                 <groupId>${org.apache.activemq.groupId}</groupId>
                 <artifactId>${activemq.artifactId}-camel</artifactId>
+                <version>${activemq-all.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.apache.activemq.groupId}</groupId>
+                <artifactId>${activemq.artifactId}-pool</artifactId>
                 <version>${activemq-all.version}</version>
             </dependency>
 
