@@ -12,6 +12,6 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScans(@ComponentScan("com.mtsmda.apache.camel.withspring"))
 public class CustomCamelConfiguration extends CamelConfiguration {
 
-    
+
 
 }
