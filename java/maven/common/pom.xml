@@ -6,7 +6,7 @@
 
     <groupId>com.mtsmda.workpiece.maven</groupId>
     <artifactId>common</artifactId>
-    <version>4.3.3.RELEASE.06022017</version>
+    <version>4.4.RELEASE.11022017</version>
     <packaging>pom</packaging>
     <description>
         1.8 - added: spring batch, guava, modified properties
@@ -21,6 +21,7 @@
         4.3.RELEASE.12012017 - add slf4j and logback
         4.3.2.RELEASE.06022017 - change thymeleaf version
         4.3.3.RELEASE.06022017 - modify to last version thymeleaf
+        4.4.RELEASE.11022017 - add camel libs
     </description>
 
     <properties>
@@ -109,7 +110,7 @@
         <javax.jms.version>1.1</javax.jms.version>
         <javax.jms-api.version>2.0.1</javax.jms-api.version>
         <spring-integration.version>4.3.4.RELEASE</spring-integration.version>
-        <org.apache.camel.version>2.18.0</org.apache.camel.version>
+        <org.apache.camel.version>2.18.1</org.apache.camel.version>
         <hibernate.version>5.2.5.Final</hibernate.version>
         <com.oracle.jdbc.version>12.1.0.2</com.oracle.jdbc.version>
         <slf4j.version>1.7.22</slf4j.version>
@@ -175,7 +176,6 @@
                 <version>${slf4j.version}</version>
             </dependency>
 
-
             <!--hibernate-->
             <dependency>
                 <groupId>${org.hibernate.groupId}</groupId>
@@ -196,17 +196,17 @@
             <!--apache.camel-->
             <dependency>
                 <groupId>${org.apache.camel.groupId}</groupId>
-                <artifactId>${camel.artifactId}-jms</artifactId>
+                <artifactId>${camel.artifactId}-core</artifactId>
+                <version>${org.apache.camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.apache.camel.groupId}</groupId>
+                <artifactId>${camel.artifactId}-test</artifactId>
                 <version>${org.apache.camel.version}</version>
             </dependency>
             <dependency>
                 <groupId>${org.apache.camel.groupId}</groupId>
                 <artifactId>${camel.artifactId}-stream</artifactId>
-                <version>${org.apache.camel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${org.apache.camel.groupId}</groupId>
-                <artifactId>${camel.artifactId}-spring</artifactId>
                 <version>${org.apache.camel.version}</version>
             </dependency>
             <dependency>
@@ -226,17 +226,38 @@
             </dependency>
             <dependency>
                 <groupId>${org.apache.camel.groupId}</groupId>
-                <artifactId>${camel.artifactId}-test</artifactId>
+                <artifactId>${camel.artifactId}-jetty</artifactId>
                 <version>${org.apache.camel.version}</version>
             </dependency>
             <dependency>
                 <groupId>${org.apache.camel.groupId}</groupId>
-                <artifactId>${camel.artifactId}-core</artifactId>
+                <artifactId>${camel.artifactId}-http</artifactId>
+                <version>${org.apache.camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.apache.camel.groupId}</groupId>
+                <artifactId>${camel.artifactId}-mail</artifactId>
+                <version>${org.apache.camel.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${org.apache.camel.groupId}</groupId>
+                <artifactId>${camel.artifactId}-spring</artifactId>
                 <version>${org.apache.camel.version}</version>
             </dependency>
             <dependency>
                 <groupId>${org.apache.camel.groupId}</groupId>
                 <artifactId>${camel.artifactId}-test-spring</artifactId>
+                <version>${org.apache.camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.apache.camel.groupId}</groupId>
+                <artifactId>${camel.artifactId}-spring-security</artifactId>
+                <version>${org.apache.camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.apache.camel.groupId}</groupId>
+                <artifactId>${camel.artifactId}-spring-javaconfig</artifactId>
                 <version>${org.apache.camel.version}</version>
             </dependency>
 
@@ -629,7 +650,6 @@
                 <version>1.10.5.RELEASE</version>
             </dependency>
 
-
             <!-- json -->
             <dependency>
                 <groupId>com.googlecode.json-simple</groupId>
@@ -813,7 +833,6 @@
                 <artifactId>commons-fileupload</artifactId>
                 <version>${commons-fileupload.version}</version>
             </dependency>
-
 
             <!--apache activemq-->
             <dependency>
