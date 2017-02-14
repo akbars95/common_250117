@@ -48,61 +48,68 @@
         <dependency>
             <groupId>${org.apache.camel.groupId}</groupId>
             <artifactId>${camel.artifactId}-spring</artifactId>
-            <version>${org.apache.camel.version}</version>
         </dependency>
         <dependency>
             <groupId>${org.apache.camel.groupId}</groupId>
             <artifactId>${camel.artifactId}-test-spring</artifactId>
-            <version>${org.apache.camel.version}</version>
         </dependency>
         <dependency>
             <groupId>${org.apache.camel.groupId}</groupId>
             <artifactId>${camel.artifactId}-spring-javaconfig</artifactId>
-            <version>${org.apache.camel.version}</version>
         </dependency>
 
         <!--slf4j-->
         <dependency>
             <groupId>${org.slf4j.groupId}</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>${org.slf4j.groupId}</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>${org.slf4j.groupId}</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
         </dependency>
 
         <!--spring-->
         <dependency>
             <groupId>${org.springframework.groupId}</groupId>
             <artifactId>${spring.artifactId}-core</artifactId>
-            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>${org.springframework.groupId}</groupId>
             <artifactId>${spring.artifactId}-context</artifactId>
-            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>${org.springframework.groupId}</groupId>
             <artifactId>${spring.artifactId}-test</artifactId>
-            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>${org.springframework.groupId}</groupId>
             <artifactId>${spring.artifactId}-context-support</artifactId>
-            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>${org.springframework.groupId}</groupId>
             <artifactId>${spring.artifactId}-expression</artifactId>
-            <version>${spring.version}</version>
+        </dependency>
+
+        <!--apache activemq-->
+        <dependency>
+            <groupId>${org.apache.activemq.groupId}</groupId>
+            <artifactId>${activemq.artifactId}-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.apache.activemq.groupId}</groupId>
+            <artifactId>${activemq.artifactId}-spring</artifactId>
+        </dependency>
+       <dependency>
+            <groupId>${org.apache.activemq.groupId}</groupId>
+            <artifactId>${activemq.artifactId}-camel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.apache.activemq.groupId}</groupId>
+            <artifactId>${activemq.artifactId}-pool</artifactId>
         </dependency>
     </dependencies>
 
