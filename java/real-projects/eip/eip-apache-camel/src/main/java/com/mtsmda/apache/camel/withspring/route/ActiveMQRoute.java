@@ -12,6 +12,9 @@ public class ActiveMQRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("activemq:queue:first?clientId=FirstPetr").log("${body}");
+
+        from("activemq:queue:firstQ?clientId=firstQ").log("${body}").to("activemq:queue:secondQ?clientId=secondQ");
+
     }
 
 }
