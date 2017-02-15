@@ -4,7 +4,7 @@
 
     <groupId>com.mtsmda.workpiece.java</groupId>
     <artifactId>java.helpers</artifactId>
-    <version>1.7.RELEASE.18112016</version>
+    <version>1.8.RELEASE.15022017</version>
     <packaging>jar</packaging>
     <description>
         add unicode converter helper class
@@ -12,12 +12,13 @@
         1.6.1.RELEASE.14112016 - add interface cloneable and convertable
         1.6.2.RELEASE.14112016 - add new method for delete query creator
         1.7.RELEASE.18112016 - add new password encoder
+        1.8.RELEASE.15022017 - add 4 methods on object helper class
     </description>
 
     <parent>
         <groupId>com.mtsmda.workpiece.maven</groupId>
         <artifactId>common</artifactId>
-        <version>3.0.RELEASE.16112016</version>
+        <version>4.4.RELEASE.11022017</version>
     </parent>
 
     <name>java.helpers</name>

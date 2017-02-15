@@ -9,6 +9,9 @@ import static org.testng.Assert.*;
 
 public class ObjectHelperTest {
 
+    String f = "Ivanov";
+    String s = "Ivanov";
+
     @Test
     public void objectIsNullThrowExceptionTest(){
         ObjectHelper.objectIsNullThrowException(new Object());
@@ -29,6 +32,90 @@ public class ObjectHelperTest {
     public void objectIsNotNullTest(){
         assertTrue(ObjectHelper.objectIsNotNull(new String()));
         assertFalse(ObjectHelper.objectIsNotNull(null));
+    }
+
+    @Test
+    public void isSameObjectsTest(){
+        assertTrue(ObjectHelper.isSameObjects(f, s));
+        f = new String(f);
+        assertFalse(ObjectHelper.isSameObjects(f, s));
+        f = f.intern();
+        assertTrue(ObjectHelper.isSameObjects(f, s));
+    }
+
+    @Test
+    public void isNotSameObjectsTest(){
+        assertTrue(ObjectHelper.isNotSameObjects(f, new String(f)));
+        assertFalse(ObjectHelper.isNotSameObjects(f, s));
+        f = f.intern();
+        assertFalse(ObjectHelper.isNotSameObjects(f, s));
+    }
+
+    @Test
+    public void isEqualsObjectsTest(){
+        assertTrue(ObjectHelper.isEqualsObjects(f, new String(f)));
+        assertTrue(ObjectHelper.isEqualsObjects(f, s));
+        assertTrue(ObjectHelper.isEqualsObjects(f, s.intern()));
+        assertFalse(ObjectHelper.isEqualsObjects(f, s.toLowerCase()));
+        assertTrue(ObjectHelper.isEqualsObjects(f, s));
+        System.out.println("----------------------");
+        PersonWithoutEquals personWithoutEqualsF = new PersonWithoutEquals(f);
+        PersonWithoutEquals personWithoutEqualsS = new PersonWithoutEquals(f);
+        assertFalse(ObjectHelper.isEqualsObjects(personWithoutEqualsF, personWithoutEqualsS));
+    }
+
+    @Test
+    public void isNotEqualsObjectsTest(){
+        assertFalse(ObjectHelper.isNotEqualsObjects(f, new String(f)));
+        assertFalse(ObjectHelper.isNotEqualsObjects(f, s));
+        assertFalse(ObjectHelper.isNotEqualsObjects(f, s.intern()));
+        assertTrue(ObjectHelper.isNotEqualsObjects(f, s.toLowerCase()));
+        assertFalse(ObjectHelper.isNotEqualsObjects(f, s));
+        System.out.println("----------------------");
+        PersonWithoutEquals personWithoutEqualsF = new PersonWithoutEquals(f);
+        PersonWithoutEquals personWithoutEqualsS = new PersonWithoutEquals(f);
+        assertTrue(ObjectHelper.isNotEqualsObjects(personWithoutEqualsF, personWithoutEqualsS));
+
+        PersonWithEquals personWithEqualsF = new PersonWithEquals(personWithoutEqualsF);
+        PersonWithEquals personWithEqualsS = new PersonWithEquals(personWithoutEqualsS);
+        assertFalse(ObjectHelper.isNotEqualsObjects(personWithEqualsF, personWithEqualsS));
+    }
+
+    private class PersonWithoutEquals{
+        private String name;
+
+        public PersonWithoutEquals(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    private class PersonWithEquals extends PersonWithoutEquals{
+
+        public PersonWithEquals(String name) {
+            super(name);
+        }
+
+        public PersonWithEquals(PersonWithoutEquals personWithoutEquals){
+            this(personWithoutEquals.getName());
+        }
+
+        @Override
+        public int hashCode() {
+            return getName().hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return this.getName().equals(((PersonWithEquals)obj).getName());
+        }
     }
 
 }

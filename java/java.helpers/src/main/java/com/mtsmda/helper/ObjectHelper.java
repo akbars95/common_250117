@@ -19,4 +19,20 @@ public class ObjectHelper {
         return !objectIsNull(t);
     }
 
+    public static <T> boolean isSameObjects(T firstObj, T secondObj){
+        return firstObj == secondObj;
+    }
+
+    public static <T> boolean isNotSameObjects(T firstObj, T secondObj){
+        return !isSameObjects(firstObj, secondObj);
+    }
+
+    public static <T> boolean isEqualsObjects(T firstObj, T secondObj){
+        return firstObj.equals(secondObj);
+    }
+
+    public static <T> boolean isNotEqualsObjects(T firstObj, T secondObj){
+        return !isEqualsObjects(firstObj, secondObj);
+    }
+
 }
