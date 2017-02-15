@@ -4,13 +4,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 
 import java.util.Locale;
 
@@ -78,19 +74,19 @@ public class SpringMVCConfiguration extends WebMvcConfigurerAdapter {
         return localeChangeInterceptor;
     }
 
-    /*@Bean("localeResolver")
+    @Bean("localeResolver")
     public SessionLocaleResolver getSessionLocaleResolver() {
         SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
         sessionLocaleResolver.setDefaultLocale(new Locale("en"));
         return sessionLocaleResolver;
-    }*/
+    }
 
-    @Bean
+    /*@Bean
     public LocaleResolver localeResolver() {
         CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
         cookieLocaleResolver.setDefaultLocale(new Locale("en"));
         cookieLocaleResolver.setCookieName("localeCookie");
         cookieLocaleResolver.setCookieMaxAge(5 * 60);
         return cookieLocaleResolver;
-    }
+    }*/
 }

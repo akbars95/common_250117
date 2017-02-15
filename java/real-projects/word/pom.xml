@@ -81,6 +81,15 @@
             <groupId>${org.springframework.groupId}</groupId>
             <artifactId>${spring.artifactId}-expression</artifactId>
         </dependency>
+        <!--commons-->
+        <dependency>
+            <groupId>${org.apache.commons.groupId}</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.apache.commons.groupId}</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
