@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.InternalResourceView;
 
 /**
  * Created by dminzat on 2/5/2017.
@@ -22,10 +24,12 @@ public class StaticPageController {
     }
 
     @GetMapping({"/home"})
-    public String home(Model model) {
-        model.addAttribute("recipient", "Hello");
+    public ModelAndView home(ModelAndView modelAndView) {
+        modelAndView.getModelMap().addAttribute("recipient", "Hello");
+        modelAndView.setView(new InternalResourceView("/WEB-INF/templates/jsp/home.jsp"));
         LOGGER.info("get home page");
-        return "home";
+//        return "home";
+        return modelAndView;
     }
 
 }

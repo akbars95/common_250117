@@ -1,8 +1,5 @@
 package com.mtsmda.word.config;
 
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -14,11 +11,6 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
-import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import java.util.Locale;
 
@@ -29,8 +21,8 @@ import java.util.Locale;
 @ComponentScan("com.mtsmda.word")
 @EnableWebMvc
 @PropertySource("classpath:spring/properties/database.properties")
-@Import(ThymeleafConfig.class)
-public class SpringMVCConfig extends WebMvcConfigurerAdapter  {
+@Import({ThymeleafConfiguration.class, DatabaseConfiguration.class})
+public class SpringMVCConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -94,7 +86,7 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter  {
     }*/
 
     @Bean
-    public LocaleResolver localeResolver(){
+    public LocaleResolver localeResolver() {
         CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
         cookieLocaleResolver.setDefaultLocale(new Locale("en"));
         cookieLocaleResolver.setCookieName("localeCookie");

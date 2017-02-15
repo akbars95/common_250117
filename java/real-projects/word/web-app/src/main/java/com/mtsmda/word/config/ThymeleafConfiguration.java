@@ -16,7 +16,7 @@ import org.thymeleaf.templatemode.TemplateMode;
  * Created by dminzat on 2/10/2017.
  */
 @Configuration
-public class ThymeleafConfig implements ApplicationContextAware {
+public class ThymeleafConfiguration implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 

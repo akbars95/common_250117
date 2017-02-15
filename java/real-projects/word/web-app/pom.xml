@@ -82,6 +82,18 @@
             <artifactId>${log4j.groupId}</artifactId>
         </dependency>
 
+        <!--oracle-->
+        <dependency>
+            <groupId>${com.oracle.jdbc.groupId}</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>${com.oracle.jdbc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${com.oracle.jdbc.groupId}</groupId>
+            <artifactId>ucp</artifactId>
+            <version>${com.oracle.jdbc.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

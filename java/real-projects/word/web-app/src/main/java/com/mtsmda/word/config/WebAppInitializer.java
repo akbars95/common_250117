@@ -19,7 +19,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext rootApplicationContext = new AnnotationConfigWebApplicationContext();
-        rootApplicationContext.register(SpringMVCConfig.class);
+        rootApplicationContext.register(SpringMVCConfiguration.class);
         rootApplicationContext.setServletContext(servletContext);
 
         servletContext.addListener(new ContextLoaderListener(rootApplicationContext));
