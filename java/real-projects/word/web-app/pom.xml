@@ -14,6 +14,53 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
+        <!--spring-->
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-expression</artifactId>
+        </dependency>
+        <!--commons-->
+        <dependency>
+            <groupId>${org.apache.commons.groupId}</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.apache.commons.groupId}</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+        </dependency>
+
         <!--thymeleaf-->
         <dependency>
             <groupId>${org.thymeleaf.groupId}</groupId>
@@ -92,6 +139,20 @@
             <groupId>${com.oracle.jdbc.groupId}</groupId>
             <artifactId>ucp</artifactId>
             <version>${com.oracle.jdbc.version}</version>
+        </dependency>
+
+        <!--spring security-->
+        <dependency>
+            <groupId>${org.springframework.security.groupId}</groupId>
+            <artifactId>${spring.artifactId}-security-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.security.groupId}</groupId>
+            <artifactId>${spring.artifactId}-security-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.security.groupId}</groupId>
+            <artifactId>${spring.artifactId}-security-config</artifactId>
         </dependency>
 
         <dependency>

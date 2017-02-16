@@ -41,4 +41,14 @@ public class StaticPageController {
         return modelAndView;
     }
 
+    @GetMapping({ProtectedPageURL.PROTECT_INDEX_PAGE_URL})
+    public String indexProtected(Model model) {
+        model.addAttribute("recipient", "Hello, this is protected file!");
+        LOGGER.info("get protected index page");
+        languageService.getAllLanguages().forEach(language -> {
+            System.out.println(language.toString());
+        });
+        return ProtectedPageURL.PROTECT_INDEX_PAGE_IN;
+    }
+
 }

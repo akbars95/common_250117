@@ -12,4 +12,12 @@ public class PageURL {
         public static final String INDEX_PAGE_URL = ROOT + INDEX_PAGE_IN;
     }
 
+    public static class ProtectedPageURL{
+
+        public static final String PROTECT = "protect" + ROOT;
+
+        public static final String PROTECT_INDEX_PAGE_IN = PROTECT + "index";
+        public static final String PROTECT_INDEX_PAGE_URL = ROOT + PROTECT_INDEX_PAGE_IN;
+    }
+
 }

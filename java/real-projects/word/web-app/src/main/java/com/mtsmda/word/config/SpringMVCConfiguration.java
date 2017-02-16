@@ -17,7 +17,7 @@ import java.util.Locale;
 @ComponentScan("com.mtsmda.word")
 @EnableWebMvc
 @PropertySource("classpath:spring/properties/database.properties")
-@Import({ThymeleafConfiguration.class, DatabaseConfiguration.class})
+@Import({ThymeleafConfiguration.class, DatabaseConfiguration.class, SecurityConfiguration.class})
 public class SpringMVCConfiguration extends WebMvcConfigurerAdapter {
 
     @Override

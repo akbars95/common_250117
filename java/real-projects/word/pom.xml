@@ -44,52 +44,7 @@
     </dependencyManagement>
 
     <dependencies>
-        <!--spring-->
-        <dependency>
-            <groupId>${org.springframework.groupId}</groupId>
-            <artifactId>${spring.artifactId}-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${org.springframework.groupId}</groupId>
-            <artifactId>${spring.artifactId}-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${org.springframework.groupId}</groupId>
-            <artifactId>${spring.artifactId}-test</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${org.springframework.groupId}</groupId>
-            <artifactId>${spring.artifactId}-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${org.springframework.groupId}</groupId>
-            <artifactId>${spring.artifactId}-webmvc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${org.springframework.groupId}</groupId>
-            <artifactId>${spring.artifactId}-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${org.springframework.groupId}</groupId>
-            <artifactId>${spring.artifactId}-tx</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${org.springframework.groupId}</groupId>
-            <artifactId>${spring.artifactId}-context-support</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${org.springframework.groupId}</groupId>
-            <artifactId>${spring.artifactId}-expression</artifactId>
-        </dependency>
-        <!--commons-->
-        <dependency>
-            <groupId>${org.apache.commons.groupId}</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${org.apache.commons.groupId}</groupId>
-            <artifactId>commons-dbcp2</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>
