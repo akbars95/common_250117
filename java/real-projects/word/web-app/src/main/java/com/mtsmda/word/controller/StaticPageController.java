@@ -32,13 +32,10 @@ public class StaticPageController {
         return StaticPageURL.INDEX_PAGE_IN;
     }
 
-    @GetMapping({"/home"})
-    public ModelAndView home(ModelAndView modelAndView) {
-        modelAndView.getModelMap().addAttribute("recipient", "Hello");
-        modelAndView.setView(new InternalResourceView("/WEB-INF/templates/jsp/home.jsp"));
-        LOGGER.info("get home page");
-//        return "home";
-        return modelAndView;
+    @GetMapping({StaticPageURL.LOGIN_PAGE_URL})
+    public String login() {
+        LOGGER.info("get login page");
+        return StaticPageURL.LOGIN_PAGE_IN;
     }
 
     @GetMapping({ProtectedPageURL.PROTECT_INDEX_PAGE_URL})
@@ -50,5 +47,20 @@ public class StaticPageController {
         });
         return ProtectedPageURL.PROTECT_INDEX_PAGE_IN;
     }
+
+    @GetMapping({StaticPageURL.ACCESS_DENIED_PAGE_URL})
+    public String accessDenied() {
+        LOGGER.info("get access denied page");
+        return StaticPageURL.ACCESS_DENIED_PAGE_IN;
+    }
+
+    /*@GetMapping({"/home"})
+    public ModelAndView home(ModelAndView modelAndView) {
+        modelAndView.getModelMap().addAttribute("recipient", "Hello");
+        modelAndView.setView(new InternalResourceView("/WEB-INF/templates/jsp/home.jsp"));
+        LOGGER.info("get home page");
+//        return "home";
+        return modelAndView;
+    }*/
 
 }

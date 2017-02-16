@@ -1,5 +1,6 @@
 package com.mtsmda.word.config;
 
+import com.mtsmda.word.config.security.SecurityConfiguration;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;

@@ -10,9 +10,16 @@
     <th:block th:include="fragments/f_header :: header"></th:block>
     <th:block th:include="fragments/f_menu :: menu"></th:block>
     <div class="content">
-        <h1>Protect Area!</h1>
 
-
+        <h1>Login page</h1>
+        <p th:if="${param.loginError}" class="error">Wrong user or password</p>
+        <form th:action="@{/w_login}" method="post">
+            <label for="username">Username</label>:
+            <input type="text" id="username" name="w_username" autofocus="autofocus" /> <br />
+            <label for="password">Password</label>:
+            <input type="password" id="password" name="w_password" /> <br />
+            <input type="submit" value="Log in" />
+        </form>
 
     </div>
     <th:block th:include="fragments/f_footer :: footer"></th:block>

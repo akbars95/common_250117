@@ -10,9 +10,7 @@
     <th:block th:include="fragments/f_header :: header"></th:block>
     <th:block th:include="fragments/f_menu :: menu"></th:block>
     <div class="content">
-        <a th:href="@{?language=ru}"><span th:text="#{application.language.ru}"></span></a>
-        <a th:href="@{?language=en}"><span th:text="#{application.language.en}"></span></a>
-        <a th:href="@{protect/index}">Protect!</a>
+        <a th:href="@{protect/index}">go to Protect!</a>
     </div>
     <th:block th:include="fragments/f_footer :: footer"></th:block>
 </div>

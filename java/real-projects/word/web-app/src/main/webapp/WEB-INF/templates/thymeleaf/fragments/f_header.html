@@ -8,6 +8,14 @@
 
 <div id="header" th:fragment="header">
     header
+    <a th:href="@{?language=ru}"><span th:text="#{application.language.ru}"></span></a>
+    <a th:href="@{?language=en}"><span th:text="#{application.language.en}"></span></a>
+    <div>
+        Logged in user: <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b>
+        <form th:action="@{/w_logout}" method="POST">
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
 </div>
 
 </body>
