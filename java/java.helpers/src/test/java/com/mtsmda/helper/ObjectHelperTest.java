@@ -70,7 +70,7 @@ public class ObjectHelperTest {
         assertFalse(ObjectHelper.isNotEqualsObjects(f, s));
         assertFalse(ObjectHelper.isNotEqualsObjects(f, s.intern()));
         assertTrue(ObjectHelper.isNotEqualsObjects(f, s.toLowerCase()));
-        assertFalse(ObjectHelper.isNotEqualsObjects(f, s));
+        assertTrue(ObjectHelper.isNotEqualsObjects(f, s));
         System.out.println("----------------------");
         PersonWithoutEquals personWithoutEqualsF = new PersonWithoutEquals(f);
         PersonWithoutEquals personWithoutEqualsS = new PersonWithoutEquals(f);
