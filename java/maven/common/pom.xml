@@ -6,7 +6,7 @@
 
     <groupId>com.mtsmda.workpiece.maven</groupId>
     <artifactId>common</artifactId>
-    <version>4.4.1.RELEASE.17022017</version>
+    <version>4.5.RELEASE.17022017</version>
     <packaging>pom</packaging>
     <description>
         1.8 - added: spring batch, guava, modified properties
@@ -22,6 +22,7 @@
         4.3.2.RELEASE.06022017 - change thymeleaf version
         4.3.3.RELEASE.06022017 - modify to last version thymeleaf
         4.4.RELEASE.11022017 - add camel libs
+        4.5.RELEASE.17022017 - add flyway lib and maven plugin
     </description>
 
     <properties>
@@ -119,6 +120,7 @@
 
         <!--plugins-->
         <org.apache.maven.plugins.groupId>org.apache.maven.plugins</org.apache.maven.plugins.groupId>
+        <org.flywaydb.groupId>org.flywaydb</org.flywaydb.groupId>
 
         <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
@@ -131,10 +133,18 @@
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
+        <org.flywaydb.version>4.0.3</org.flywaydb.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+
+            <!--flywaydb-->
+            <dependency>
+                <groupId>${org.flywaydb.groupId}</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${org.flywaydb.version}</version>
+            </dependency>
 
             <!--logback-->
             <dependency>
@@ -960,6 +970,11 @@
                     <groupId>${org.apache.maven.plugins.groupId}</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${maven-failsafe-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>${org.flywaydb.groupId}</groupId>
+                    <artifactId>flyway-maven-plugin</artifactId>
+                    <version>${org.flywaydb.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
