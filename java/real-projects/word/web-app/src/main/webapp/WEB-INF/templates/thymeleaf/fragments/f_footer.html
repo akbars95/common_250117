@@ -6,8 +6,13 @@
 </head>
 <body>
 
-<div id="footer" th:fragment="footer">
-    &copy; 2017 Footer
+<div th:fragment="footer">
+    <div id="footer">&copy;
+        <script>
+            document.write(new Date().getFullYear())
+        </script>
+        <span th:text="#{application.footer}"></span>
+    </div>
 </div>
 
 </body>

@@ -32,7 +32,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and().exceptionHandling().accessDeniedPage(StaticPageURL.ACCESS_DENIED_PAGE_URL);
 
         //logout
-        http.logout().logoutUrl(StaticPageURL.LOGOUT_PAGE_URL).logoutSuccessUrl(ROOT).invalidateHttpSession(true);
+        http.logout().logoutUrl(StaticPageURL.LOGOUT_PAGE_URL).logoutSuccessUrl(ROOT).invalidateHttpSession(true).deleteCookies("JSESSIONID");
+
+        //sessionManagement
+        http.sessionManagement().sessionFixation().newSession().maximumSessions(1);
 
         //csrf
         http.csrf();

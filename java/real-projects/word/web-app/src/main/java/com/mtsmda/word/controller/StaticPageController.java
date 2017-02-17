@@ -3,14 +3,22 @@ package com.mtsmda.word.controller;
 import com.mtsmda.word.service.LanguageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import static com.mtsmda.word.controller.PageURL.*;
+
 /**
  * Created by dminzat on 2/5/2017.
  */
@@ -36,6 +44,16 @@ public class StaticPageController {
     public String login() {
         LOGGER.info("get login page");
         return StaticPageURL.LOGIN_PAGE_IN;
+    }
+
+    @GetMapping({StaticPageURL.LOGOUT_PAGE_URL})
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        LOGGER.info("get logout page");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return UrlBasedViewResolver.REDIRECT_URL_PREFIX + ROOT;
     }
 
     @GetMapping({ProtectedPageURL.PROTECT_INDEX_PAGE_URL})

@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>This is header fragment</title>
 </head>
 <body>
 
-<div id="header" th:fragment="header">
-    header
-    <a th:href="@{?language=ru}"><span th:text="#{application.language.ru}"></span></a>
-    <a th:href="@{?language=en}"><span th:text="#{application.language.en}"></span></a>
-    <div>
-        Logged in user: <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b>
-        <form th:action="@{/w_logout}" method="POST">
-            <input type="submit" value="Logout"/>
-        </form>
+<div th:fragment="header">
+    <div id="header">
+        <div class="row">
+            <div class="col-md-6">
+                will be logo
+            </div>
+            <div class="col-md-3">
+                <a th:href="@{?language=ru}"><span th:text="#{application.language.ru}"></span></a>
+                <a th:href="@{?language=en}"><span th:text="#{application.language.en}"></span></a>
+            </div>
+            <div class="col-md-3">
+                <div sec:authorize="isAnonymous()">
+                    <p><a th:href="@{/w_login}"><span th:text="#{application.login}"></span></a></p>
+                </div>
+                <div sec:authorize="isAuthenticated()">
+                    <p><span th:text="#{application.greeting}"></span>, <span sec:authentication="name"></span>
+                        <a th:href="@{/w_logout}"><span th:text="#{application.log.out}"></span></a>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 </div>
 
 </body>

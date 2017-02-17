@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 import org.springframework.core.Ordered;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -43,6 +44,7 @@ public class ThymeleafConfiguration implements ApplicationContextAware {
         SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
         springTemplateEngine.setTemplateResolver(getITemplateResolver());
         springTemplateEngine.setEnableSpringELCompiler(true);
+        springTemplateEngine.addDialect(new SpringSecurityDialect());
         return springTemplateEngine;
     }
 
