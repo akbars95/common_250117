@@ -28,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(ROOT + PageURL.ProtectedPageURL.PROTECT + TWO_ASTERIX).access("hasRole('ROLE_AUTH')")
             .and().formLogin().loginPage(StaticPageURL.LOGIN_PAGE_URL).failureUrl(StaticPageURL.LOGIN_PAGE_URL + QUESTION_MARK + "loginError")
-            .usernameParameter("w_username").passwordParameter("w_password")
+            .usernameParameter("w_username").passwordParameter("w_password").permitAll()
             .and().exceptionHandling().accessDeniedPage(StaticPageURL.ACCESS_DENIED_PAGE_URL);
 
         //logout

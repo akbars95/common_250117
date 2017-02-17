@@ -17,8 +17,8 @@
             <input type="text" id="w_username" name="w_username" autofocus="autofocus" /> <br />
             <label for="w_password"><span th:text="#{login.page.form.password}"></span></label>:
             <input type="password" id="w_password" name="w_password" /> <br />
-            <input type="submit" th:text="#{application.login}" />
-            <input type="reset" th:text="#{login.page.form.reset}" />
+            <button type="submit"><span th:text="#{application.login}"></span></button>
+            <button type="reset"><span th:text="#{login.page.form.reset}"></span></button>
         </form>
         <p th:if="${param.loginError}" class="error">Wrong user or password</p>
 
