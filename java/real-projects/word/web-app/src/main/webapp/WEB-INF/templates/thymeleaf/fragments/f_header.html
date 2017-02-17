@@ -19,7 +19,10 @@
             </div>
             <div class="col-md-3">
                 <div sec:authorize="isAnonymous()">
-                    <p><a th:href="@{/w_login}"><span th:text="#{application.login}"></span></a></p>
+                    <p>
+                        <a th:href="@{/w_login}"><span th:text="#{application.login}"></span></a> |
+                        <a th:href="@{/registration}"><span th:text="#{application.registration}"></span></a>
+                    </p>
                 </div>
                 <div sec:authorize="isAuthenticated()">
                     <p><span th:text="#{application.greeting}"></span>, <span sec:authentication="name"></span>

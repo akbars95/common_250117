@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <title th:text="#{index.page.name}"></title>
+    <title th:text="#{access.denied.page.name}"></title>
     <th:block th:include="fragments/f_head_css_js :: head"></th:block>
 </head>
 <body>
@@ -10,7 +11,8 @@
     <th:block th:include="fragments/f_header :: header"></th:block>
     <th:block th:include="fragments/f_menu :: menu"></th:block>
     <div class="content">
-        <h1>You have not right <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b></h1>
+        <h1 sec:authorize="isAuthenticated()" style="text-align: center"><span th:text="#{access.denied.page.name}"></span>!
+            <span sec:authentication="name"></span>, <span th:text="#{access.denied.page.label}"></span>.</h1>
     </div>
     <th:block th:include="fragments/f_footer :: footer"></th:block>
 </div>

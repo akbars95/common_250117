@@ -21,7 +21,10 @@ public class PageURL {
         public static final String LOGIN_PAGE_URL = ROOT + LOGIN_PAGE_IN;
 
         public static final String ACCESS_DENIED_PAGE_IN = "accessDenied";
-        public static final String ACCESS_DENIED_PAGE_URL = ROOT + ACCESS_DENIED_PAGE_IN ;
+        public static final String ACCESS_DENIED_PAGE_URL = ROOT + ACCESS_DENIED_PAGE_IN;
+
+        public static final String REGISTRATION_PAGE_IN = "registration";
+        public static final String REGISTRATION_PAGE_URL = ROOT + REGISTRATION_PAGE_IN;
     }
 
     public static class ProtectedPageURL{

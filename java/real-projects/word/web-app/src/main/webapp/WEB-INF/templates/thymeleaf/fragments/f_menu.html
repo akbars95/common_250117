@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>This is menu fragment</title>
@@ -8,9 +8,11 @@
 
 <div th:fragment="menu">
     <div id="menu">
-
+        <ul>
+            <li><a th:href="@{/}"><span th:text="#{application.menu.index}"></span></a></li>
+            <li><a th:href="@{/registration}"><span th:text="#{application.registration}"></span></a></li>
+        </ul>
     </div>
-    <span th:text="#{application.footer}"></span>
 </div>
 
 </body>

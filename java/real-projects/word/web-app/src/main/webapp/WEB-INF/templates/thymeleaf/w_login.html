@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="#{index.page.name}"></title>
+    <title th:text="#{application.login}"></title>
     <th:block th:include="fragments/f_head_css_js :: head"></th:block>
 </head>
 <body>
@@ -11,15 +11,16 @@
     <th:block th:include="fragments/f_menu :: menu"></th:block>
     <div class="content">
 
-        <h1>Login page</h1>
-        <p th:if="${param.loginError}" class="error">Wrong user or password</p>
+        <h1 th:text="#{login.page.name}"></h1>
         <form th:action="@{/w_login}" method="post">
-            <label for="username">Username</label>:
-            <input type="text" id="username" name="w_username" autofocus="autofocus" /> <br />
-            <label for="password">Password</label>:
-            <input type="password" id="password" name="w_password" /> <br />
-            <input type="submit" value="Log in" />
+            <label for="w_username"><span th:text="#{login.page.form.username}"></span></label>:
+            <input type="text" id="w_username" name="w_username" autofocus="autofocus" /> <br />
+            <label for="w_password"><span th:text="#{login.page.form.password}"></span></label>:
+            <input type="password" id="w_password" name="w_password" /> <br />
+            <input type="submit" th:text="#{application.login}" />
+            <input type="reset" th:text="#{login.page.form.reset}" />
         </form>
+        <p th:if="${param.loginError}" class="error">Wrong user or password</p>
 
     </div>
     <th:block th:include="fragments/f_footer :: footer"></th:block>

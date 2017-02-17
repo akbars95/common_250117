@@ -72,6 +72,12 @@ public class StaticPageController {
         return StaticPageURL.ACCESS_DENIED_PAGE_IN;
     }
 
+    @GetMapping({StaticPageURL.REGISTRATION_PAGE_URL})
+    public String registration() {
+        LOGGER.info("get registration page");
+        return StaticPageURL.REGISTRATION_PAGE_IN;
+    }
+
     /*@GetMapping({"/home"})
     public ModelAndView home(ModelAndView modelAndView) {
         modelAndView.getModelMap().addAttribute("recipient", "Hello");
