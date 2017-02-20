@@ -22,16 +22,6 @@ public class DatabaseConfiguration {
 
     @Autowired
     private Environment environment;
-    
-    /*@Bean
-    public DriverManagerDataSource driverManagerDataSource(){
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName(environment.getRequiredProperty("oracle.local.driver.name"));
-        driverManagerDataSource.setUrl(environment.getRequiredProperty("oracle.local.url"));
-        driverManagerDataSource.setUsername(environment.getRequiredProperty("oracle.local.username"));
-        driverManagerDataSource.setPassword(environment.getRequiredProperty("oracle.local.password"));
-        return driverManagerDataSource;
-    }*/
 
     @Bean
     public BasicDataSource driverManagerDataSource() {
