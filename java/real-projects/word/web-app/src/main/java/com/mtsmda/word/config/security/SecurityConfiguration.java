@@ -3,8 +3,10 @@ package com.mtsmda.word.config.security;
 import com.mtsmda.word.controller.PageURL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -27,9 +29,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(ROOT + PageURL.ProtectedPageURL.PROTECT + TWO_ASTERIX).access("hasRole('ROLE_AUTH')")
-            .and().formLogin().loginPage(StaticPageURL.LOGIN_PAGE_URL).failureUrl(StaticPageURL.LOGIN_PAGE_URL + QUESTION_MARK + "loginError")
-            .usernameParameter("w_username").passwordParameter("w_password").permitAll()
-            .and().exceptionHandling().accessDeniedPage(StaticPageURL.ACCESS_DENIED_PAGE_URL);
+                .and().formLogin().loginPage(StaticPageURL.LOGIN_PAGE_URL).failureUrl(StaticPageURL.LOGIN_PAGE_URL + QUESTION_MARK + "loginError")
+                .usernameParameter("w_username").passwordParameter("w_password").permitAll()
+                .and().exceptionHandling().accessDeniedPage(StaticPageURL.ACCESS_DENIED_PAGE_URL);
 
         //logout
         http.logout().logoutUrl(StaticPageURL.LOGOUT_PAGE_URL).logoutSuccessUrl(ROOT).invalidateHttpSession(true).deleteCookies("JSESSIONID");
@@ -38,6 +40,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionFixation().newSession().maximumSessions(1);
 
         //csrf
-        http.csrf();
+        http.csrf().disable();
+
+        //httpBasic
+        http.httpBasic().realmName(CustomBasicAuthenticationEntryPoint.REALM_NAME).authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint());
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        super.configure(web);
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
     }
 }
