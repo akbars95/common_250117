@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>database</artifactId>
+        <groupId>com.mtsmda.real.project</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>db-word</artifactId>
+    <packaging>jar</packaging>
+
+    <name>22_Database - Word</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.tablespace.path>d:\\db\\TBL_USER_WORD_DB.DBF</project.tablespace.path>
+        <project.temp.tablespace.path>d:\\db\\TEMP_TBL_USER_WORD_DB.DBF</project.temp.tablespace.path>
+    </properties>
+
+    <dependencies>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+<!--
+            <plugin>
+                <groupId>com.mtsmda.maven.plugins</groupId>
+                <artifactId>advanced-clean-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <deleteFile>target</deleteFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>delete</id>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+-->
+        </plugins>
+    </build>
+
+</project>

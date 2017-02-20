@@ -10,7 +10,7 @@
     <artifactId>web-app</artifactId>
     <packaging>war</packaging>
 
-    <name>Project Word - Web App</name>
+    <name>5_Web App - Root</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
