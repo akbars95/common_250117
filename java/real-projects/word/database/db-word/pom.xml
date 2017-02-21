@@ -14,8 +14,8 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <project.tablespace.path>d:\\db\\TBL_USER_WORD_DB.DBF</project.tablespace.path>
-        <project.temp.tablespace.path>d:\\db\\TEMP_TBL_USER_WORD_DB.DBF</project.temp.tablespace.path>
+        <project.tablespace.path>d:\\dbs\\TBL_USER_WORD_DB.DBF</project.tablespace.path>
+        <project.temp.tablespace.path>d:\\dbs\\TEMP_TBL_USER_WORD_DB.DBF</project.temp.tablespace.path>
     </properties>
 
     <dependencies>
