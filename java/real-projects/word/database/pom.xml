@@ -18,7 +18,11 @@
         <module>db-word</module>
         <module>db-common</module>
     </modules>
-
+    <properties><!--
+        <flyway.current.username></flyway.current.username>
+        <flyway.current.password></flyway.current.password>-->
+        <run.flyway>false</run.flyway>
+    </properties>
     <dependencies>
         <!--flywaydb-->
         <dependency>
@@ -28,13 +32,59 @@
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>${org.flywaydb.groupId}</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>${org.flywaydb.version}</version>
-            </plugin>
-        </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>flyway_clean_migrate</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>${org.flywaydb.groupId}</groupId>
+                        <artifactId>flyway-maven-plugin</artifactId>
+                        <configuration>
+                            <driver>oracle.jdbc.driver.OracleDriver</driver>
+                            <url>jdbc:oracle:thin:@localhost:1521:orcl</url>
+                            <user>${flyway.current.username}</user>
+                            <password>${flyway.current.password}</password>
+                            <table>SCHEMA_HISTORY</table>
+                            <locations>
+                                <location>classpath:db/migration</location>
+                            </locations>
+                        </configuration>
+                        <dependencies>
+                            <!--oracle-->
+                            <dependency>
+                                <groupId>${com.oracle.jdbc.groupId}</groupId>
+                                <artifactId>ojdbc7</artifactId>
+                                <version>${com.oracle.jdbc.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>${com.oracle.jdbc.groupId}</groupId>
+                                <artifactId>ucp</artifactId>
+                                <version>${com.oracle.jdbc.version}</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>f_clean</id>
+                                <goals>
+                                    <goal>clean</goal>
+                                </goals>
+                                <phase>compile</phase>
+                            </execution>
+                            <execution>
+                                <id>f_migrate</id>
+                                <goals>
+                                    <goal>migrate</goal>
+                                </goals>
+                                <phase>verify</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

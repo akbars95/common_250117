@@ -16,6 +16,9 @@
     <properties>
         <project.tablespace.path>d:\\dbs\\TBL_USER_WORD_DB.DBF</project.tablespace.path>
         <project.temp.tablespace.path>d:\\dbs\\TEMP_TBL_USER_WORD_DB.DBF</project.temp.tablespace.path>
+
+        <flyway.current.username>USER_WORD_DB</flyway.current.username>
+        <flyway.current.password>USER_WORD_DB_999_N</flyway.current.password>
     </properties>
 
     <dependencies>
@@ -29,8 +32,7 @@
             </resource>
         </resources>
         <plugins>
-
-            <plugin>
+            <!--<plugin>
                 <groupId>${org.flywaydb.groupId}</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <configuration>
@@ -40,11 +42,11 @@
                     <password>USER_WORD_DB_999_N</password>
                     <table>schema_history</table>
                     <locations>
-                        <location>classpath:db/migration</location>
+                        <location>classpath:db/db</location>
                     </locations>
                 </configuration>
                 <dependencies>
-                    <!--oracle-->
+                    &lt;!&ndash;oracle&ndash;&gt;
                     <dependency>
                         <groupId>${com.oracle.jdbc.groupId}</groupId>
                         <artifactId>ojdbc7</artifactId>
@@ -56,7 +58,7 @@
                         <version>${com.oracle.jdbc.version}</version>
                     </dependency>
                 </dependencies>
-            </plugin>
+            </plugin>-->
             <!--
                         <plugin>
                             <groupId>com.mtsmda.maven.plugins</groupId>
@@ -78,5 +80,16 @@
             -->
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>flyway_clean_migrate</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

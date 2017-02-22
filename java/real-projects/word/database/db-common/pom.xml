@@ -13,6 +13,23 @@
     <name>23_Database - Common</name>
     <url>http://maven.apache.org</url>
 
+    <properties>
+        <flyway.current.username>USER_COMMON_DB</flyway.current.username>
+        <flyway.current.password>USER_COMMON_DB_999</flyway.current.password>
+    </properties>
+
     <dependencies>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>flyway_clean_migrate</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
