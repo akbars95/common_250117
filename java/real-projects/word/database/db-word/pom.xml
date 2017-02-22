@@ -17,7 +17,7 @@
         <project.tablespace.path>d:\\dbs\\TBL_USER_WORD_DB.DBF</project.tablespace.path>
         <project.temp.tablespace.path>d:\\dbs\\TEMP_TBL_USER_WORD_DB.DBF</project.temp.tablespace.path>
 
-        <flyway.current.username>USER_WORD_DB</flyway.current.username>
+        <flyway.current.username>${db.user.user_word_db}</flyway.current.username>
         <flyway.current.password>USER_WORD_DB_999_N</flyway.current.password>
     </properties>
 

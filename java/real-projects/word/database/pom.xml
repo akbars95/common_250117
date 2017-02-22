@@ -18,10 +18,10 @@
         <module>db-word</module>
         <module>db-common</module>
     </modules>
-    <properties><!--
-        <flyway.current.username></flyway.current.username>
-        <flyway.current.password></flyway.current.password>-->
-        <run.flyway>false</run.flyway>
+    <properties>
+        <db.user.user_common_db>USER_COMMON_DB</db.user.user_common_db>
+        <db.user.user_user_db>USER_USER_DB</db.user.user_user_db>
+        <db.user.user_word_db>USER_WORD_DB</db.user.user_word_db>
     </properties>
     <dependencies>
         <!--flywaydb-->

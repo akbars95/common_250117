@@ -14,7 +14,7 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <flyway.current.username>USER_USER_DB</flyway.current.username>
+        <flyway.current.username>${db.user.user_user_db}</flyway.current.username>
         <flyway.current.password>USER_USER_DB_999</flyway.current.password>
     </properties>
 
@@ -32,5 +32,13 @@
         </profile>
     </profiles>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 
 </project>
