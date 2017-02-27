@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.mtsmda.workpiece.maven</groupId>
         <artifactId>common</artifactId>
-        <version>4.6.RELEASE.18022017</version>
+        <version>4.6.1.RELEASE.27022017</version>
     </parent>
 
     <modules>
@@ -45,7 +45,10 @@
     </dependencyManagement>
 
     <dependencies>
-
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
