@@ -6,7 +6,7 @@
 
     <groupId>com.mtsmda.workpiece.maven</groupId>
     <artifactId>common</artifactId>
-    <version>4.6.RELEASE.18022017</version>
+    <version>4.6.1.RELEASE.27022017</version>
     <packaging>pom</packaging>
     <description>
         1.8 - added: spring batch, guava, modified properties
@@ -24,6 +24,7 @@
         4.4.RELEASE.11022017 - add camel libs
         4.5.RELEASE.17022017 - add flyway lib and maven plugin
         4.6.RELEASE.18022017 - maven plugin api and tools
+        4.6.1.RELEASE.27022017 - commons codec
     </description>
 
     <properties>
@@ -104,6 +105,8 @@
         <commons-email.version>1.4</commons-email.version>
         <commons-io.version>1.3.2</commons-io.version>
         <commons-csv.version>1.4</commons-csv.version>
+        <commons-fileupload.version>1.3.2</commons-fileupload.version>
+        <commons-codec.version>1.10</commons-codec.version>
         <javax.mail.version>1.4.7</javax.mail.version>
         <javax.mail-api.version>1.5.5</javax.mail-api.version>
         <com.google.guava.version>20.0</com.google.guava.version>
@@ -117,7 +120,6 @@
         <com.oracle.jdbc.version>12.1.0.2</com.oracle.jdbc.version>
         <slf4j.version>1.7.22</slf4j.version>
         <logback.version>1.1.8</logback.version>
-        <commons-fileupload.version>1.3.2</commons-fileupload.version>
 
         <!--plugins-->
         <org.apache.maven.plugins.groupId>org.apache.maven.plugins</org.apache.maven.plugins.groupId>
@@ -824,6 +826,11 @@
             </dependency>
 
             <!--commons-->
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
+            </dependency>
             <dependency>
                 <groupId>${org.apache.commons.groupId}</groupId>
                 <artifactId>commons-lang3</artifactId>
