@@ -13,12 +13,13 @@ public class SessionHTTPListener implements HttpSessionListener {
     private static final Logger LOGGER = Logger.getLogger(SessionHTTPListener.class);
 
     private static int currentCountOnlineSessions = 0;
+    public int sessionTimeOut = 5 * 60;
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         LOGGER.info("-----session create-----" + se.getSession().getId());
-        se.getSession().setMaxInactiveInterval(5 * 60);
-        LOGGER.info("set default session timeout " + (5 * 60));
+        se.getSession().setMaxInactiveInterval(sessionTimeOut);
+        LOGGER.info("set default session timeout " + sessionTimeOut);
         LOGGER.info(++currentCountOnlineSessions);
     }
 

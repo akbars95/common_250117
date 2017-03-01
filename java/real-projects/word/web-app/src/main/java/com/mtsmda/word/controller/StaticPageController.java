@@ -50,6 +50,8 @@ public class StaticPageController {
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         LOGGER.info("get logout page");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        LOGGER.info("username is - " + auth.getName());
+        LOGGER.info(auth.toString());
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }

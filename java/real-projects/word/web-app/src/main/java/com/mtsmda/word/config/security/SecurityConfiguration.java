@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 import static com.mtsmda.word.controller.PageURL.*;
+import static com.mtsmda.word.controller.PageURL.StaticPageURL.*;
 
 /**
  * Created by dminzat on 2/15/2017.
@@ -48,18 +49,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(ROOT + PageURL.ProtectedPageURL.PROTECT + TWO_ASTERIX).access("hasRole('ROLE_ADMIN')")
-                .and().formLogin().loginPage(StaticPageURL.LOGIN_PAGE_URL).failureUrl(StaticPageURL.LOGIN_PAGE_URL + QUESTION_MARK + "loginError")
+                .and().formLogin().loginPage(LOGIN_PAGE_URL).failureUrl(LOGIN_PAGE_URL + QUESTION_MARK + "loginError")
                 .usernameParameter("w_username").passwordParameter("w_password").permitAll()
-                .and().exceptionHandling().accessDeniedPage(StaticPageURL.ACCESS_DENIED_PAGE_URL);
+                .and().exceptionHandling().accessDeniedPage(ACCESS_DENIED_PAGE_URL);
 
         //logout
-        http.logout().logoutUrl(StaticPageURL.LOGOUT_PAGE_URL).logoutSuccessUrl(ROOT).invalidateHttpSession(true).deleteCookies("JSESSIONID");
+        http.logout().logoutUrl(LOGOUT_PAGE_URL).logoutSuccessUrl(ROOT).invalidateHttpSession(true).deleteCookies("JSESSIONID");
 
         //sessionManagement
-        http.sessionManagement()/*.sessionCreationPolicy(SessionCreationPolicy.STATELESS)*/.sessionFixation().newSession().maximumSessions(1);
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).sessionFixation()
+                .newSession().maximumSessions(1).expiredUrl(LOGIN_PAGE_URL + QUESTION_MARK + "expired");
+        http.sessionManagement().invalidSessionUrl(LOGIN_PAGE_URL + QUESTION_MARK + "invalid_session");
 
         //csrf
-        http.csrf()/*.disable()*/;//if disabled csrf log out do not work
+        http.csrf().disable();//if disabled csrf log out do not work
 
         //httpBasic
         http.httpBasic().realmName(CustomBasicAuthenticationEntryPoint.REALM_NAME)
