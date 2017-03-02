@@ -9,9 +9,6 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,16 +24,16 @@ public class StaticPageController {
 
     private static final Logger LOGGER = Logger.getLogger(StaticPageController.class);
 
-    @Autowired
-    private LanguageService languageService;
+//    @Autowired
+//    private LanguageService languageService;
 
     @GetMapping({ROOT, StaticPageURL.INDEX_PAGE_URL})
     public String index(Model model) {
         model.addAttribute("recipient", "Hello");
         LOGGER.info("get index page");
-        languageService.getAllLanguages().forEach(language -> {
+        /*languageService.getAllLanguages().forEach(language -> {
             System.out.println(language.toString());
-        });
+        });*/
         return StaticPageURL.INDEX_PAGE_IN;
     }
 
@@ -62,9 +59,6 @@ public class StaticPageController {
     public String indexProtected(Model model) {
         model.addAttribute("recipient", "Hello, this is protected file!");
         LOGGER.info("get protected index page");
-        languageService.getAllLanguages().forEach(language -> {
-            System.out.println(language.toString());
-        });
         return ProtectedPageURL.PROTECT_INDEX_PAGE_IN;
     }
 

@@ -1,13 +1,13 @@
 package com.mtsmda.word.repository;
 
-import com.mtsmda.word.model.Language;
-import com.mtsmda.word.rowmapper.LanguageRowMapper;
+import com.mtsmda.real.project.word.model.Language;
+import com.mtsmda.real.project.word.rowmapper.LanguageRowMapper;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.mtsmda.word.rowmapper.TableAndFieldsName.LanguageT;
+import static com.mtsmda.real.project.word.rowmapper.TableAndFieldsName.LanguageT.*;
 
 /**
  * Created by dminzat on 2/6/2017.
@@ -15,12 +15,31 @@ import static com.mtsmda.word.rowmapper.TableAndFieldsName.LanguageT;
 @Repository
 public class LanguageRepositoryImpl extends ParentRepository implements LanguageRepository {
 
-    private static final Logger LOGGER = Logger.getLogger(LanguageRepositoryImpl.class);
+    @Override
+    public boolean insertLanguage(Language language) {
+        setQuery("insert into " + T_LANGUAGES + "(" + T_LANGUAGES_F_LANGUAGE_NAME + ")" +
+                "values(:" + T_LANGUAGES_F_LANGUAGE_ID + ")");
+        clearParamIfNotEmpty();
+        params.put(T_LANGUAGES_F_LANGUAGE_NAME, language.getLanguageName());
+        int update = getNamedParameterJdbcTemplate().update(getQuery(), params);
+        return isSuccess(update);
+    }
+
+    @Override
+    public boolean deleteAllLanguage() {
+        setQuery("delete from " + T_LANGUAGES);
+        clearParamIfNotEmpty();
+        int update = getNamedParameterJdbcTemplate().update(getQuery(), params);
+        return isSuccess(update);
+    }
 
     @Override
     public List<Language> getAllLanguages() {
-        setQuery("select * from " + LanguageT.T_LANGUAGES);
-        LOGGER.info(getQuery());
+        setQuery("select * from " + T_LANGUAGES);
         return getNamedParameterJdbcTemplate().query(getQuery(), new LanguageRowMapper());
+    }
+    @Override
+    protected void setLogger() {
+        LOGGER = Logger.getLogger(LanguageRepositoryImpl.class);
     }
 }

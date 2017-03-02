@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Created by dminzat on 2/15/2017.
  */
-@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+@Transactional(isolation = Isolation.READ_COMMITTED)
 public class ParentService {
 
 }

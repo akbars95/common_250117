@@ -1,9 +1,14 @@
 package com.mtsmda.word.service;
 
-import com.mtsmda.word.repository.LanguageRepository;
+import com.mtsmda.real.project.word.model.Language;
+
+import java.util.List;
 
 /**
- * Created by dminzat on 2/6/2017.
+ * Created by dminzat on 3/2/2017.
  */
-public interface LanguageService extends LanguageRepository{
+public interface LanguageService {
+
+    List<Language> getAllLanguages();
+
 }

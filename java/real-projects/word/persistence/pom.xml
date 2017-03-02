@@ -19,5 +19,15 @@
         <module>p-word</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mtsmda.workpiece.java</groupId>
+            <artifactId>java.helpers</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

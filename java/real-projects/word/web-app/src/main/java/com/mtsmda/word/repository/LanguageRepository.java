@@ -1,6 +1,8 @@
 package com.mtsmda.word.repository;
 
-import com.mtsmda.word.model.Language;
+
+
+import com.mtsmda.real.project.word.model.Language;
 
 import java.util.List;
 
@@ -9,6 +11,8 @@ import java.util.List;
  */
 public interface LanguageRepository {
 
+    boolean insertLanguage(Language language);
+    boolean deleteAllLanguage();
     List<Language> getAllLanguages();
 
 }

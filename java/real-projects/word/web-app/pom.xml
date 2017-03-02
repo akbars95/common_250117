@@ -17,10 +17,6 @@
         <!--spring-->
         <dependency>
             <groupId>${org.springframework.groupId}</groupId>
-            <artifactId>${spring.artifactId}-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${org.springframework.groupId}</groupId>
             <artifactId>${spring.artifactId}-context</artifactId>
         </dependency>
         <dependency>
@@ -162,12 +158,22 @@
         <dependency>
             <groupId>com.mtsmda.workpiece.java</groupId>
             <artifactId>java.helpers</artifactId>
-            <version>1.9.RELEASE.01032017</version>
         </dependency>
         <dependency>
             <groupId>com.mtsmda.spring.helper</groupId>
             <artifactId>spring-helper</artifactId>
-            <version>1.1.3.RELEASE.14112016</version>
+        </dependency>
+
+        <!--other modules-->
+        <dependency>
+            <groupId>com.mtsmda.real.project</groupId>
+            <artifactId>p-user</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mtsmda.real.project</groupId>
+            <artifactId>p-word</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
