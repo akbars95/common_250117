@@ -7,11 +7,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 
-import static org.testng.Assert.*;
 import static com.mtsmda.helper.LocalDateTimeHelper.*;
+import static org.testng.Assert.*;
 
 /**
  * Created by MTSMDA on 01.09.2016.
+ * {@link LocalDateTimeHelper}
  */
 public class LocalDateTimeHelperTest {
 

@@ -3,11 +3,9 @@ package com.mtsmda.xml;
 import com.mtsmda.helper.ListHelper;
 import org.testng.annotations.Test;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-
 import static com.mtsmda.xml.ValidatorXML.*;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 /**
  * Created by dminzat on 11/11/2016.

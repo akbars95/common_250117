@@ -2,14 +2,17 @@ package com.mtsmda.helper;
 
 import org.testng.annotations.Test;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.testng.Assert.*;
 import static com.mtsmda.helper.QueryCreatorHelper.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 /**
  * Created by dminzat on 9/5/2016.
+ * {@link QueryCreatorHelper}
  */
 public class QueryCreatorHelperTest {
 
@@ -195,5 +198,25 @@ public class QueryCreatorHelperTest {
         assertEquals(s, expected);
     }
 
+    @Test
+    public void getToDateOracleTest(){
+        String toDateOracle = getToDateOracle("10:15:25 10.02.2017", TO_DATE_ORACLE_PATTERN);
+        assertNotNull(toDateOracle);
+        assertEquals(toDateOracle, "TO_DATE('10:15:25 10.02.2017', '" + TO_DATE_ORACLE_PATTERN + "')");
+    }
+
+    @Test
+    public void getToDateOracleDefaultPatternTest(){
+        String toDateOracleDefaultPattern = getToDateOracleDefaultPattern("10:15:25 10.02.2017");
+        assertNotNull(toDateOracleDefaultPattern);
+        assertEquals(toDateOracleDefaultPattern, "TO_DATE('10:15:25 10.02.2017', '" + TO_DATE_ORACLE_PATTERN + "')");
+    }
+
+    @Test
+    public void getToDateOracleDefaultPattern2Test(){
+        String toDateOracleDefaultPattern = getToDateOracleDefaultPattern(LocalDateTime.of(2017, 02, 10, 10, 15, 25));
+        assertNotNull(toDateOracleDefaultPattern);
+        assertEquals(toDateOracleDefaultPattern, "TO_DATE('10:15:25 10.02.2017', '" + TO_DATE_ORACLE_PATTERN + "')");
+    }
 
 }

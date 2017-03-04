@@ -1,9 +1,6 @@
 package com.mtsmda.helper;
 
-import java.lang.annotation.*;
 import java.lang.reflect.Field;
-
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Created by dminzat on 9/1/2016.

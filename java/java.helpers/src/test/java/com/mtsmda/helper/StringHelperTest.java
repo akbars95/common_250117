@@ -11,6 +11,7 @@ import static org.testng.Assert.*;
 
 /**
  * Created by MTSMDA on 25.10.2016.
+ * {@link StringHelper}
  */
 public class StringHelperTest {
 

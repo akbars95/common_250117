@@ -2,12 +2,8 @@ package com.mtsmda.encrypt;
 
 import org.junit.Test;
 
-import static com.mtsmda.encrypt.Base64Encoder.PASSWORD_EXCEPTION_MESSAGE;
-import static com.mtsmda.encrypt.Base64Encoder.USERNAME_EXCEPTION_MESSAGE;
-import static com.mtsmda.encrypt.Base64Encoder.getEncodeBase64;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static com.mtsmda.encrypt.Base64Encoder.*;
+import static org.junit.Assert.*;
 
 /**
  * Created by dminzat on 3/1/2017.

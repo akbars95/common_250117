@@ -5,8 +5,9 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.mtsmda.formater.UnicodeConverter.*;
-import static org.testng.Assert.*;
+import static com.mtsmda.formater.UnicodeConverter.nativeToUTF8;
+import static com.mtsmda.formater.UnicodeConverter.unNative2Ascii;
+import static org.testng.Assert.assertNotNull;
 /**
  * Created by dminzat on 11/7/2016.
  */

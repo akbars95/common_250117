@@ -3,10 +3,15 @@ package com.mtsmda.helper;
 /**
  * Created by dminzat on 9/2/2016.
  */
+
 import org.testng.annotations.Test;
 
+import static com.mtsmda.helper.ObjectHelper.*;
 import static org.testng.Assert.*;
 
+/**
+ * {@link ObjectHelper}
+ * */
 public class ObjectHelperTest {
 
     String f = "Ivanov";
@@ -79,6 +84,32 @@ public class ObjectHelperTest {
         PersonWithEquals personWithEqualsF = new PersonWithEquals(personWithoutEqualsF);
         PersonWithEquals personWithEqualsS = new PersonWithEquals(personWithoutEqualsS);
         assertFalse(ObjectHelper.isNotEqualsObjects(personWithEqualsF, personWithEqualsS));
+    }
+
+    @Test
+    public void objectIsNullThrowExceptionWithCustomMessageTest(){
+        String customMessage = "This is null";
+        try {
+            objectIsNullThrowExceptionWithCustomMessage(null, customMessage);
+        }
+        catch (RuntimeException e){
+            assertNotNull(e);
+            assertNotNull(e.getMessage());
+            assertEquals(e.getMessage(), customMessage + " " + OBJECT_IS_NULL);
+        }
+    }
+
+    @Test
+    public void objectIsNullThrowExceptionWithOnlyCustomMessageTest(){
+        String message = "NULL_OBJ";
+        try{
+            objectIsNullThrowExceptionWithOnlyCustomMessage(null, message);
+        }
+        catch (RuntimeException e){
+            assertNotNull(e);
+            assertNotNull(e.getMessage());
+            assertEquals(e.getMessage(), message);
+        }
     }
 
     private class PersonWithoutEquals{

@@ -1,17 +1,17 @@
 package com.mtsmda.helper;
 
 import org.testng.annotations.Test;
-import org.testng.internal.PackageUtils;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.testng.Assert.*;
 import static com.mtsmda.helper.SetHelper.*;
+import static org.testng.Assert.*;
 
 /**
  * Created by dminzat on 10/24/2016.
+ * {@link SetHelper}
  */
 public class SetHelperTest {
 

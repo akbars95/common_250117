@@ -1,7 +1,5 @@
 package com.mtsmda.formater;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * Created by dminzat on 11/7/2016.
  *

@@ -2,11 +2,13 @@ package com.mtsmda.helper;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
 import static com.mtsmda.helper.ExceptionMessageHelper.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 /**
  * Created by dminzat on 9/19/2016.
+ * {@link ExceptionMessageHelper}
  */
 public class ExceptionMessageHelperTest {
 

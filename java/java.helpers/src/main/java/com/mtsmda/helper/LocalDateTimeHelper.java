@@ -12,7 +12,9 @@ public class LocalDateTimeHelper {
     public static final String MYSQL_DATE_FORMAT = "yyyy-MM-dd";
     public static final String MYSQL_TIME_FORMAT = "HH:mm:ss";
     public static final String MYSQL_DATE_TIME_FORMAT = MYSQL_DATE_FORMAT + " " + MYSQL_TIME_FORMAT;
-    public static final String NORMAL_DATE_TIME_FORMAT = "dd.MM.yyyy" + " " + MYSQL_TIME_FORMAT;
+    public static final String NORMAL_DATE_FORMAT = "dd.MM.yyyy";
+    public static final String NORMAL_DATE_TIME_FORMAT = NORMAL_DATE_FORMAT + " " + MYSQL_TIME_FORMAT;
+    public static final String NORMAL_DATE_TIME_FORMAT_VICE_VERSA = MYSQL_TIME_FORMAT + " " + NORMAL_DATE_FORMAT;
     public static final String ORACLE_DATE_TIME_FORMAT = MYSQL_DATE_FORMAT + " " + MYSQL_TIME_FORMAT;
     public static final String SIMPLE_DATE_FORMAT = "ddMMyyyy";
     public static final String SIMPLE_TIME_FORMAT = "HHmmss";

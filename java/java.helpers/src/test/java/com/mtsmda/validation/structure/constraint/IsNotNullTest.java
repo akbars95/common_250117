@@ -9,7 +9,8 @@ import org.junit.runners.MethodSorters;
 
 import javax.validation.groups.Default;
 
-import static com.mtsmda.validation.structure.constraint.ForTesting.*;
+import static com.mtsmda.validation.structure.constraint.ForTesting.registrationReqObj;
+import static com.mtsmda.validation.structure.constraint.ForTesting.registrationReqObjStructureValidator;
 import static org.junit.Assert.*;
 
 /**

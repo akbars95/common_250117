@@ -9,8 +9,9 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.mtsmda.generator.password.PasswordEncoder.*;
-import static org.testng.Assert.*;
+import static com.mtsmda.generator.password.PasswordEncoder.decodePassword;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 /**
  * Created by dminzat on 10/22/2016.

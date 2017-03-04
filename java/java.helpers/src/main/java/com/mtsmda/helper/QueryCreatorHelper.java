@@ -2,6 +2,7 @@ package com.mtsmda.helper;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -9,25 +10,29 @@ import java.util.List;
  */
 public class QueryCreatorHelper {
     public static final String INSERT_INTO = "INSERT INTO";
+    public static final String VALUES = "VALUES";
+    public static final String UPDATE = "UPDATE";
+    public static final String SET = "SET";
+    public static final String WHERE = "WHERE";
+    public static final String DELETE_FROM = "DELETE FROM";
+    public static final String SELECT = "SELECT";
+    public static final String FROM = "FROM";
+    public static final String AND = "AND";
+    public static final String OR = "OR";
     public static final String SPACE = " ";
+    public static final String STAR = "*";
+    public static final String SELECT_ALL = SELECT + SPACE + STAR;
     public static final String OPEN_PARENTHESIS = "(";
     public static final String CLOSE_PARENTHESIS = ")";
     public static final String COMMA = ",";
     public static final String COLON = ":";
-    public static final String VALUES = "VALUES";
     public static final String SEMICOLON = ";";
-    public static final String UPDATE = "UPDATE";
-    public static final String SET = "SET";
     public static final String EQUAL = "=";
-    public static final String WHERE = "WHERE";
-    public static final String DELETE_FROM = "DELETE FROM";
-    public static final String SELECT = "SELECT";
-    public static final String STAR = "*";
-    public static final String SELECT_ALL = SELECT + SPACE + STAR;
-    public static final String FROM = "FROM";
     public static final String DOT = ".";
-    public static final String AND = "AND";
-    public static final String OR = "OR";
+    public static final String APOSTROF = "'";
+
+    public static final String TO_DATE_ORACLE = "TO_DATE";
+    public static final String TO_DATE_ORACLE_PATTERN = "hh24:mi:ss dd.mm.yyyy";
 
     /*
     * insert into cities (city_name, city_country_id) values(:city_name, city_country_id);
@@ -229,6 +234,22 @@ public class QueryCreatorHelper {
         return sbResult.toString().trim();
     }
 
+    public static String getToDateOracle(String localDateTimeStr, String pattern){
+        ObjectHelper.objectIsNullThrowException(localDateTimeStr);
+        ObjectHelper.objectIsNullThrowException(pattern);
+        return new StringBuilder(TO_DATE_ORACLE).append(OPEN_PARENTHESIS).append(APOSTROF).append(localDateTimeStr)
+                .append(APOSTROF).append(COMMA).append(SPACE).append(APOSTROF).append(pattern)
+                .append(APOSTROF).append(CLOSE_PARENTHESIS).toString();
+    }
+
+    public static String getToDateOracleDefaultPattern(String localDateTimeStr){
+        return getToDateOracle(localDateTimeStr, TO_DATE_ORACLE_PATTERN);
+    }
+
+    public static String getToDateOracleDefaultPattern(LocalDateTime localDateTime){
+        return getToDateOracle(LocalDateTimeHelper.convertLocalDateTimeToString(localDateTime, LocalDateTimeHelper.NORMAL_DATE_TIME_FORMAT_VICE_VERSA), TO_DATE_ORACLE_PATTERN);
+    }
+
     private static boolean checkEndCommaSymbol(StringBuilder textQuery) {
         return new Character(textQuery.charAt(textQuery.length() - 1)).toString().equals(COMMA);
     }
@@ -238,6 +259,5 @@ public class QueryCreatorHelper {
             textQuery.deleteCharAt(textQuery.length() - 1);
         }
     }
-
 
 }

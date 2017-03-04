@@ -4,10 +4,12 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
 
 /**
  * Created by dminzat on 9/2/2016.
+ * {@link MapHelper}
  */
 public class MapHelperTest {
 
