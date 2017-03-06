@@ -217,6 +217,12 @@ public class QueryCreatorHelperTest {
         String toDateOracleDefaultPattern = getToDateOracleDefaultPattern(LocalDateTime.of(2017, 02, 10, 10, 15, 25));
         assertNotNull(toDateOracleDefaultPattern);
         assertEquals(toDateOracleDefaultPattern, "TO_DATE('10:15:25 10.02.2017', '" + TO_DATE_ORACLE_PATTERN + "')");
+
+        String query = "INSERT INTO T_USER_ATTEMPTS(ACCOUNT_USER_ID, ATTEMPTS, LAST_MODIFIED) values (1,1,TO_DATE('10:15:25 10.02.2017', 'hh24:mi:ss dd.mm.yyyy'))";
+        toDateOracleDefaultPattern = getToDateOracleDefaultPattern(LocalDateTime.of(2017, 02, 10, 10, 15, 25));
+        assertNotNull(toDateOracleDefaultPattern);
+        assertEquals("INSERT INTO T_USER_ATTEMPTS(ACCOUNT_USER_ID, ATTEMPTS, LAST_MODIFIED) values (1,1," + toDateOracleDefaultPattern + ")",
+                query);
     }
 
 }
