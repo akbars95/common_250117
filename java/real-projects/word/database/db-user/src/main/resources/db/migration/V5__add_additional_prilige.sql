@@ -1,0 +1,2 @@
+GRANT SELECT, INSERT, UPDATE, DELETE ON T_USER_ATTEMPTS TO ${db.user.user_common_db};
+GRANT SELECT, INSERT, UPDATE, DELETE ON T_ACCOUNTS TO ${db.user.user_common_db};

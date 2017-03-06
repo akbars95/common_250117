@@ -27,7 +27,9 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
         servletContext.addFilter("characterEncodingFilter", new CharacterEncodingFilter("UTF-8", true)).addMappingForUrlPatterns(null, false, "/*");
 
-        ServletRegistration.Dynamic dynamic = servletContext.addServlet("dispatcher", new DispatcherServlet(rootApplicationContext));
+        DispatcherServlet dispatcherServlet = new DispatcherServlet(rootApplicationContext);
+//        dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);
+        ServletRegistration.Dynamic dynamic = servletContext.addServlet("dispatcher", dispatcherServlet);
         dynamic.addMapping("/");
         dynamic.setLoadOnStartup(1);
     }

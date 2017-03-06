@@ -22,6 +22,8 @@
         <db.user.user_common_db>USER_COMMON_DB</db.user.user_common_db>
         <db.user.user_user_db>USER_USER_DB</db.user.user_user_db>
         <db.user.user_word_db>USER_WORD_DB</db.user.user_word_db>
+        <flyway.current.username></flyway.current.username>
+        <flyway.current.password></flyway.current.password>
     </properties>
     <dependencies>
         <!--flywaydb-->
@@ -37,6 +39,14 @@
     <profiles>
         <profile>
             <id>flyway_clean_migrate</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <modules>
+                <module>db-user</module>
+                <module>db-word</module>
+                <module>db-common</module>
+            </modules>
             <build>
                 <plugins>
                     <plugin>

@@ -14,22 +14,33 @@
         <h1 th:text="#{login.page.name}"></h1>
         <form th:action="@{/w_login}" method="post">
             <label for="w_username"><span th:text="#{login.page.form.username}"></span></label>:
-            <input type="text" id="w_username" name="w_username" autofocus="autofocus" /> <br />
+            <input type="text" id="w_username" name="w_username" autofocus="autofocus"/> <br/>
             <label for="w_password"><span th:text="#{login.page.form.password}"></span></label>:
-            <input type="password" id="w_password" name="w_password" /> <br />
+            <input type="password" id="w_password" name="w_password"/> <br/>
             <!--<input type="hidden"
                     th:name="${_csrf.parameterName}"
                     th:value="${_csrf.token}" />-->
             <button type="submit"><span th:text="#{application.login}"></span></button>
             <button type="reset"><span th:text="#{login.page.form.reset}"></span></button>
+            <button type="button" id="fillDef">Fill default</button>
         </form>
-        <p th:if="${param.loginError}" class="error">Wrong user or password</p>
+        <!--<p th:if="${param.loginError}" class="error">Wrong user or password</p>
         <p th:if="${param.expired}" class="error">Your session expired</p>
-        <p th:if="${param.invalid_session}" class="error">Your session invalid</p>
+        <p th:if="${param.invalid_session}" class="error">Your session invalid</p>-->
+        <p class="error" th:text="${error}"></p>
 
     </div>
     <th:block th:include="fragments/f_footer :: footer"></th:block>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#fillDef").click(function () {
+            $("#w_username").val("ivanov.ivan");
+            $("#w_password").val("ivanov.ivan");
+        });
+    });
+</script>
 
 </body>
 </html>

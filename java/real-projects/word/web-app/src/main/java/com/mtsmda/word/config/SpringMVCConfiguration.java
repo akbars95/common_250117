@@ -6,10 +6,12 @@ import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import java.util.Locale;
+import java.util.Properties;
 
 /**
  * Created by dminzat on 2/5/2017.
@@ -90,4 +92,22 @@ public class SpringMVCConfiguration extends WebMvcConfigurerAdapter {
         cookieLocaleResolver.setCookieMaxAge(5 * 60);
         return cookieLocaleResolver;
     }*/
+
+    @Bean(name="simpleMappingExceptionResolver")
+    public SimpleMappingExceptionResolver
+    createSimpleMappingExceptionResolver() {
+        SimpleMappingExceptionResolver r =
+                new SimpleMappingExceptionResolver();
+
+        Properties mappings = new Properties();
+        mappings.setProperty("DatabaseException", "404");
+        mappings.setProperty("InvalidCreditCardException", "404");
+
+        r.setExceptionMappings(mappings);  // None by default
+        r.setDefaultErrorView("404");    // No default
+        r.setExceptionAttribute("ex");     // Default is "exception"
+        r.setWarnLogCategory("example.MvcLogger");     // No default
+        return r;
+    }
+
 }

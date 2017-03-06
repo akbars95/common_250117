@@ -22,10 +22,10 @@ import static com.mtsmda.word.controller.PageURL.StaticPageURL.*;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private static final String QUERY_USER_BY_USERNAME = "select a.ACCOUNT_USERNAME, a.ACCOUNT_PASSWORD, u.USER_ACTIVE\n" +
+    public static final String QUERY_USER_BY_USERNAME = "select a.*, u.USER_ACTIVE\n" +
             "from t_users u inner join t_accounts a on u.USER_ID=a.ACCOUNT_USER_ID\n" +
             "where a.ACCOUNT_USERNAME = ?";
-    private static final String QUERY_AUTHORITY_BY_USERNAME = "select a.ACCOUNT_USERNAME, r.ROLE_NAME\n" +
+    public static final String QUERY_AUTHORITY_BY_USERNAME = "select a.ACCOUNT_USERNAME, r.ROLE_NAME\n" +
             "from t_users u inner join t_accounts a on u.USER_ID = a.ACCOUNT_USER_ID\n" +
             "inner join T_USER_ROLES ur on ur.USER_ID = u.USER_ID\n" +
             "inner join T_ROLES r on r.ROLE_ID = ur.ROLE_ID\n" +
@@ -35,14 +35,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private BasicDataSource basicDataSource;
 
     @Autowired
+    private LimitLoginAuthenticationProvider limitLoginAuthenticationProvider;
+
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 //        authenticationManagerBuilder.inMemoryAuthentication().withUser("simple").password("simple").roles("USER");
 //        authenticationManagerBuilder.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
 //        authenticationManagerBuilder.inMemoryAuthentication().withUser("simple2").password("simple2").roles("USER");
 
-        authenticationManagerBuilder.jdbcAuthentication().dataSource(basicDataSource)
+        /*authenticationManagerBuilder.jdbcAuthentication().dataSource(basicDataSource)
                 .usersByUsernameQuery(QUERY_USER_BY_USERNAME)
-                .authoritiesByUsernameQuery(QUERY_AUTHORITY_BY_USERNAME);
+                .authoritiesByUsernameQuery(QUERY_AUTHORITY_BY_USERNAME);*/
+        authenticationManagerBuilder.authenticationProvider(limitLoginAuthenticationProvider);
     }
 
     @Override
@@ -53,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().accessDeniedPage(ACCESS_DENIED_PAGE_URL);
 
         //logout
-        http.logout().logoutUrl(LOGOUT_PAGE_URL).logoutSuccessUrl(ROOT).invalidateHttpSession(true).deleteCookies("JSESSIONID");
+        http.logout()/*.logoutUrl(LOGOUT_PAGE_URL)*/.logoutSuccessUrl(ROOT).invalidateHttpSession(true).deleteCookies("JSESSIONID");
 
         //sessionManagement
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).sessionFixation()

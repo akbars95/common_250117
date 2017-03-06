@@ -53,7 +53,7 @@ public class UserAttemptRowMapper implements RowMapper<UserAttempt> {
         }
 
         return userAttempt;
-    }
+    }/*
 
     public static void main(String[] args) {
         try {
@@ -61,6 +61,6 @@ public class UserAttemptRowMapper implements RowMapper<UserAttempt> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 }
