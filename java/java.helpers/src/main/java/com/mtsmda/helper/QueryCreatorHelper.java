@@ -16,9 +16,16 @@ public class QueryCreatorHelper {
     public static final String WHERE = "WHERE";
     public static final String DELETE_FROM = "DELETE FROM";
     public static final String SELECT = "SELECT";
+    public static final String DISTINCT = "DISTINCT ";
     public static final String FROM = "FROM";
+    public static final String GROUP_BY = "GROUP BY";
+    public static final String HAVING = "HAVING";
+    public static final String ORDER_BY = "ORDER BY";
+    public static final String ASC = "ASC";
+    public static final String DESC = "DESC";
     public static final String AND = "AND";
     public static final String OR = "OR";
+    public static final String AS = "AS";
     public static final String SPACE = " ";
     public static final String STAR = "*";
     public static final String SELECT_ALL = SELECT + SPACE + STAR;
@@ -31,8 +38,38 @@ public class QueryCreatorHelper {
     public static final String DOT = ".";
     public static final String APOSTROF = "'";
 
+    public static final String INSERT_INTO_WITH_SPACE = INSERT_INTO + SPACE;
+    public static final String VALUES_WITH_OPEN_PARENTHESIS = VALUES + OPEN_PARENTHESIS;
+    public static final String SPACE_VALUES_WITH_OPEN_PARENTHESIS = SPACE + VALUES + OPEN_PARENTHESIS;
+    public static final String UPDATE_WITH_SPACE = UPDATE + SPACE;
+    public static final String SET_SPACE_BOTH = SPACE + UPDATE_WITH_SPACE;
+    public static final String WHERE_SPACE_BOTH = SPACE + WHERE + SPACE;
+    public static final String DELETE_FROM_WITH_SPACE = DELETE_FROM + SPACE;
+    public static final String SELECT_WITH_SPACE = SELECT + SPACE;
+    public static final String SELECT_ALL_WITH_SPACE = SELECT_ALL + SPACE;
+    public static final String FROM_WITH_SPACE = FROM + SPACE;
+    public static final String FROM_SPACE_BOTH = SPACE + FROM_WITH_SPACE;
+    public static final String AND_SPACE_BOTH = SPACE + AND + SPACE;
+    public static final String OR_SPACE_BOTH = SPACE + OR + SPACE;
+    public static final String ORDER_BY_WITH_SPACE = ORDER_BY + SPACE;
+    public static final String ORDER_BY_SPACE_BOTH = SPACE + ORDER_BY_WITH_SPACE;
+    public static final String DISTINCT_WITH_SPACE = DISTINCT + SPACE;
+    public static final String GROUP_BY_WITH_SPACE = GROUP_BY + SPACE;
+    public static final String HAVING_WITH_SPACE = HAVING + SPACE;
+    public static final String SPACE_ASC = SPACE + ASC;
+    public static final String SPACE_DESC = SPACE + DESC;
+    public static final String EQUAL_SPACE_BOTH = SPACE + EQUAL + SPACE;
+
     public static final String TO_DATE_ORACLE = "TO_DATE";
     public static final String TO_DATE_ORACLE_PATTERN = "hh24:mi:ss dd.mm.yyyy";
+
+    public static String queryCreator(String... strings) {
+        StringBuilder stringBuilderResult = new StringBuilder();
+        for (String current : strings) {
+            stringBuilderResult.append(current);
+        }
+        return stringBuilderResult.toString();
+    }
 
     /*
     * insert into cities (city_name, city_country_id) values(:city_name, city_country_id);
@@ -234,7 +271,7 @@ public class QueryCreatorHelper {
         return sbResult.toString().trim();
     }
 
-    public static String getToDateOracle(String localDateTimeStr, String pattern){
+    public static String getToDateOracle(String localDateTimeStr, String pattern) {
         ObjectHelper.objectIsNullThrowException(localDateTimeStr);
         ObjectHelper.objectIsNullThrowException(pattern);
         return new StringBuilder(TO_DATE_ORACLE).append(OPEN_PARENTHESIS).append(APOSTROF).append(localDateTimeStr)
@@ -242,11 +279,11 @@ public class QueryCreatorHelper {
                 .append(APOSTROF).append(CLOSE_PARENTHESIS).toString();
     }
 
-    public static String getToDateOracleDefaultPattern(String localDateTimeStr){
+    public static String getToDateOracleDefaultPattern(String localDateTimeStr) {
         return getToDateOracle(localDateTimeStr, TO_DATE_ORACLE_PATTERN);
     }
 
-    public static String getToDateOracleDefaultPattern(LocalDateTime localDateTime){
+    public static String getToDateOracleDefaultPattern(LocalDateTime localDateTime) {
         return getToDateOracle(LocalDateTimeHelper.convertLocalDateTimeToString(localDateTime, LocalDateTimeHelper.NORMAL_DATE_TIME_FORMAT_VICE_VERSA), TO_DATE_ORACLE_PATTERN);
     }
 
