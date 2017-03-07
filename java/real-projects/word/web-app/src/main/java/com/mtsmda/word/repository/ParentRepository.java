@@ -1,5 +1,7 @@
 package com.mtsmda.word.repository;
 
+import com.mtsmda.spring.helper.response.CommonResponse;
+import com.mtsmda.word.common.LoggerI;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -10,7 +12,7 @@ import java.util.Map;
 /**
  * Created by dminzat on 2/15/2017.
  */
-public abstract class ParentRepository {
+public abstract class ParentRepository implements LoggerI {
 
     protected static Logger LOGGER = null;
     protected Map<String, Object> params = new HashMap<>();
@@ -41,8 +43,6 @@ public abstract class ParentRepository {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-    protected abstract <T> void setLogger();
-
     protected void clearParamIfNotEmpty() {
         if (!params.isEmpty()) {
             params.clear();
@@ -51,6 +51,11 @@ public abstract class ParentRepository {
 
     protected boolean isSuccess(int code) {
         return code > 0;
+    }
+
+    protected <T>CommonResponse<T> exceptionHandler(Integer code, Exception e, Class<T> classObject){
+        LOGGER.error(e.getMessage());
+        return new CommonResponse<T>(code, e.getMessage());
     }
 
 }

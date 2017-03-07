@@ -1,7 +1,9 @@
 package com.mtsmda.word.controller;
 
+import com.mtsmda.helper.LocalDateTimeHelper;
 import com.mtsmda.helper.ObjectHelper;
-import com.mtsmda.word.service.LanguageService;
+import com.mtsmda.word.config.security.LimitLoginAuthenticationProvider;
+import com.mtsmda.word.service.UserAttemptService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -19,7 +21,6 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.util.Locale;
 
 import static com.mtsmda.word.controller.PageURL.*;
@@ -33,8 +34,8 @@ public class StaticPageController {
 
     private static final Logger LOGGER = Logger.getLogger(StaticPageController.class);
 
-//    @Autowired
-//    private LanguageService languageService;
+    @Autowired
+    private UserAttemptService userAttemptService;
 
     @Autowired
     private MessageSource messageSource;
@@ -43,9 +44,6 @@ public class StaticPageController {
     public String index(Model model) {
         model.addAttribute("recipient", "Hello");
         LOGGER.info("get index page");
-        /*languageService.getAllLanguages().forEach(language -> {
-            System.out.println(language.toString());
-        });*/
         return StaticPageURL.INDEX_PAGE_IN;
     }
 
@@ -55,17 +53,17 @@ public class StaticPageController {
                               @RequestParam(value = "expired", required = false) String expired,
                               @RequestParam(value = "invalid_session", required = false) String invalidSession) {
         ModelAndView modelAndView = new ModelAndView(StaticPageURL.LOGIN_PAGE_IN);
-        String message = null;
+
         if (ObjectHelper.objectIsNotNull(loginError)) {
-            message = getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION");
+            modelAndView.addObject("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION", locale));
         }
         if (ObjectHelper.objectIsNotNull(expired)) {
-            messageSource.
+            modelAndView.addObject("error", messageSource.getMessage("code.application.session.expired", new Object[]{}, locale));
         }
         if (ObjectHelper.objectIsNotNull(invalidSession)) {
-
+            modelAndView.addObject("error", messageSource.getMessage("code.application.session.invalid", new Object[]{}, locale));
         }
-        modelAndView.addObject("error", message);
+
         LOGGER.info("get login page");
         return modelAndView;
     }
@@ -113,14 +111,25 @@ public class StaticPageController {
         return modelAndView;
     }*/
 
-    private String getErrorMessage(HttpServletRequest request, String key) {
+    private String getErrorMessage(HttpServletRequest request, String key, Locale locale) {
         Exception exception = (Exception) request.getSession().getAttribute(key);
         if (exception instanceof BadCredentialsException) {
-            return "Invalid username and/or password";
+            return messageSource.getMessage("code.application.bad.credentials", new Object[]{}, locale);
         } else if (exception instanceof LockedException) {
+            if (ObjectHelper.objectIsNotNull(exception.getMessage())) {
+                if (exception.getMessage().startsWith(LimitLoginAuthenticationProvider.CUSTOM_ERROR)) {
+                    String username = exception.getMessage().substring(exception.getMessage().indexOf(LimitLoginAuthenticationProvider.USERNAME_DELIMITER) + 1);//SecurityContextHolder.getContext().getAuthentication().getName();
+                    return messageSource.getMessage("code.application.user.locked", new Object[]{}, locale) + "! "
+                            + messageSource.getMessage("code.application.username.text", new Object[]{username}, locale)
+                            + ". " + messageSource.getMessage("code.application.user.last.attempt",
+                            new Object[]{LocalDateTimeHelper.convertLocalDateTimeToString(userAttemptService.getUserAttemptByUsername(username).getLastModified(), LocalDateTimeHelper.NORMAL_DATE_TIME_FORMAT)}, locale);
+                } else {
+                    return exception.getMessage();
+                }
+            }
             return exception.getMessage();
         } else {
-            return "Invalid username and/or password";
+            return messageSource.getMessage("code.application.bad.credentials", new Object[]{}, locale);
         }
     }
 

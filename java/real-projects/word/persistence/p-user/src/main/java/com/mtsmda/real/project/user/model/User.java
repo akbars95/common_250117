@@ -5,6 +5,10 @@ package com.mtsmda.real.project.user.model;
  */
 public class User extends UserAbstract {
 
+    public User() {
+
+    }
+
     public User(Integer userId) {
         super();
         this.setUserId(userId);

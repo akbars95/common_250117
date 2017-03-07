@@ -39,7 +39,7 @@ public class LanguageRepositoryImpl extends ParentRepository implements Language
         return getNamedParameterJdbcTemplate().query(getQuery(), new LanguageRowMapper());
     }
     @Override
-    protected void setLogger() {
+    public void setLogger() {
         LOGGER = Logger.getLogger(LanguageRepositoryImpl.class);
     }
 }

@@ -1,10 +1,12 @@
 package com.mtsmda.word.repository;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by dminzat on 2/28/2017.
  */
+@Repository
 public class PartOfSpeechRepositoryImpl extends ParentRepository implements PartOfSpeechRepository {
 
     /*@Override
@@ -26,7 +28,7 @@ public class PartOfSpeechRepositoryImpl extends ParentRepository implements Part
     }
 */
     @Override
-    protected <T> void setLogger() {
+    public <T> void setLogger() {
         LOGGER = Logger.getLogger(PartOfSpeechRepositoryImpl.class);
     }
 }

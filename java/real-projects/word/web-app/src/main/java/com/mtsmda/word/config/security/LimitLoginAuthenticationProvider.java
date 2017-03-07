@@ -6,6 +6,7 @@ import com.mtsmda.real.project.user.model.UserAttempt;
 import com.mtsmda.word.repository.UserDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -22,6 +23,9 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
 
     @Autowired
     private UserDetailRepository userDetailRepository;
+
+    public static final String CUSTOM_ERROR = "CUSTOM_ERROR";
+    public static final String USERNAME_DELIMITER = "|";
 
     @Autowired
     @Qualifier("customJdbcDaoImpl")
@@ -43,8 +47,7 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
             StringBuilder error = new StringBuilder();
             UserAttempt userAttempt = userDetailRepository.getUserAttempts(authentication.getName());
             if (ObjectHelper.objectIsNotNull(userAttempt)) {
-                error.append("User account is locked!<br>Username : ").append(authentication.getName())
-                        .append("<br>Last attempts : " + LocalDateTimeHelper.convertLocalDateTimeToString(userAttempt.getLastModified(), LocalDateTimeHelper.NORMAL_DATE_TIME_FORMAT));
+                error.append(CUSTOM_ERROR).append(USERNAME_DELIMITER).append(authentication.getName());
             } else {
                 error.append(e.getMessage());
             }
