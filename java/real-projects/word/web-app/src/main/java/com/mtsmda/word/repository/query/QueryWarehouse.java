@@ -1,9 +1,11 @@
 package com.mtsmda.word.repository.query;
 
 import com.mtsmda.real.project.user.model.Account;
+import com.mtsmda.real.project.user.model.PersistentLogin;
 import com.mtsmda.real.project.user.rowmapper.TableAndFieldsName.*;
 
 import static com.mtsmda.helper.QueryCreatorHelper.*;
+import static com.mtsmda.helper.QueryCreatorHelper.queryCreator;
 
 /**
  * Created by dminzat on 3/6/2017.
@@ -32,15 +34,44 @@ public class QueryWarehouse {
                 OPEN_PARENTHESIS, AccountQuery.QUERY_GET_USER_ID_BY_USERNAME, CLOSE_PARENTHESIS);
     }
 
+    public static class PersistentLoginQuery {
+        public static final String QUERY_INSERT_PERSISTENT_LOGIN = queryCreator(INSERT_INTO_WITH_SPACE, PersistentLoginT.T_PERSISTENT_LOGINS,
+                SPACE_WITH_OPEN_PARENTHESIS, getInsertParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_ACCOUNT_USER_ID, false), getInsertParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_SERIES, false),
+                getInsertParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_TOKEN, false), getInsertParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_LAST_USED, true),
+                SPACE_VALUES_WITH_OPEN_PARENTHESIS, OPEN_PARENTHESIS, AccountQuery.QUERY_GET_USER_ID_BY_USERNAME,
+                CLOSE_PARENTHESIS, COMMA_WITH_SPACE,
+                getParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_SERIES, true, false), getParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_TOKEN, true, false),
+                getParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_LAST_USED, false, true), CLOSE_PARENTHESIS);
+        public static final String QUERY_UPDATE_PERSISTENT_LOGIN_TOKEN_AND_LAST_USER_BY_SERIES = queryCreator(UPDATE_WITH_SPACE, PersistentLoginT.T_PERSISTENT_LOGINS,
+        SET_SPACE_BOTH, getUpdateParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_TOKEN, false), getUpdateParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_LAST_USED, true),
+                WHERE_SPACE_BOTH, getUpdateParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_SERIES, true));
+        public static final String QUERY_DELETE_BY_USERNAME = queryCreator(DELETE_FROM_WITH_SPACE, PersistentLoginT.T_PERSISTENT_LOGINS, WHERE_SPACE_BOTH,
+                PersistentLoginT.T_PERSISTENT_LOGINS_F_ACCOUNT_USER_ID, EQUAL_SPACE_BOTH, OPEN_PARENTHESIS, UserQuery.QUERY_GET_USER_BY_USERNAME, CLOSE_PARENTHESIS);
+        public static final String QUERY_SELECT_PERSISTENT_LOGIN_BY_SERIES = queryCreator(SELECT_WITH_SPACE,
+                getSelectParam(AccountT.T_ACCOUNTS_F_ACCOUNT_USERNAME),
+                getSelectParam(PersistentLoginT.T_PERSISTENT_LOGINS), getSelectParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_SERIES),
+                PersistentLoginT.T_PERSISTENT_LOGINS_F_LAST_USED, FROM_SPACE_BOTH,
+                getInnerJoinFirstJoin(PersistentLoginT.T_PERSISTENT_LOGINS, PersistentLoginT.PERSISTENT_LOGIN_PREFIX,
+                        PersistentLoginT.T_PERSISTENT_LOGINS_F_ACCOUNT_USER_ID,
+                        AccountT.T_ACCOUNTS, AccountT.ACCOUNT_PREFIX, AccountT.T_ACCOUNTS_F_ACCOUNT_USER_ID),
+                WHERE_SPACE_BOTH, getUpdateParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_SERIES, true));
+
+
+    }
+
     public static void main(String[] args) {
         showQuery("QUERY_GET_ACCOUNT_BY_USERNAME", AccountQuery.QUERY_GET_ACCOUNT_BY_USERNAME);
         showQuery("QUERY_GET_USER_ID_BY_USERNAME", AccountQuery.QUERY_GET_USER_ID_BY_USERNAME);
         showQuery("QUERY_GET_USER_BY_USERNAME", UserQuery.QUERY_GET_USER_BY_USERNAME);
         showQuery("QUERY_GET_USER_ATTEMPT_BY_USERNAME", UserAttemptQuery.QUERY_GET_USER_ATTEMPT_BY_USERNAME);
+        showQuery("QUERY_INSERT_PERSISTENT_LOGIN", PersistentLoginQuery.QUERY_INSERT_PERSISTENT_LOGIN);
+        showQuery("QUERY_UPDATE_PERSISTENT_LOGIN_TOKEN_AND_LAST_USER_BY_SERIES", PersistentLoginQuery.QUERY_UPDATE_PERSISTENT_LOGIN_TOKEN_AND_LAST_USER_BY_SERIES);
+        showQuery("QUERY_DELETE_BY_USERNAME", PersistentLoginQuery.QUERY_DELETE_BY_USERNAME);
+        showQuery("QUERY_SELECT_PERSISTENT_LOGIN_BY_SERIES", PersistentLoginQuery.QUERY_SELECT_PERSISTENT_LOGIN_BY_SERIES);
     }
 
     private static final void showQuery(String queryName, String query){
-        System.out.println(queryName + " - " + query);
+        System.out.println(queryName + "\t\t - \t" + query);
     }
 
 }

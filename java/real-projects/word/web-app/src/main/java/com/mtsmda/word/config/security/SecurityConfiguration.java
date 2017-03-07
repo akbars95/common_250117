@@ -1,6 +1,5 @@
 package com.mtsmda.word.config.security;
 
-import com.mtsmda.spring.helper.helper.BCryptPasswordEncoderHelper;
 import com.mtsmda.word.controller.PageURL;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import static com.mtsmda.word.controller.PageURL.*;
-import static com.mtsmda.word.controller.PageURL.StaticPageURL.*;
+import static com.mtsmda.word.controller.PageURL.StaticPageURL.ACCESS_DENIED_PAGE_URL;
+import static com.mtsmda.word.controller.PageURL.StaticPageURL.LOGIN_PAGE_URL;
 
 /**
  * Created by dminzat on 2/15/2017.
@@ -39,6 +41,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private LimitLoginAuthenticationProvider limitLoginAuthenticationProvider;
+
+    @Autowired
+    private CustomJdbcDaoImpl customJdbcDao;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -73,6 +78,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //httpBasic
         http.httpBasic().realmName(CustomBasicAuthenticationEntryPoint.REALM_NAME)
                 .authenticationEntryPoint(getCustomBasicAuthenticationEntryPoint());
+
+        //rememberMe
+        http.rememberMe().tokenValiditySeconds(60 * 60 * 24 * 7).rememberMeParameter("w_remember_me")
+                .tokenRepository(persistentTokenRepository()).key("rem-me-key")
+        .rememberMeCookieName("remember-me-cookie")/*.userDetailsService(customJdbcDao)*/;
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(basicDataSource);
+        return jdbcTokenRepository;
     }
 
     @Override
@@ -87,7 +104,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

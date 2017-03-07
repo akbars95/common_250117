@@ -6,18 +6,21 @@ package com.mtsmda.real.project.user.rowmapper;
 public class TableAndFieldsName {
 
     public static class RoleT{
+        public static final String ROLE_PREFIX = "R";
         public static final String T_ROLES = "T_ROLES";
         public static final String T_ROLES_F_ROLE_ID = "ROLE_ID";
         public static final String T_ROLES_F_ROLE_NAME = "ROLE_NAME";
     }
 
     public static class PrivilegeT{
+        public static final String PRIVILEGE_PREFIX = "PR";
         public static final String T_PRIVILEGES = "T_PRIVILEGES";
         public static final String T_PRIVILEGES_F_PRIVILEGE_ID = "PRIVILEGE_ID";
         public static final String T_PRIVILEGES_F_PRIVILEGE_NAME = "PRIVILEGE_NAME";
     }
 
     public static class UserT{
+        public static final String USER_PREFIX = "U";
         public static final String T_USERS = "T_USERS";
         public static final String T_USERS_F_USER_ID = "USER_ID";
         public static final String T_USERS_F_USER_FIRSTNAME = "USER_FIRSTNAME";
@@ -33,6 +36,7 @@ public class TableAndFieldsName {
     }
 
     public static class UserHistoryT{
+        public static final String USER_HISTORY_PREFIX = "UH";
         public static final String T_USERS_HISTORY = UserT.T_USERS + "_HISTORY";
         public static final String T_USERS_HISTORY_F_USER_ID = UserT.T_USERS_F_USER_ID;
         public static final String T_USERS_HISTORY_F_USER_FIRSTNAME = UserT.T_USERS_F_USER_FIRSTNAME;
@@ -48,6 +52,7 @@ public class TableAndFieldsName {
     }
 
     public static class AccountT {
+        public static final String ACCOUNT_PREFIX = "A";
         public static final String T_ACCOUNTS = "T_ACCOUNTS";
         public static final String T_ACCOUNTS_F_ACCOUNT_USER_ID = "ACCOUNT_USER_ID";
         public static final String T_ACCOUNTS_F_ACCOUNT_USERNAME = "ACCOUNT_USERNAME";
@@ -59,6 +64,7 @@ public class TableAndFieldsName {
     }
 
     public static class PasswordHistoryT {
+        public static final String PASSWORD_HISTORY_PREFIX = "PH";
         public static final String T_PASSWORD_HISTORY = "T_PASSWORD_HISTORY";
         public static final String T_PASSWORD_HISTORY_F_ACCOUNT_USER_ID = "ACCOUNT_USER_ID";
         public static final String T_PASSWORD_HISTORY_F_ACCOUNT_PASSWORD = "ACCOUNT_PASSWORD";
@@ -66,11 +72,21 @@ public class TableAndFieldsName {
     }
 
     public static class UserAttemptT{
+        public static final String USER_ATTEMPT_PREFIX = "UA";
         public static final String T_USER_ATTEMPTS = "T_USER_ATTEMPTS";
         public static final String T_USER_ATTEMPTS_F_USER_ATTEMPT_ID = "USER_ATTEMPT_ID";
         public static final String T_USER_ATTEMPTS_F_ACCOUNT_USER_ID = "ACCOUNT_USER_ID";
         public static final String T_USER_ATTEMPTS_F_ATTEMPTS = "ATTEMPTS";
         public static final String T_USER_ATTEMPTS_F_LAST_MODIFIED = "LAST_MODIFIED";
+    }
+
+    public static class PersistentLoginT{
+        public static final String PERSISTENT_LOGIN_PREFIX = "PL";
+        public static final String T_PERSISTENT_LOGINS = "T_PERSISTENT_LOGINS";
+        public static final String T_PERSISTENT_LOGINS_F_ACCOUNT_USER_ID = "ACCOUNT_USER_ID";
+        public static final String T_PERSISTENT_LOGINS_F_SERIES = "SERIES";
+        public static final String T_PERSISTENT_LOGINS_F_TOKEN = "TOKEN";
+        public static final String T_PERSISTENT_LOGINS_F_LAST_USED = "LAST_USED";
     }
 
 }
