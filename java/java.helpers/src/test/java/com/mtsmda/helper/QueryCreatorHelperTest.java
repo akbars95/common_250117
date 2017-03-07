@@ -225,4 +225,51 @@ public class QueryCreatorHelperTest {
                 query);
     }
 
+    @Test
+    public void getParamTest(){
+        String name = getParam("name");
+        assertNotNull(name);
+        assertEquals(":name", name);
+
+        name = getParam("name", true, true);
+        assertNotNull(name);
+        assertEquals(":name,", name);
+
+        name = getParam("name", true, false);
+        assertNotNull(name);
+        assertEquals(":name, ", name);
+    }
+
+    @Test
+    public void getUpdateParamTest(){
+        String name = getUpdateParam("name", true);
+        assertNotNull(name);
+        assertEquals("name = :name", name);
+
+        name = getUpdateParam("name", false);
+        assertNotNull(name);
+        assertEquals("name = :name, ", name);
+    }
+
+    @Test
+    public void getInnerJoinOnTest(){
+        String innerJoinOn = getInnerJoinOn("p", "person_id", "l", "person_id_f");
+        assertNotNull(innerJoinOn);
+        assertEquals(" ON p.person_id = l.person_id_f", innerJoinOn);
+    }
+
+    @Test
+    public void getInnerJoinFirstJoinTest(){
+        String innerJoinOn = getInnerJoinFirstJoin("Person", "p", "person_id", "L_Person", "l", "person_id_f");
+        assertNotNull(innerJoinOn);
+        assertEquals("Person p INNER JOIN L_Person l ON p.person_id = l.person_id_f", innerJoinOn);
+    }
+
+    @Test
+    public void getInnerJoinNotFirstJoinTest(){
+        String innerJoinNotFirstJoin = getInnerJoinNotFirstJoin("City", "c", "city_id", "Person", "p", "person_city_id");
+        assertNotNull(innerJoinNotFirstJoin);
+        assertEquals(" INNER JOIN City c ON c.city_id = p.person_city_id", innerJoinNotFirstJoin);
+    }
+
 }
