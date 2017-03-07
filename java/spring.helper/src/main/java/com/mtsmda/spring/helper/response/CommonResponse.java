@@ -43,6 +43,11 @@ public class CommonResponse<T> {
         this.code = code;
     }
 
+    public CommonResponse(T object, Integer code) {
+        this.object = object;
+        this.code = code;
+    }
+
     public CommonResponse(Integer code, String messageErrorDescription) {
         this.code = code;
         this.messageErrorDescription = messageErrorDescription;
