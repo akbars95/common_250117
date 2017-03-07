@@ -34,6 +34,13 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
         super.setUserDetailsService(userDetailsService);
     }
 
+    @Autowired
+    @Qualifier("passwordEncoder")
+    @Override
+    public void setPasswordEncoder(Object passwordEncoder) {
+        super.setPasswordEncoder(passwordEncoder);
+    }
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         try {

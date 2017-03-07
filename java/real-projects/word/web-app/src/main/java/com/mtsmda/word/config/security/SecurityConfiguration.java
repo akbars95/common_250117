@@ -1,5 +1,6 @@
 package com.mtsmda.word.config.security;
 
+import com.mtsmda.spring.helper.helper.BCryptPasswordEncoderHelper;
 import com.mtsmda.word.controller.PageURL;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static com.mtsmda.word.controller.PageURL.*;
 import static com.mtsmda.word.controller.PageURL.StaticPageURL.*;
@@ -82,4 +85,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public CustomBasicAuthenticationEntryPoint getCustomBasicAuthenticationEntryPoint() {
         return new CustomBasicAuthenticationEntryPoint();
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+    /*public static void main(String[] args) {
+        System.out.println(BCryptPasswordEncoderHelper.getBCryptPasswordEncoder("durov.daniil"));
+    }*/
 }
