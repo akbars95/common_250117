@@ -61,6 +61,12 @@ public class AccountRowMapper implements RowMapper<Account> {
         } catch (Exception e) {
             account.setUserMaxAttempts(null);
         }
+
+        try {
+            account.setUserCountDaysNeedChangePass(rs.getInt(T_ACCOUNTS_F_COUNT_DAY_NEED_CHANGE_PASS));
+        } catch (Exception e) {
+            account.setUserCountDaysNeedChangePass(null);
+        }
         
         return account;
     }

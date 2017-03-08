@@ -61,6 +61,7 @@ public class TableAndFieldsName {
         public static final String T_ACCOUNTS_F_ACCOUNT_NON_LOCKED = "ACCOUNT_NON_LOCKED";
         public static final String T_ACCOUNTS_F_CREDENTIALS_NON_EXPIRED = "CREDENTIALS_NON_EXPIRED";
         public static final String T_ACCOUNTS_F_USER_MAX_ATTEMPTS = "USER_MAX_ATTEMPTS";
+        public static final String T_ACCOUNTS_F_COUNT_DAY_NEED_CHANGE_PASS = "COUNT_DAY_NEED_CHANGE_PASS";
     }
 
     public static class PasswordHistoryT {

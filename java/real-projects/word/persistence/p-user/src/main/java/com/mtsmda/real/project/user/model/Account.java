@@ -14,6 +14,7 @@ public class Account implements Serializable{
     private Boolean accountNonLocked;
     private Boolean credentialsNonExpired;
     private Integer userMaxAttempts;
+    private Integer userCountDaysNeedChangePass;
 
     public Account() {
 
@@ -87,5 +88,13 @@ public class Account implements Serializable{
 
     public void setUserMaxAttempts(Integer userMaxAttempts) {
         this.userMaxAttempts = userMaxAttempts;
+    }
+
+    public Integer getUserCountDaysNeedChangePass() {
+        return userCountDaysNeedChangePass;
+    }
+
+    public void setUserCountDaysNeedChangePass(Integer userCountDaysNeedChangePass) {
+        this.userCountDaysNeedChangePass = userCountDaysNeedChangePass;
     }
 }

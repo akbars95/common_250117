@@ -2,13 +2,13 @@
 cls
 
 cd database/db-user
-call mvn clean install -P flyway_clean_migrate || goto :Error
+call mvn clean install -Pflyway_clean_migrate || goto :Error
 
 cd ../db-word
-call mvn clean install -P flyway_clean_migrate || goto :Error
+call mvn clean install -Pflyway_clean_migrate || goto :Error
 
 cd ../db-common
-call mvn clean install -P flyway_clean_migrate || goto :Error
+call mvn clean install -Pflyway_clean_migrate || goto :Error
 
 :Error
     echo Failed with error#%errorlevel%.
