@@ -39,6 +39,10 @@ public class LocalDateTimeHelper {
         return localDateTime.format(DateTimeFormatter.ofPattern(format));
     }
 
+    public static String convertLocalDateTimeToStringForOracle(LocalDateTime localDateTime) {
+        return localDateTime.format(DateTimeFormatter.ofPattern(NORMAL_DATE_TIME_FORMAT_VICE_VERSA));
+    }
+
     public static String localDateMySqlFormat(LocalDate localDate) {
         return localDate.format(DateTimeFormatter.ofPattern(MYSQL_DATE_FORMAT));
     }

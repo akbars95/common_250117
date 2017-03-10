@@ -285,6 +285,19 @@ public class QueryCreatorHelper {
                 .append(APOSTROF).append(CLOSE_PARENTHESIS).toString();
     }
 
+    /**
+    * The best used this method with -
+    * <b>LocalDateTimeHelper.convertLocalDateTimeToString(localDateTime, LocalDateTimeHelper.NORMAL_DATE_TIME_FORMAT_VICE_VERSA)
+     * or
+     * LocalDateTimeHelper.convertLocalDateTimeToStringForOracleTest
+     * </b>
+    * */
+    public static String getToDateOracleAsParam(String paramName) {
+        return new StringBuilder(TO_DATE_ORACLE).append(OPEN_PARENTHESIS).append(getParam(paramName))
+                .append(COMMA).append(SPACE).append(APOSTROF).append(TO_DATE_ORACLE_PATTERN)
+                .append(APOSTROF).append(CLOSE_PARENTHESIS).toString();
+    }
+
     public static String getToDateOracleDefaultPattern(String localDateTimeStr) {
         return getToDateOracle(localDateTimeStr, TO_DATE_ORACLE_PATTERN);
     }

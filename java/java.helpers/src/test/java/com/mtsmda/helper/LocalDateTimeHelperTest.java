@@ -115,4 +115,12 @@ public class LocalDateTimeHelperTest {
         assertNotNull(convertLocalDateTimeToDate(LocalDateTime.now()));
     }
 
+    @Test
+    public void convertLocalDateTimeToStringForOracleTest(){
+        String s = convertLocalDateTimeToStringForOracle(LocalDateTime.of(2009, 2, 17, 10, 9, 35));
+        assertNotNull(s);
+        assertEquals("10:09:35 17.02.2009", s);
+        System.out.println(s);
+    }
+
 }

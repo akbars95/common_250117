@@ -206,6 +206,13 @@ public class QueryCreatorHelperTest {
     }
 
     @Test
+    public void getToDateOracleAsParamTest(){
+        String toDateOracle = getToDateOracleAsParam("date");
+        assertNotNull(toDateOracle);
+        assertEquals(toDateOracle, "TO_DATE(:date, 'hh24:mi:ss dd.mm.yyyy')");
+    }
+
+    @Test
     public void getToDateOracleDefaultPatternTest(){
         String toDateOracleDefaultPattern = getToDateOracleDefaultPattern("10:15:25 10.02.2017");
         assertNotNull(toDateOracleDefaultPattern);
