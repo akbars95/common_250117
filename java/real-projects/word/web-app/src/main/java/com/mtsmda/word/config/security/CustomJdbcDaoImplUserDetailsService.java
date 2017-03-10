@@ -22,8 +22,8 @@ import static com.mtsmda.word.config.security.SecurityConfiguration.QUERY_USER_B
 /**
  * Created by dminzat on 3/3/2017.
  */
-@Service("customJdbcDaoImpl")
-public class CustomJdbcDaoImpl extends JdbcDaoImpl {
+@Service("customJdbcDaoImplUserDetailsService")
+public class CustomJdbcDaoImplUserDetailsService extends JdbcDaoImpl {
 
     @Autowired
     @Qualifier("driverManagerDataSource")

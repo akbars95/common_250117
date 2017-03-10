@@ -28,7 +28,7 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
     public static final String USERNAME_DELIMITER = "|";
 
     @Autowired
-    @Qualifier("customJdbcDaoImpl")
+    @Qualifier("customJdbcDaoImplUserDetailsService")
     @Override
     public void setUserDetailsService(UserDetailsService userDetailsService) {
         super.setUserDetailsService(userDetailsService);

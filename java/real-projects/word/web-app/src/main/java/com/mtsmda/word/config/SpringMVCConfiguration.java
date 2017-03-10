@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
 import java.util.Locale;
 import java.util.Properties;
@@ -38,7 +39,13 @@ public class SpringMVCConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        WebContentInterceptor webContentInterceptor = new WebContentInterceptor();
+        webContentInterceptor.setCacheSeconds(0);
+        /*webContentInterceptor.setUseExpiresHeader(true);
+        webContentInterceptor.setUseCacheControlHeader(true);
+        webContentInterceptor.setUseCacheControlNoStore(true);*/
         registry.addInterceptor(getLocaleChangeInterceptor());
+        registry.addInterceptor(webContentInterceptor);
     }
 
     //*******************************************************************************************************

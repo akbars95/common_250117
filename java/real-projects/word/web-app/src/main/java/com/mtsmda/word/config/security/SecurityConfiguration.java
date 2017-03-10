@@ -5,6 +5,8 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.RememberMeAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -13,8 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
 import static com.mtsmda.word.controller.PageURL.*;
 import static com.mtsmda.word.controller.PageURL.StaticPageURL.ACCESS_DENIED_PAGE_URL;
@@ -26,6 +28,9 @@ import static com.mtsmda.word.controller.PageURL.StaticPageURL.LOGIN_PAGE_URL;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    private static final String REMEMBER_ME_KEY_NAME = "rem-me-key";
+    private static final String REMEMBER_ME_COOKIE_NAME = "remember-me-cookie";
 
     public static final String QUERY_USER_BY_USERNAME = "select a.*, u.USER_ACTIVE\n" +
             "from t_users u inner join t_accounts a on u.USER_ID=a.ACCOUNT_USER_ID\n" +
@@ -43,7 +48,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private LimitLoginAuthenticationProvider limitLoginAuthenticationProvider;
 
     /*@Autowired
-    private CustomJdbcDaoImpl customJdbcDao;*/
+    private CustomJdbcDaoImplUserDetailsService customJdbcDao;*/
+
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -55,6 +65,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery(QUERY_USER_BY_USERNAME)
                 .authoritiesByUsernameQuery(QUERY_AUTHORITY_BY_USERNAME);*/
         authenticationManagerBuilder.authenticationProvider(limitLoginAuthenticationProvider);
+        authenticationManagerBuilder.authenticationProvider(rememberMeAuthenticationProvider());
 //        authenticationManagerBuilder.userDetailsService(customJdbcDao());
     }
 
@@ -66,7 +77,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().accessDeniedPage(ACCESS_DENIED_PAGE_URL);
 
         //logout
-        http.logout()/*.logoutUrl(LOGOUT_PAGE_URL)*/.logoutSuccessUrl(ROOT).invalidateHttpSession(true).deleteCookies("JSESSIONID");
+        http.logout()/*.logoutUrl(LOGOUT_PAGE_URL)*//*.logoutSuccessUrl(REDIRECT_URL_PREFIX + ROOT).invalidateHttpSession(true)*/
+                /*.deleteCookies("JSESSIONID",REMEMBER_ME_COOKIE_NAME).clearAuthentication(true)*/;
 
         //sessionManagement
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).sessionFixation()
@@ -81,9 +93,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(getCustomBasicAuthenticationEntryPoint());
 
         //rememberMe
+        http.rememberMe()/*.rememberMeParameter()*//*.rememberMeCookieName(REMEMBER_ME_COOKIE_NAME)*/
+                .rememberMeServices(tokenBasedRememberMeServices());
         /*http.rememberMe().tokenValiditySeconds(60 * 60 * 24 * 7).rememberMeParameter("w_remember_me")
                 .tokenRepository(persistentTokenRepository()).key("rem-me-key")
-                .rememberMeCookieName("remember-me-cookie")*//*.userDetailsService(customJdbcDao())*/;
+                .rememberMeCookieName("remember-me-cookie")*//*.userDetailsService(customJdbcDao())*/
+        ;
     }
 
 //    @Bean
@@ -92,8 +107,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //    }
 
     @Bean
-    public CustomJdbcDaoImpl customJdbcDao(){
-        return new CustomJdbcDaoImpl();
+    public TokenBasedRememberMeServices tokenBasedRememberMeServices() {
+        TokenBasedRememberMeServices tokenBasedRememberMeServices = new TokenBasedRememberMeServices(REMEMBER_ME_KEY_NAME, customJdbcDao());
+        tokenBasedRememberMeServices.setTokenValiditySeconds(60/* * 60 * 24*/);
+        tokenBasedRememberMeServices.setParameter("w_remember_me");
+        tokenBasedRememberMeServices.setCookieName(REMEMBER_ME_COOKIE_NAME);
+//        tokenBasedRememberMeServices.setUseSecureCookie(true);
+        return tokenBasedRememberMeServices;
+    }
+
+    @Bean
+    public RememberMeAuthenticationProvider rememberMeAuthenticationProvider() {
+        return new RememberMeAuthenticationProvider(REMEMBER_ME_KEY_NAME);
+    }
+
+    @Bean
+    public RememberMeAuthenticationFilter rememberMeAuthenticationFilter() throws Exception {
+        return new RememberMeAuthenticationFilter(authenticationManager(), tokenBasedRememberMeServices());
+    }
+
+    @Bean
+    public CustomJdbcDaoImplUserDetailsService customJdbcDao() {
+        return new CustomJdbcDaoImplUserDetailsService();
     }
 
     @Override

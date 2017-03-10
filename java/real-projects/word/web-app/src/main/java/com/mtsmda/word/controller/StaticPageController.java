@@ -11,6 +11,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.CookieClearingLogoutHandler;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,8 @@ import static com.mtsmda.word.controller.PageURL.StaticPageURL.LOGOUT_PAGE_URL;
 public class StaticPageController {
 
     private static final Logger LOGGER = Logger.getLogger(StaticPageController.class);
+
+    private static final String REMEMBER_ME_COOKIE_NAME = "remember-me-cookie";
 
     @Autowired
     private UserAttemptService userAttemptService;
@@ -78,7 +81,9 @@ public class StaticPageController {
         LOGGER.info("username is - " + auth.getName());
         LOGGER.info(auth.toString());
         if (ObjectHelper.objectIsNotNull(auth)) {
+            new CookieClearingLogoutHandler("JSESSIONID", REMEMBER_ME_COOKIE_NAME).logout(request, response, auth);
             new SecurityContextLogoutHandler().logout(request, response, auth);
+            System.out.println(auth == null);
         }
         return UrlBasedViewResolver.REDIRECT_URL_PREFIX + ROOT;
     }
