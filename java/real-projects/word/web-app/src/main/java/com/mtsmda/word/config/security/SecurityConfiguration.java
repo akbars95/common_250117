@@ -42,8 +42,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private LimitLoginAuthenticationProvider limitLoginAuthenticationProvider;
 
-    @Autowired
-    private CustomJdbcDaoImpl customJdbcDao;
+    /*@Autowired
+    private CustomJdbcDaoImpl customJdbcDao;*/
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -55,6 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery(QUERY_USER_BY_USERNAME)
                 .authoritiesByUsernameQuery(QUERY_AUTHORITY_BY_USERNAME);*/
         authenticationManagerBuilder.authenticationProvider(limitLoginAuthenticationProvider);
+//        authenticationManagerBuilder.userDetailsService(customJdbcDao());
     }
 
     @Override
@@ -80,16 +81,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(getCustomBasicAuthenticationEntryPoint());
 
         //rememberMe
-        http.rememberMe().tokenValiditySeconds(60 * 60 * 24 * 7).rememberMeParameter("w_remember_me")
+        /*http.rememberMe().tokenValiditySeconds(60 * 60 * 24 * 7).rememberMeParameter("w_remember_me")
                 .tokenRepository(persistentTokenRepository()).key("rem-me-key")
-        .rememberMeCookieName("remember-me-cookie")/*.userDetailsService(customJdbcDao)*/;
+                .rememberMeCookieName("remember-me-cookie")*//*.userDetailsService(customJdbcDao())*/;
     }
 
+//    @Bean
+//    public PersistentTokenRepository persistentTokenRepository() {
+//        return new CustomJdbcTokenRepositoryImpl();
+//    }
+
     @Bean
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
-        jdbcTokenRepository.setDataSource(basicDataSource);
-        return jdbcTokenRepository;
+    public CustomJdbcDaoImpl customJdbcDao(){
+        return new CustomJdbcDaoImpl();
     }
 
     @Override

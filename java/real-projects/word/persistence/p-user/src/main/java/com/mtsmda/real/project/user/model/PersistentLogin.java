@@ -17,6 +17,12 @@ public class PersistentLogin implements Serializable {
 
     }
 
+    public PersistentLogin(String series, String token, LocalDateTime lastUsed) {
+        this.series = series;
+        this.token = token;
+        this.lastUsed = lastUsed;
+    }
+
     public PersistentLogin(Account account, String series, String token, LocalDateTime lastUsed) {
         this.account = account;
         this.series = series;

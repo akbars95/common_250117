@@ -24,6 +24,10 @@ public class Account implements Serializable{
         this.user = user;
     }
 
+    public Account(String accountUsername) {
+        this.accountUsername = accountUsername;
+    }
+
     public Account(User user, String accountUsername, String accountPassword, Boolean accountNonExpired, Boolean accountNonLocked, Boolean credentialsNonExpired, Integer userMaxAttempts) {
         this.user = user;
         this.accountUsername = accountUsername;

@@ -14,35 +14,46 @@ import java.sql.SQLException;
  */
 public class PersistentLoginRowMapper implements RowMapper<PersistentLogin> {
 
+    private boolean rowMapAccount = false;
+
+    public PersistentLoginRowMapper() {
+
+    }
+
+    public PersistentLoginRowMapper(boolean rowMapAccount) {
+        this();
+        this.rowMapAccount = rowMapAccount;
+    }
+
     @Override
     public PersistentLogin mapRow(ResultSet rs, int rowNum) throws SQLException {
         PersistentLogin persistentLogin = new PersistentLogin();
 
-        try{
-            persistentLogin.setAccount(new Account(new User(rs.getInt(PersistentLoginT.T_PERSISTENT_LOGINS_F_ACCOUNT_USER_ID))));
-        }
-        catch (Exception e){
-            persistentLogin.setAccount(null);
+        if (rowMapAccount) {
+            persistentLogin.setAccount(new AccountRowMapper().mapRow(rs, rowNum));
+        } else {
+            try {
+                persistentLogin.setAccount(new Account(new User(rs.getInt(PersistentLoginT.T_PERSISTENT_LOGINS_F_ACCOUNT_USER_ID))));
+            } catch (Exception e) {
+                persistentLogin.setAccount(null);
+            }
         }
 
-        try{
+        try {
             persistentLogin.setSeries(rs.getString(PersistentLoginT.T_PERSISTENT_LOGINS_F_SERIES));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             persistentLogin.setSeries(null);
         }
 
-        try{
+        try {
             persistentLogin.setToken(rs.getString(PersistentLoginT.T_PERSISTENT_LOGINS_F_TOKEN));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             persistentLogin.setToken(null);
         }
 
-        try{
+        try {
             persistentLogin.setLastUsed(rs.getTimestamp(PersistentLoginT.T_PERSISTENT_LOGINS_F_LAST_USED).toLocalDateTime());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             persistentLogin.setLastUsed(null);
         }
 

@@ -41,15 +41,16 @@ public class QueryWarehouse {
                 SPACE_VALUES_WITH_OPEN_PARENTHESIS, OPEN_PARENTHESIS, AccountQuery.QUERY_GET_USER_ID_BY_USERNAME,
                 CLOSE_PARENTHESIS, COMMA_WITH_SPACE,
                 getParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_SERIES, true, false), getParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_TOKEN, true, false),
-                getParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_LAST_USED, false, true), CLOSE_PARENTHESIS);
+                getToDateOracleAsParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_LAST_USED), CLOSE_PARENTHESIS);
         public static final String QUERY_UPDATE_PERSISTENT_LOGIN_TOKEN_AND_LAST_USER_BY_SERIES = queryCreator(UPDATE_WITH_SPACE, PersistentLoginT.T_PERSISTENT_LOGINS,
-        SET_SPACE_BOTH, getUpdateParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_TOKEN, false), getUpdateParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_LAST_USED, true),
+        SET_SPACE_BOTH, getUpdateParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_TOKEN, false), PersistentLoginT.T_PERSISTENT_LOGINS_F_LAST_USED, EQUAL_SPACE_BOTH,
+                getToDateOracleAsParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_LAST_USED),
                 WHERE_SPACE_BOTH, getUpdateParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_SERIES, true));
         public static final String QUERY_DELETE_BY_USERNAME = queryCreator(DELETE_FROM_WITH_SPACE, PersistentLoginT.T_PERSISTENT_LOGINS, WHERE_SPACE_BOTH,
                 PersistentLoginT.T_PERSISTENT_LOGINS_F_ACCOUNT_USER_ID, EQUAL_SPACE_BOTH, OPEN_PARENTHESIS, UserQuery.QUERY_GET_USER_BY_USERNAME, CLOSE_PARENTHESIS);
         public static final String QUERY_SELECT_PERSISTENT_LOGIN_BY_SERIES = queryCreator(SELECT_WITH_SPACE,
                 getSelectParam(AccountT.T_ACCOUNTS_F_ACCOUNT_USERNAME),
-                getSelectParam(PersistentLoginT.T_PERSISTENT_LOGINS), getSelectParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_SERIES),
+                getSelectParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_TOKEN), getSelectParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_SERIES),
                 PersistentLoginT.T_PERSISTENT_LOGINS_F_LAST_USED, FROM_SPACE_BOTH,
                 getInnerJoinFirstJoin(PersistentLoginT.T_PERSISTENT_LOGINS, PersistentLoginT.PERSISTENT_LOGIN_PREFIX,
                         PersistentLoginT.T_PERSISTENT_LOGINS_F_ACCOUNT_USER_ID,
