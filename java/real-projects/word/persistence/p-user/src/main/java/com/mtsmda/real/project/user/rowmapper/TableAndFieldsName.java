@@ -5,21 +5,21 @@ package com.mtsmda.real.project.user.rowmapper;
  */
 public class TableAndFieldsName {
 
-    public static class RoleT{
+    public static class RoleT {
         public static final String ROLE_PREFIX = "R";
         public static final String T_ROLES = "T_ROLES";
         public static final String T_ROLES_F_ROLE_ID = "ROLE_ID";
         public static final String T_ROLES_F_ROLE_NAME = "ROLE_NAME";
     }
 
-    public static class PrivilegeT{
+    public static class PrivilegeT {
         public static final String PRIVILEGE_PREFIX = "PR";
         public static final String T_PRIVILEGES = "T_PRIVILEGES";
         public static final String T_PRIVILEGES_F_PRIVILEGE_ID = "PRIVILEGE_ID";
         public static final String T_PRIVILEGES_F_PRIVILEGE_NAME = "PRIVILEGE_NAME";
     }
 
-    public static class UserT{
+    public static class UserT {
         public static final String USER_PREFIX = "U";
         public static final String T_USERS = "T_USERS";
         public static final String T_USERS_F_USER_ID = "USER_ID";
@@ -35,7 +35,7 @@ public class TableAndFieldsName {
         public static final String T_USERS_F_ADD_USER_DATE_TIME = "ADD_USER_DATE_TIME";
     }
 
-    public static class UserHistoryT{
+    public static class UserHistoryT {
         public static final String USER_HISTORY_PREFIX = "UH";
         public static final String T_USERS_HISTORY = UserT.T_USERS + "_HISTORY";
         public static final String T_USERS_HISTORY_F_USER_ID = UserT.T_USERS_F_USER_ID;
@@ -72,7 +72,7 @@ public class TableAndFieldsName {
         public static final String T_PASSWORD_HISTORY_F_AC_PAS_CHANGE_DATE_TIME = "AC_PAS_CHANGE_DATE_TIME";
     }
 
-    public static class UserAttemptT{
+    public static class UserAttemptT {
         public static final String USER_ATTEMPT_PREFIX = "UA";
         public static final String T_USER_ATTEMPTS = "T_USER_ATTEMPTS";
         public static final String T_USER_ATTEMPTS_F_USER_ATTEMPT_ID = "USER_ATTEMPT_ID";
@@ -81,13 +81,35 @@ public class TableAndFieldsName {
         public static final String T_USER_ATTEMPTS_F_LAST_MODIFIED = "LAST_MODIFIED";
     }
 
-    public static class PersistentLoginT{
+    @Deprecated
+    public static class PersistentLoginT {
         public static final String PERSISTENT_LOGIN_PREFIX = "PL";
         public static final String T_PERSISTENT_LOGINS = "T_PERSISTENT_LOGINS";
         public static final String T_PERSISTENT_LOGINS_F_ACCOUNT_USER_ID = "ACCOUNT_USER_ID";
         public static final String T_PERSISTENT_LOGINS_F_SERIES = "SERIES";
         public static final String T_PERSISTENT_LOGINS_F_TOKEN = "TOKEN";
         public static final String T_PERSISTENT_LOGINS_F_LAST_USED = "LAST_USED";
+    }
+
+    public static class GroupsT {
+        public static final String GROUP_PREFIX = "GR";
+        public static final String T_GROUPS = "T_GROUPS";
+        public static final String T_GROUPS_F_GROUP_ID = "GROUP_ID";
+        public static final String T_GROUPS_F_GROUP_NAME = "GROUP_NAME";
+    }
+
+    public static class GroupRolesT {
+        public static final String GROUP_ROLE_PREFIX = "GR_R";
+        public static final String T_GROUP_ROLES = "T_GROUP_ROLES";
+        public static final String T_GROUP_ROLES_F_GROUP_ID = "GROUP_ID";
+        public static final String T_GROUP_ROLES_F_ROLE_ID = "ROLE_ID";
+    }
+
+    public static class GroupUsersT {
+        public static final String GROUP_USER_PREFIX = "GR_U";
+        public static final String T_GROUP_USERS = "T_GROUP_USERS";
+        public static final String T_GROUP_USERS_F_GROUP_ID = "GROUP_ID";
+        public static final String T_GROUP_USERS_F_USER_ID = "USER_ID";
     }
 
 }

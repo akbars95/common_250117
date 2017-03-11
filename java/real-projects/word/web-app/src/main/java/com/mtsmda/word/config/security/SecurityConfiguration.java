@@ -30,7 +30,7 @@ import static com.mtsmda.word.controller.PageURL.StaticPageURL.LOGIN_PAGE_URL;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String REMEMBER_ME_KEY_NAME = "rem-me-key";
-    private static final String REMEMBER_ME_COOKIE_NAME = "remember-me-cookie";
+    public static final String REMEMBER_ME_COOKIE_NAME = "remember-me-cookie";
 
     public static final String QUERY_USER_BY_USERNAME = "select a.*, u.USER_ACTIVE\n" +
             "from t_users u inner join t_accounts a on u.USER_ID=a.ACCOUNT_USER_ID\n" +
@@ -72,7 +72,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(ROOT + PageURL.ProtectedPageURL.PROTECT + TWO_ASTERIX).access("hasRole('ROLE_ADMIN')")
-                .and().formLogin().loginPage(LOGIN_PAGE_URL).failureUrl(LOGIN_PAGE_URL + QUESTION_MARK + "loginError")
+                .and().formLogin().loginPage(LOGIN_PAGE_URL).failureUrl(LOGIN_PAGE_URL + QUESTION_MARK + "loginError=loginError")
                 .usernameParameter("w_username").passwordParameter("w_password").permitAll()
                 .and().exceptionHandling().accessDeniedPage(ACCESS_DENIED_PAGE_URL);
 
@@ -82,8 +82,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         //sessionManagement
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).sessionFixation()
-                .newSession().maximumSessions(1).expiredUrl(LOGIN_PAGE_URL + QUESTION_MARK + "expired");
-        http.sessionManagement().invalidSessionUrl(LOGIN_PAGE_URL + QUESTION_MARK + "invalid_session");
+                .newSession().maximumSessions(1).expiredUrl(LOGIN_PAGE_URL + QUESTION_MARK + "expired=expired");
+        http.sessionManagement().invalidSessionUrl(LOGIN_PAGE_URL + QUESTION_MARK + "invalid_session=invalid_session");
 
         //csrf
         http.csrf().disable();//if disabled csrf log out do not work
@@ -109,7 +109,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public TokenBasedRememberMeServices tokenBasedRememberMeServices() {
         TokenBasedRememberMeServices tokenBasedRememberMeServices = new TokenBasedRememberMeServices(REMEMBER_ME_KEY_NAME, customJdbcDao());
-        tokenBasedRememberMeServices.setTokenValiditySeconds(60/* * 60 * 24*/);
+        tokenBasedRememberMeServices.setTokenValiditySeconds(60 * 60 * 24);
         tokenBasedRememberMeServices.setParameter("w_remember_me");
         tokenBasedRememberMeServices.setCookieName(REMEMBER_ME_COOKIE_NAME);
 //        tokenBasedRememberMeServices.setUseSecureCookie(true);

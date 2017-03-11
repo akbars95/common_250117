@@ -12,6 +12,15 @@ import static com.mtsmda.helper.QueryCreatorHelper.queryCreator;
  */
 public class QueryWarehouse {
 
+    public static final class SpringSecurityQuery {
+        public static final String QUERY_GET_USER_BY_USERNAME_GROUP_AUTHORITY = "SELECT G.GROUP_ID, G.GROUP_NAME, R.ROLE_NAME " +
+                "FROM T_GROUPS G, T_GROUP_ROLES GR, T_GROUP_USERS GU, T_ROLES R " +
+                "WHERE GU.USER_ID = (" + AccountQuery.QUERY_GET_USER_ID_BY_USERNAME + ") " +
+                "AND G.GROUP_ID = GR.GROUP_ID " +
+                "AND G.GROUP_ID = GU.GROUP_ID " +
+                "AND GR.ROLE_ID = R.ROLE_ID";
+    }
+
     public static class UserQuery {
         public static final String QUERY_GET_USER_BY_USERNAME = queryCreator(SELECT_ALL_WITH_SPACE, FROM_WITH_SPACE,
                 UserT.T_USERS, WHERE_SPACE_BOTH, UserT.T_USERS_F_USER_ID,
@@ -69,6 +78,7 @@ public class QueryWarehouse {
         showQuery("QUERY_UPDATE_PERSISTENT_LOGIN_TOKEN_AND_LAST_USER_BY_SERIES", PersistentLoginQuery.QUERY_UPDATE_PERSISTENT_LOGIN_TOKEN_AND_LAST_USER_BY_SERIES);
         showQuery("QUERY_DELETE_BY_USERNAME", PersistentLoginQuery.QUERY_DELETE_BY_USERNAME);
         showQuery("QUERY_SELECT_PERSISTENT_LOGIN_BY_SERIES", PersistentLoginQuery.QUERY_SELECT_PERSISTENT_LOGIN_BY_SERIES);
+        showQuery("QUERY_GET_USER_BY_USERNAME_GROUP_AUTHORITY", SpringSecurityQuery.QUERY_GET_USER_BY_USERNAME_GROUP_AUTHORITY);
     }
 
     private static final void showQuery(String queryName, String query){

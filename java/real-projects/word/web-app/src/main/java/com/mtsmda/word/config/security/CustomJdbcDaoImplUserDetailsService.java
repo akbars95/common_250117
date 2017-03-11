@@ -1,6 +1,7 @@
 package com.mtsmda.word.config.security;
 
 import com.mtsmda.real.project.user.rowmapper.TableAndFieldsName;
+import com.mtsmda.word.repository.query.QueryWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,6 +45,24 @@ public class CustomJdbcDaoImplUserDetailsService extends JdbcDaoImpl {
     @Override
     public void setAuthoritiesByUsernameQuery(String queryString) {
         super.setAuthoritiesByUsernameQuery(queryString);
+    }
+
+    @Value("true")
+    @Override
+    public void setEnableGroups(boolean enableGroups) {
+        super.setEnableGroups(enableGroups);
+    }
+
+//    @Value()
+    /*@Override
+    public void setGroupAuthoritiesByUsernameQuery(String queryString) {
+
+    }*/
+
+    @Override
+    protected List<GrantedAuthority> loadGroupAuthorities(String username) {
+        super.setGroupAuthoritiesByUsernameQuery(QueryWarehouse.SpringSecurityQuery.QUERY_GET_USER_BY_USERNAME_GROUP_AUTHORITY);
+        return super.loadGroupAuthorities(username);
     }
 
     @Override

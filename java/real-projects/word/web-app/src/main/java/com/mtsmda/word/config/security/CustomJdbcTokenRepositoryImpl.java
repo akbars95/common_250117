@@ -20,7 +20,9 @@ import java.util.Date;
 
 /**
  * Created by dminzat on 3/7/2017.
+ * temporary this class do not need
  */
+@Deprecated
 @Component
 public class CustomJdbcTokenRepositoryImpl implements PersistentTokenRepository {
 
