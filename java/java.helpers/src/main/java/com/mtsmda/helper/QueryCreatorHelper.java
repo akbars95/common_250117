@@ -45,7 +45,8 @@ public class QueryCreatorHelper {
     public static final String SPACE_VALUES_WITH_OPEN_PARENTHESIS = SPACE + VALUES_WITH_OPEN_PARENTHESIS;
     public static final String UPDATE_WITH_SPACE = UPDATE + SPACE;
     public static final String SET_SPACE_BOTH = SPACE + SET + SPACE;
-    public static final String WHERE_SPACE_BOTH = SPACE + WHERE + SPACE;
+    public static final String WHERE_WITH_SPACE = WHERE + SPACE;
+    public static final String WHERE_SPACE_BOTH = SPACE + WHERE_WITH_SPACE;
     public static final String DELETE_FROM_WITH_SPACE = DELETE_FROM + SPACE;
     public static final String SELECT_WITH_SPACE = SELECT + SPACE;
     public static final String SELECT_ALL_WITH_SPACE = SELECT_ALL + SPACE;
@@ -286,12 +287,12 @@ public class QueryCreatorHelper {
     }
 
     /**
-    * The best used this method with -
-    * <b>LocalDateTimeHelper.convertLocalDateTimeToString(localDateTime, LocalDateTimeHelper.NORMAL_DATE_TIME_FORMAT_VICE_VERSA)
+     * The best used this method with -
+     * <b>LocalDateTimeHelper.convertLocalDateTimeToString(localDateTime, LocalDateTimeHelper.NORMAL_DATE_TIME_FORMAT_VICE_VERSA)
      * or
      * LocalDateTimeHelper.convertLocalDateTimeToStringForOracleTest
      * </b>
-    * */
+     */
     public static String getToDateOracleAsParam(String paramName) {
         return new StringBuilder(TO_DATE_ORACLE).append(OPEN_PARENTHESIS).append(getParam(paramName))
                 .append(COMMA).append(SPACE).append(APOSTROF).append(TO_DATE_ORACLE_PATTERN)
@@ -347,7 +348,7 @@ public class QueryCreatorHelper {
     }
 
     public static String getInnerJoinFirstJoin(String firstTableName, String prefixFirstTable, String firstTableJoinField,
-                                                String secondTableName, String prefixSecondTable, String secondTableJoinField) {
+                                               String secondTableName, String prefixSecondTable, String secondTableJoinField) {
         return new StringBuilder(firstTableName).append(SPACE).append(prefixFirstTable).append(INNER_JOIN_SPACE_BOTH)
                 .append(secondTableName).append(SPACE).append(prefixSecondTable)
                 .append(getInnerJoinOn(prefixFirstTable, firstTableJoinField, prefixSecondTable, secondTableJoinField)).toString();
@@ -359,6 +360,10 @@ public class QueryCreatorHelper {
                                                   String forthTableName, String prefixForthTable, String forthTableJoinField) {
         return new StringBuilder(INNER_JOIN_SPACE_BOTH).append(thirdTableName).append(SPACE).append(prefixThirdTable)
                 .append(getInnerJoinOn(prefixThirdTable, thirdTableJoinField, prefixForthTable, forthTableJoinField)).toString();
+    }
+
+    public static String getTableWithPrefix(String tableName, String prefixName) {
+        return new StringBuilder(tableName).append(SPACE).append(prefixName).append(SPACE).toString();
     }
 
     private static boolean checkEndCommaSymbol(StringBuilder textQuery) {

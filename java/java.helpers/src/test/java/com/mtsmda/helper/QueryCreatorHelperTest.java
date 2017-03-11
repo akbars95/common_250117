@@ -279,4 +279,11 @@ public class QueryCreatorHelperTest {
         assertEquals(" INNER JOIN City c ON c.city_id = p.person_city_id", innerJoinNotFirstJoin);
     }
 
+    @Test
+    public void getTableWithPrefixTest(){
+        String tableWithPrefix = getTableWithPrefix("Person", "pr");
+        assertNotNull(tableWithPrefix);
+        assertEquals("Person pr ", tableWithPrefix);
+    }
+
 }
