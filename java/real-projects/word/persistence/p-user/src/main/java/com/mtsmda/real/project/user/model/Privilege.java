@@ -37,4 +37,20 @@ public class Privilege implements Serializable{
     public void setPrivilegeName(String privilegeName) {
         this.privilegeName = privilegeName;
     }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 }

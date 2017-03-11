@@ -32,15 +32,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private static final String REMEMBER_ME_KEY_NAME = "rem-me-key";
     public static final String REMEMBER_ME_COOKIE_NAME = "remember-me-cookie";
 
-    public static final String QUERY_USER_BY_USERNAME = "select a.*, u.USER_ACTIVE\n" +
-            "from t_users u inner join t_accounts a on u.USER_ID=a.ACCOUNT_USER_ID\n" +
-            "where a.ACCOUNT_USERNAME = ?";
-    public static final String QUERY_AUTHORITY_BY_USERNAME = "select a.ACCOUNT_USERNAME, r.ROLE_NAME\n" +
-            "from t_users u inner join t_accounts a on u.USER_ID = a.ACCOUNT_USER_ID\n" +
-            "inner join T_USER_ROLES ur on ur.USER_ID = u.USER_ID\n" +
-            "inner join T_ROLES r on r.ROLE_ID = ur.ROLE_ID\n" +
-            "where a.ACCOUNT_USERNAME = ?";
-
     @Autowired
     private BasicDataSource basicDataSource;
 

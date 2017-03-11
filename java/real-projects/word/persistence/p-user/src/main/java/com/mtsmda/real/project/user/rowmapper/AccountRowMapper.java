@@ -2,28 +2,50 @@ package com.mtsmda.real.project.user.rowmapper;
 
 import com.mtsmda.real.project.user.model.Account;
 import com.mtsmda.real.project.user.model.User;
-import com.mtsmda.real.project.user.rowmapper.TableAndFieldsName.AccountT;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.mtsmda.real.project.user.rowmapper.TableAndFieldsName.AccountT.*;
-import static com.mtsmda.real.project.user.rowmapper.TableAndFieldsName.AccountT.T_ACCOUNTS_F_ACCOUNT_USERNAME;
 
 /**
  * Created by dminzat on 3/2/2017.
  */
 public class AccountRowMapper implements RowMapper<Account> {
 
+    private boolean rowMapUser = false;
+    private boolean rowMapUserAttempt = false;
+
+    public AccountRowMapper() {
+
+    }
+
+    public AccountRowMapper(boolean rowMapUser) {
+        this.rowMapUser = rowMapUser;
+    }
+
+    public AccountRowMapper(boolean rowMapUser, boolean rowMapUserAttempt) {
+        this.rowMapUser = rowMapUser;
+        this.rowMapUserAttempt = rowMapUserAttempt;
+    }
+
     @Override
     public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
         Account account = new Account();
 
-        try {
-            account.setUser(new User(rs.getInt(T_ACCOUNTS_F_ACCOUNT_USER_ID)));
-        } catch (Exception e) {
-            account.setUser(null);
+        if (this.rowMapUser) {
+            try {
+                account.setUser(new UserRowMapper().mapRow(rs, rowNum));
+            } catch (Exception e) {
+                account.setUser(null);
+            }
+        } else {
+            try {
+                account.setUser(new User(rs.getInt(T_ACCOUNTS_F_ACCOUNT_USER_ID)));
+            } catch (Exception e) {
+                account.setUser(null);
+            }
         }
 
         try {
@@ -67,7 +89,15 @@ public class AccountRowMapper implements RowMapper<Account> {
         } catch (Exception e) {
             account.setUserCountDaysNeedChangePass(null);
         }
-        
+
+        if (this.rowMapUserAttempt) {
+            try {
+                account.setUserAttempt(new UserAttemptRowMapper().mapRow(rs, rowNum));
+            } catch (Exception e) {
+                account.setUserAttempt(null);
+            }
+        }
+
         return account;
     }
 }

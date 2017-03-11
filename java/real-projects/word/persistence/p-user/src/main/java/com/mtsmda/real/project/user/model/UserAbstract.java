@@ -21,8 +21,6 @@ public abstract class UserAbstract implements Serializable{
     private Boolean userIsActive;
     private String userSiteURL;
     private LocalDateTime addUserLocalDateTime;
-    private Set<Role> roles;
-    private Set<Privilege> privileges;
 
     public UserAbstract() {
 
@@ -128,4 +126,5 @@ public abstract class UserAbstract implements Serializable{
     public void setAddUserLocalDateTime(LocalDateTime addUserLocalDateTime) {
         this.addUserLocalDateTime = addUserLocalDateTime;
     }
+
 }

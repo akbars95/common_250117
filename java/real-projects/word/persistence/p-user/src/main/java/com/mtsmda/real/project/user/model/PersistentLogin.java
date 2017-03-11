@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 /**
  * Created by dminzat on 3/7/2017.
  */
+@Deprecated
 public class PersistentLogin implements Serializable {
 
     private Account account;

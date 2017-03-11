@@ -12,6 +12,7 @@ import java.sql.SQLException;
 /**
  * Created by dminzat on 3/7/2017.
  */
+@Deprecated
 public class PersistentLoginRowMapper implements RowMapper<PersistentLogin> {
 
     private boolean rowMapAccount = false;

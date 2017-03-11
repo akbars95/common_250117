@@ -15,6 +15,16 @@ import static com.mtsmda.real.project.user.rowmapper.TableAndFieldsName.UserAtte
  */
 public class UserAttemptRowMapper implements RowMapper<UserAttempt> {
 
+    private boolean rowMapperAccount = false;
+
+    public UserAttemptRowMapper() {
+
+    }
+
+    public UserAttemptRowMapper(boolean rowMapperAccount) {
+        this.rowMapperAccount = rowMapperAccount;
+    }
+
     @Override
     public UserAttempt mapRow(ResultSet rs, int rowNum) throws SQLException {
         UserAttempt userAttempt = new UserAttempt();
@@ -34,10 +44,18 @@ public class UserAttemptRowMapper implements RowMapper<UserAttempt> {
             userAttempt.setUserAttemptId(null);
         }
 
-        try {
-            userAttempt.setAccount(new Account(new User(rs.getInt(T_USER_ATTEMPTS_F_ACCOUNT_USER_ID))));
-        } catch (Exception e) {
-            userAttempt.setAccount(null);
+        if (this.rowMapperAccount) {
+            try {
+                userAttempt.setAccount(new AccountRowMapper().mapRow(rs, rowNum));
+            } catch (Exception e) {
+                userAttempt.setAccount(null);
+            }
+        } else {
+            try {
+                userAttempt.setAccount(new Account(new User(rs.getInt(T_USER_ATTEMPTS_F_ACCOUNT_USER_ID))));
+            } catch (Exception e) {
+                userAttempt.setAccount(null);
+            }
         }
 
         try {

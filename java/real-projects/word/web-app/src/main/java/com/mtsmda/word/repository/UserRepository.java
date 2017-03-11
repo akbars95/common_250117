@@ -9,5 +9,6 @@ import com.mtsmda.spring.helper.response.CommonResponse;
 public interface UserRepository {
 
     CommonResponse<User> getUserByUsername(String username);
+    CommonResponse<User> getUserAndAccountByUsername(String username);
 
 }

@@ -3,6 +3,8 @@ package com.mtsmda.word.repository;
 import com.mtsmda.real.project.user.model.User;
 import com.mtsmda.real.project.user.rowmapper.UserRowMapper;
 import com.mtsmda.spring.helper.response.CommonResponse;
+import com.mtsmda.word.repository.query.QueryWarehouse;
+import com.mtsmda.word.repository.query.QueryWarehouse.SpringSecurityQuery;
 import com.mtsmda.word.repository.query.QueryWarehouse.UserQuery;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,18 @@ public class UserRepositoryImpl extends ParentRepository implements UserReposito
     @Override
     public CommonResponse<User> getUserByUsername(String username) {
         setQuery(UserQuery.QUERY_GET_USER_BY_USERNAME);
+        clearParamIfNotEmpty();
+        params.put(T_USER_ATTEMPTS_F_ACCOUNT_USER_ID, username);
+        try {
+            return new CommonResponse<>(getNamedParameterJdbcTemplate().queryForObject(getQuery(), params, new UserRowMapper()), CommonResponse.SUCCESS);
+        } catch (Exception e) {
+            return exceptionHandler(CommonResponse.ERROR, e, User.class);
+        }
+    }
+
+    @Override
+    public CommonResponse<User> getUserAndAccountByUsername(String username) {
+        setQuery(SpringSecurityQuery.QUERY_USER_BY_USERNAME);
         clearParamIfNotEmpty();
         params.put(T_USER_ATTEMPTS_F_ACCOUNT_USER_ID, username);
         try {

@@ -1,6 +1,7 @@
 package com.mtsmda.real.project.user.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Created by dminzat on 2/19/2017.
@@ -15,6 +16,8 @@ public class Account implements Serializable{
     private Boolean credentialsNonExpired;
     private Integer userMaxAttempts;
     private Integer userCountDaysNeedChangePass;
+    private Set<PasswordHistory> passwordHistories;
+    private UserAttempt userAttempt;
 
     public Account() {
 
@@ -100,5 +103,21 @@ public class Account implements Serializable{
 
     public void setUserCountDaysNeedChangePass(Integer userCountDaysNeedChangePass) {
         this.userCountDaysNeedChangePass = userCountDaysNeedChangePass;
+    }
+
+    public Set<PasswordHistory> getPasswordHistories() {
+        return passwordHistories;
+    }
+
+    public void setPasswordHistories(Set<PasswordHistory> passwordHistories) {
+        this.passwordHistories = passwordHistories;
+    }
+
+    public UserAttempt getUserAttempt() {
+        return userAttempt;
+    }
+
+    public void setUserAttempt(UserAttempt userAttempt) {
+        this.userAttempt = userAttempt;
     }
 }

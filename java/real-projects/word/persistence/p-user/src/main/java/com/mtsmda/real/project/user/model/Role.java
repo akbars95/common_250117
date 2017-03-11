@@ -12,6 +12,7 @@ public class Role implements Serializable{
     private String roleName;
     private Set<Privilege> privileges;
     private Set<User> users;
+    private Set<Group> groups;
 
     public Role() {
 
@@ -36,5 +37,29 @@ public class Role implements Serializable{
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public Set<Privilege> getPrivileges() {
+        return privileges;
+    }
+
+    public void setPrivileges(Set<Privilege> privileges) {
+        this.privileges = privileges;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
     }
 }

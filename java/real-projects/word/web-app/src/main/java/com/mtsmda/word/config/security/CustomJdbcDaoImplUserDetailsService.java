@@ -14,11 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-
 import java.util.List;
-
-import static com.mtsmda.word.config.security.SecurityConfiguration.QUERY_AUTHORITY_BY_USERNAME;
-import static com.mtsmda.word.config.security.SecurityConfiguration.QUERY_USER_BY_USERNAME;
 
 /**
  * Created by dminzat on 3/3/2017.
@@ -35,13 +31,13 @@ public class CustomJdbcDaoImplUserDetailsService extends JdbcDaoImpl {
         setDataSource(dataSource);
     }
 
-    @Value(QUERY_USER_BY_USERNAME)
+    @Value(QueryWarehouse.SpringSecurityQuery.QUERY_USER_BY_USERNAME)
     @Override
     public void setUsersByUsernameQuery(String usersByUsernameQueryString) {
         super.setUsersByUsernameQuery(usersByUsernameQueryString);
     }
 
-    @Value(QUERY_AUTHORITY_BY_USERNAME)
+    @Value(QueryWarehouse.SpringSecurityQuery.QUERY_AUTHORITY_BY_USERNAME)
     @Override
     public void setAuthoritiesByUsernameQuery(String queryString) {
         super.setAuthoritiesByUsernameQuery(queryString);
@@ -67,7 +63,7 @@ public class CustomJdbcDaoImplUserDetailsService extends JdbcDaoImpl {
 
     @Override
     protected List<UserDetails> loadUsersByUsername(String username) {
-        return getJdbcTemplate().query(super.getUsersByUsernameQuery(), new Object[]{username}, (rs, rowNum) -> {
+        List<UserDetails> userDetailses = getJdbcTemplate().query(super.getUsersByUsernameQuery(), new Object[]{username}, (rs, rowNum) -> {
             return new User(rs.getString(TableAndFieldsName.AccountT.T_ACCOUNTS_F_ACCOUNT_USERNAME),
                     rs.getString(TableAndFieldsName.AccountT.T_ACCOUNTS_F_ACCOUNT_PASSWORD),
                     rs.getBoolean(TableAndFieldsName.UserT.T_USERS_F_USER_ACTIVE),
@@ -76,6 +72,7 @@ public class CustomJdbcDaoImplUserDetailsService extends JdbcDaoImpl {
                     rs.getBoolean(TableAndFieldsName.AccountT.T_ACCOUNTS_F_ACCOUNT_NON_LOCKED),
                     AuthorityUtils.NO_AUTHORITIES);
         });
+        return userDetailses;
     }
 
     @Override

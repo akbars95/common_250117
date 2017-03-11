@@ -14,6 +14,22 @@ import static com.mtsmda.real.project.user.rowmapper.TableAndFieldsName.UserT.*;
  */
 public class UserRowMapper implements RowMapper<User> {
 
+    private boolean rowMapperAccount = false;
+    private boolean rowMapperGroup = false;
+
+    public UserRowMapper() {
+
+    }
+
+    public UserRowMapper(boolean rowMapperAccount) {
+        this.rowMapperAccount = rowMapperAccount;
+    }
+
+    public UserRowMapper(boolean rowMapperAccount, boolean rowMapperGroup) {
+        this.rowMapperAccount = rowMapperAccount;
+        this.rowMapperGroup = rowMapperGroup;
+    }
+
     @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         User user = new User();
@@ -83,6 +99,22 @@ public class UserRowMapper implements RowMapper<User> {
             user.setAddUserLocalDateTime(rs.getTimestamp(T_USERS_F_ADD_USER_DATE_TIME).toLocalDateTime());
         } catch (Exception e) {
             user.setAddUserLocalDateTime(null);
+        }
+
+        if (this.rowMapperAccount) {
+            try {
+                user.setAccount(new AccountRowMapper().mapRow(rs, rowNum));
+            } catch (Exception e) {
+                user.setAccount(null);
+            }
+        }
+
+        if (this.rowMapperGroup) {
+            try {
+                user.setGroup(new GroupRowMapper().mapRow(rs, rowNum));
+            } catch (Exception e) {
+                user.setGroup(null);
+            }
         }
 
         return user;

@@ -19,6 +19,20 @@ public class QueryWarehouse {
                 "AND G.GROUP_ID = GR.GROUP_ID " +
                 "AND G.GROUP_ID = GU.GROUP_ID " +
                 "AND GR.ROLE_ID = R.ROLE_ID";
+        public static final String QUERY_USER_BY_USERNAME = "select a.*, u.USER_ACTIVE\n" +
+                "from t_users u inner join t_accounts a on u.USER_ID=a.ACCOUNT_USER_ID\n" +
+                "where a.ACCOUNT_USERNAME = ?";
+        public static final String QUERY_AUTHORITY_BY_USERNAME = "select a.ACCOUNT_USERNAME, r.ROLE_NAME\n" +
+                "from t_users u inner join t_accounts a on u.USER_ID = a.ACCOUNT_USER_ID\n" +
+                "inner join T_USER_ROLES ur on ur.USER_ID = u.USER_ID\n" +
+                "inner join T_ROLES r on r.ROLE_ID = ur.ROLE_ID\n" +
+                "where a.ACCOUNT_USERNAME = ?";
+        public static final String QUERY_GET_USER_ROLES_BY_USERNAME_GROUP_AUTHORITY = "SELECT R.ROLE_NAME " +
+                "FROM T_GROUPS G, T_GROUP_ROLES GR, T_GROUP_USERS GU, T_ROLES R " +
+                "WHERE GU.USER_ID = (" + AccountQuery.QUERY_GET_USER_ID_BY_USERNAME + ") " +
+                "AND G.GROUP_ID = GR.GROUP_ID " +
+                "AND G.GROUP_ID = GU.GROUP_ID " +
+                "AND GR.ROLE_ID = R.ROLE_ID";
     }
 
     public static class UserQuery {
@@ -79,6 +93,7 @@ public class QueryWarehouse {
         showQuery("QUERY_DELETE_BY_USERNAME", PersistentLoginQuery.QUERY_DELETE_BY_USERNAME);
         showQuery("QUERY_SELECT_PERSISTENT_LOGIN_BY_SERIES", PersistentLoginQuery.QUERY_SELECT_PERSISTENT_LOGIN_BY_SERIES);
         showQuery("QUERY_GET_USER_BY_USERNAME_GROUP_AUTHORITY", SpringSecurityQuery.QUERY_GET_USER_BY_USERNAME_GROUP_AUTHORITY);
+        showQuery("QUERY_GET_USER_ROLES_BY_USERNAME_GROUP_AUTHORITY", SpringSecurityQuery.QUERY_GET_USER_ROLES_BY_USERNAME_GROUP_AUTHORITY);
     }
 
     private static final void showQuery(String queryName, String query){
