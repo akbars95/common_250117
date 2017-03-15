@@ -6,7 +6,7 @@
 
     <groupId>com.mtsmda.workpiece.maven</groupId>
     <artifactId>common</artifactId>
-    <version>4.8.RELEASE.15032017</version>
+    <version>4.8.1.RELEASE.15032017</version>
     <packaging>pom</packaging>
     <description>
         1.8 - added: spring batch, guava, modified properties
@@ -27,6 +27,7 @@
         4.6.1.RELEASE.27022017 - commons codec
         4.7.RELEASE.15032017 - add spring social libs
         4.8.RELEASE.15032017 - add maven-ear-plugin
+        4.8.1.RELEASE.15032017 - add log files as gitignore
     </description>
 
     <properties>
