@@ -6,7 +6,7 @@
 
     <groupId>com.mtsmda.workpiece.maven</groupId>
     <artifactId>common</artifactId>
-    <version>4.6.1.RELEASE.27022017</version>
+    <version>4.7.RELEASE.15032017</version>
     <packaging>pom</packaging>
     <description>
         1.8 - added: spring batch, guava, modified properties
@@ -25,6 +25,7 @@
         4.5.RELEASE.17022017 - add flyway lib and maven plugin
         4.6.RELEASE.18022017 - maven plugin api and tools
         4.6.1.RELEASE.27022017 - commons codec
+        4.7.RELEASE.15032017 - add spring social libs
     </description>
 
     <properties>
@@ -55,6 +56,7 @@
         <com.oracle.jdbc.groupId>com.oracle.jdbc</com.oracle.jdbc.groupId>
         <org.slf4j.groupId>org.slf4j</org.slf4j.groupId>
         <ch.qos.logback.groupId>ch.qos.logback</ch.qos.logback.groupId>
+        <org.springframework.social.groupId>org.springframework.social</org.springframework.social.groupId>
 
         <!--artifactId-->
         <spring.artifactId>spring</spring.artifactId>
@@ -62,6 +64,7 @@
         <spring-integration.artifactId>spring-integration</spring-integration.artifactId>
         <activemq.artifactId>activemq</activemq.artifactId>
         <camel.artifactId>camel</camel.artifactId>
+        <spring-social.artifactId>spring-social</spring-social.artifactId>
 
         <!--version-->
         <tiles.version>3.0.7</tiles.version>
@@ -120,6 +123,12 @@
         <com.oracle.jdbc.version>12.1.0.2</com.oracle.jdbc.version>
         <slf4j.version>1.7.22</slf4j.version>
         <logback.version>1.1.8</logback.version>
+        <org.springframework.social.version>1.1.4.RELEASE</org.springframework.social.version>
+        <spring-social-facebook.version>2.0.3.RELEASE</spring-social-facebook.version>
+        <spring-social-linkedin.version>1.0.2.RELEASE</spring-social-linkedin.version>
+        <spring-social-twitter.version>1.1.2.RELEASE</spring-social-twitter.version>
+        <spring-social-google.version>1.0.0.RELEASE</spring-social-google.version>
+        <spring-social-github.version>1.0.0.M4</spring-social-github.version>
 
         <!--plugins-->
         <org.apache.maven.plugins.groupId>org.apache.maven.plugins</org.apache.maven.plugins.groupId>
@@ -146,6 +155,53 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <!--Spring Social-->
+            <dependency>
+                <groupId>${org.springframework.social.groupId}</groupId>
+                <artifactId>${spring-social.artifactId}-core</artifactId>
+                <version>${org.springframework.social.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.springframework.social.groupId}</groupId>
+                <artifactId>${spring-social.artifactId}-config</artifactId>
+                <version>${org.springframework.social.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.springframework.social.groupId}</groupId>
+                <artifactId>${spring-social.artifactId}-web</artifactId>
+                <version>${org.springframework.social.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.springframework.social.groupId}</groupId>
+                <artifactId>${spring-social.artifactId}-security</artifactId>
+                <version>${org.springframework.social.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.springframework.social.groupId}</groupId>
+                <artifactId>${spring-social.artifactId}-facebook</artifactId>
+                <version>${spring-social-facebook.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.springframework.social.groupId}</groupId>
+                <artifactId>${spring-social.artifactId}-linkedin</artifactId>
+                <version>${spring-social-linkedin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.springframework.social.groupId}</groupId>
+                <artifactId>${spring-social.artifactId}-twitter</artifactId>
+                <version>${spring-social-twitter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.springframework.social.groupId}</groupId>
+                <artifactId>${spring-social.artifactId}-google</artifactId>
+                <version>${spring-social-google.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${org.springframework.social.groupId}</groupId>
+                <artifactId>${spring-social.artifactId}-github</artifactId>
+                <version>${spring-social-github.version}</version>
+            </dependency>
 
             <!--maven plugin-->
             <dependency>
