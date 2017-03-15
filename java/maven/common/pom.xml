@@ -6,7 +6,7 @@
 
     <groupId>com.mtsmda.workpiece.maven</groupId>
     <artifactId>common</artifactId>
-    <version>4.7.RELEASE.15032017</version>
+    <version>4.8.RELEASE.15032017</version>
     <packaging>pom</packaging>
     <description>
         1.8 - added: spring batch, guava, modified properties
@@ -26,6 +26,7 @@
         4.6.RELEASE.18022017 - maven plugin api and tools
         4.6.1.RELEASE.27022017 - commons codec
         4.7.RELEASE.15032017 - add spring social libs
+        4.8.RELEASE.15032017 - add maven-ear-plugin
     </description>
 
     <properties>
@@ -151,6 +152,7 @@
         <org.apache.maven.plugin-tools.version>3.5</org.apache.maven.plugin-tools.version>
         <maven-plugin-api.version>3.3.9</maven-plugin-api.version>
         <maven-plugin-plugin.version>3.5</maven-plugin-plugin.version>
+        <maven-ear-plugin.version>2.10.1</maven-ear-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -1066,6 +1068,11 @@
                     <groupId>${org.apache.maven.plugins.groupId}</groupId>
                     <artifactId>maven-plugin-plugin</artifactId>
                     <version>${maven-plugin-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>${org.apache.maven.plugins.groupId}</groupId>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>${maven-ear-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
