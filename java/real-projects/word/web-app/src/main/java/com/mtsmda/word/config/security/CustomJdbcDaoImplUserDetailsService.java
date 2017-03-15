@@ -1,6 +1,7 @@
 package com.mtsmda.word.config.security;
 
 import com.mtsmda.helper.ListHelper;
+import com.mtsmda.helper.ObjectHelper;
 import com.mtsmda.real.project.user.rowmapper.TableAndFieldsName;
 import com.mtsmda.word.nonConfig.common.LoggerI;
 import com.mtsmda.word.nonConfig.repository.query.QueryWarehouse;
@@ -34,6 +35,14 @@ public class CustomJdbcDaoImplUserDetailsService extends JdbcDaoImpl implements 
     @Qualifier("driverManagerDataSource")
     private DataSource dataSource;
 
+    @Override
+    @PostConstruct
+    public <T> void setLogger() {
+        if(ObjectHelper.objectIsNull(LOGGER)){
+            LOGGER = Logger.getLogger(this.getClass());
+        }
+    }
+
     @PostConstruct
     private void initialize() {
         setDataSource(dataSource);
@@ -44,6 +53,7 @@ public class CustomJdbcDaoImplUserDetailsService extends JdbcDaoImpl implements 
     @Override
     public void setUsersByUsernameQuery(String usersByUsernameQueryString) {
         super.setUsersByUsernameQuery(usersByUsernameQueryString);
+        setLogger();
         LOGGER.info("set query - " + usersByUsernameQueryString);
     }
 
@@ -51,6 +61,7 @@ public class CustomJdbcDaoImplUserDetailsService extends JdbcDaoImpl implements 
     @Override
     public void setAuthoritiesByUsernameQuery(String queryString) {
         super.setAuthoritiesByUsernameQuery(queryString);
+        setLogger();
         LOGGER.info("set query - " + queryString);
     }
 
@@ -58,6 +69,7 @@ public class CustomJdbcDaoImplUserDetailsService extends JdbcDaoImpl implements 
     @Override
     public void setEnableGroups(boolean enableGroups) {
         super.setEnableGroups(enableGroups);
+        setLogger();
         LOGGER.info("enable groups - " + enableGroups);
     }
 
@@ -100,9 +112,4 @@ public class CustomJdbcDaoImplUserDetailsService extends JdbcDaoImpl implements 
                 userFromUserQuery.isAccountNonExpired(), userFromUserQuery.isCredentialsNonExpired(), userFromUserQuery.isAccountNonLocked(), userFromUserQuery.getAuthorities());
     }
 
-    @Override
-    @PostConstruct
-    public <T> void setLogger() {
-        LOGGER = Logger.getLogger(this.getClass());
-    }
 }

@@ -35,7 +35,9 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
     @Override
     @PostConstruct
     public <T> void setLogger() {
-        LOGGER = Logger.getLogger(this.getClass());
+        if(ObjectHelper.objectIsNull(LOGGER)){
+            LOGGER = Logger.getLogger(this.getClass());
+        }
     }
 
     @Autowired
@@ -43,6 +45,7 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
     @Override
     public void setUserDetailsService(UserDetailsService userDetailsService) {
         super.setUserDetailsService(userDetailsService);
+        setLogger();
         LOGGER.info("set user details");
     }
 
@@ -51,11 +54,13 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
     @Override
     public void setPasswordEncoder(Object passwordEncoder) {
         super.setPasswordEncoder(passwordEncoder);
+        setLogger();
         LOGGER.info("set password encoder");
     }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+        setLogger();
         LOGGER.info("authenticate");
         try {
             Authentication authenticate = super.authenticate(authentication);
