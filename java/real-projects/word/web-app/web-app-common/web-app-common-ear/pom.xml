@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>project-word</artifactId>
+        <groupId>com.mtsmda.real.project</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>web-app-common-ear</artifactId>
+    <packaging>ear</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.mtsmda.real.project</groupId>
+            <artifactId>web-app-common-war</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+        <!--<dependency>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>weblogic-maven-plugin</artifactId>
+            <version>12.2.1-2-0</version>
+            &lt;!&ndash;<systemPath>D:/work/tools/servers_and_web_containers/webLogic/wl12c/oracle_common/plugins/maven/com/oracle/maven/oracle-maven-sync/12.2.1/oracle-maven-sync-12.2.1.jar</systemPath>&ndash;&gt;
+            &lt;!&ndash;<scope>system</scope>&ndash;&gt;
+        </dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>${org.apache.maven.plugins.groupId}</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <WebLog-Application-Version>${project.version}</WebLog-Application-Version>
+                        </manifestEntries>
+                    </archive>
+                    <earSourceDirectory>${basedir}/src/main/resources</earSourceDirectory>
+                    <defaultLibBundleDir>APP-INF/lib</defaultLibBundleDir>
+                    <modules>
+                        <webModule>
+                            <groupId>com.mtsmda.real.project</groupId>
+                            <artifactId>web-app-common-war</artifactId>
+                            <contextRoot>/web-app-common</contextRoot>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+<!--
+    <profiles>
+        <profile>
+            <id>deploy-web-app-common</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.oracle.weblogic</groupId>
+                        <artifactId>weblogic-maven-plugin</artifactId>
+                        <version>12.2.1-2-0</version>
+                        <configuration>
+                            <adminurl>t3://127.0.0.1:7001</adminurl>
+                            <user>weblogic</user>
+                            <password>weblogic1</password>
+                            <source>${project.build.directory}/${project.build.finalName}.${project.packaging}</source>
+                            <targets>AdminServer</targets>
+                            <verbose>true</verbose>
+                            <name>${project.build.finalName}</name>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+-->
+
+</project>

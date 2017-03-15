@@ -10,15 +10,17 @@
     <parent>
         <groupId>com.mtsmda.workpiece.maven</groupId>
         <artifactId>common</artifactId>
-        <version>4.6.1.RELEASE.27022017</version>
+        <version>4.8.RELEASE.15032017</version>
     </parent>
 
     <modules>
         <module>database</module>
         <module>persistence</module>
         <module>common</module>
-        <module>web-app</module>
-        <module>admin</module>
+        <module>web-app/web-app-common/web-app-common-war</module>
+        <module>web-app/web-app-common/web-app-common-ear</module>
+        <module>web-app/web-app-admin/web-app-admin-war</module>
+        <module>web-app/web-app-admin/web-app-admin-ear</module>
     </modules>
 
     <name>1_Project Word - Root</name>

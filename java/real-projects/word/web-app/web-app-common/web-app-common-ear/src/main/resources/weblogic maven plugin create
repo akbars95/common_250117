@@ -1,0 +1,5 @@
+oracle_common\plugins\maven\com\oracle\maven\oracle-maven-sync\12.1.2
+mvn install:install-file -DpomFile=oracle-maven-sync-12.2.1.pom -Dfile=oracle-maven-sync-12.2.1.jar
+mvn com.oracle.maven:oracle-maven-sync:push -Doracle-maven-sync.oracleHome=D:\work\tools\servers_and_web_containers\webLogic\wl12c
+
+mvn help:describe -DgroupId=com.oracle.weblogic -DartifactId=weblogic-maven-plugin -Dversion=12.2.1-0-0

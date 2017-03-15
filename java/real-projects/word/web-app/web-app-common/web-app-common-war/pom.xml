@@ -1,0 +1,232 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>project-word</artifactId>
+        <groupId>com.mtsmda.real.project</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>web-app-common-war</artifactId>
+    <packaging>war</packaging>
+
+    <name>5_Web App - Root</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <!--spring-->
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.groupId}</groupId>
+            <artifactId>${spring.artifactId}-expression</artifactId>
+        </dependency>
+        <!--commons-->
+        <dependency>
+            <groupId>${org.apache.commons.groupId}</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.apache.commons.groupId}</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+        </dependency>
+
+        <!--thymeleaf-->
+        <dependency>
+            <groupId>${org.thymeleaf.groupId}</groupId>
+            <artifactId>thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.thymeleaf.groupId}</groupId>
+            <artifactId>thymeleaf-spring4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.thymeleaf.groupId}.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+        </dependency>
+
+        <!--web-->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${javax.servlet.jsp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+
+        <!--webjars-->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>angularjs</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.6</version>
+            <!--<exclusions>-->
+            <!--<exclusion>-->
+            <!--<groupId>org.webjars</groupId>-->
+            <!--<artifactId>jquery</artifactId>-->
+            <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
+
+        <!--logger-->
+        <dependency>
+            <groupId>${org.slf4j.groupId}</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.slf4j.groupId}</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.slf4j.groupId}</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${log4j.groupId}</groupId>
+            <artifactId>${log4j.groupId}</artifactId>
+        </dependency>
+
+        <!--oracle-->
+        <dependency>
+            <groupId>${com.oracle.jdbc.groupId}</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>${com.oracle.jdbc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${com.oracle.jdbc.groupId}</groupId>
+            <artifactId>ucp</artifactId>
+            <version>${com.oracle.jdbc.version}</version>
+        </dependency>
+
+        <!--spring security-->
+        <dependency>
+            <groupId>${org.springframework.security.groupId}</groupId>
+            <artifactId>${spring.artifactId}-security-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.security.groupId}</groupId>
+            <artifactId>${spring.artifactId}-security-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.security.groupId}</groupId>
+            <artifactId>${spring.artifactId}-security-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mtsmda.workpiece.java</groupId>
+            <artifactId>java.helpers</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mtsmda.spring.helper</groupId>
+            <artifactId>spring-helper</artifactId>
+        </dependency>
+
+        <!--for spring mvc rest api-->
+        <dependency>
+            <groupId>${com.fasterxml.jackson.core.groupId}</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${com.fasterxml.jackson.core.groupId}</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${com.fasterxml.jackson.core.groupId}</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+
+        <!--testing-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+        </dependency>
+
+        <!--other modules-->
+        <dependency>
+            <groupId>com.mtsmda.real.project</groupId>
+            <artifactId>p-user</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mtsmda.real.project</groupId>
+            <artifactId>p-word</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>web-app</finalName>
+        <plugins>
+            <plugin>
+                <groupId>${org.apache.maven.plugins.groupId}</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                    <warName>WordWebApp</warName>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+    </build>
+
+</project>
