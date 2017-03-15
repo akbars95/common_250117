@@ -178,6 +178,20 @@
             <artifactId>jackson-annotations</artifactId>
         </dependency>
 
+        <!--testing-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+        </dependency>
+
         <!--other modules-->
         <dependency>
             <groupId>com.mtsmda.real.project</groupId>

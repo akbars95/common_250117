@@ -1,6 +1,6 @@
 package com.mtsmda.word.config.security;
 
-import com.mtsmda.word.controller.PageURL;
+import com.mtsmda.word.nonConfig.controller.PageURL;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,9 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
-import static com.mtsmda.word.controller.PageURL.*;
-import static com.mtsmda.word.controller.PageURL.StaticPageURL.ACCESS_DENIED_PAGE_URL;
-import static com.mtsmda.word.controller.PageURL.StaticPageURL.LOGIN_PAGE_URL;
+import static com.mtsmda.word.nonConfig.controller.PageURL.*;
+import static com.mtsmda.word.nonConfig.controller.PageURL.StaticPageURL.ACCESS_DENIED_PAGE_URL;
+import static com.mtsmda.word.nonConfig.controller.PageURL.StaticPageURL.LOGIN_PAGE_URL;
 
 /**
  * Created by dminzat on 2/15/2017.
