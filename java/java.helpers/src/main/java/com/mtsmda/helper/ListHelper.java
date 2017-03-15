@@ -60,4 +60,15 @@ public class ListHelper {
         return getListWithData(array);
     }
 
+    public static <T> String toStringList(List<T> tList) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < tList.size(); i++) {
+            result.append(tList.get(i).toString());
+            if (i != (tList.size() - 1)) {
+                result.append(", ");
+            }
+        }
+        return result.toString();
+    }
+
 }

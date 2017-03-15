@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.mtsmda.helper.ListHelper.*;
@@ -63,6 +64,14 @@ public class ListHelperTest {
         testGetListAsStringWithDelimiterProcess(listWithData, null);
         testGetListAsStringWithDelimiterProcess(listWithData, ";;");
         testGetListAsStringWithDelimiterProcess(listWithData, "|BlA|");
+    }
+
+    @Test
+    public void toStringListTest(){
+        String s = toStringList(Arrays.asList("First", "Second", "Third", "Forth", "Fifth"));
+        assertNotNull(s);
+        assertFalse(s.isEmpty());
+        assertEquals(s, "First, Second, Third, Forth, Fifth");
     }
 
     private void testGetListAsStringWithDelimiterProcess(List<String> listWithData, String delimiter){
