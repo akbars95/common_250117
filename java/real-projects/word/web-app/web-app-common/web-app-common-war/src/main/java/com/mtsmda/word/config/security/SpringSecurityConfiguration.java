@@ -5,18 +5,18 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.RememberMeAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter;
-import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
+import org.springframework.social.security.SocialUserDetailsService;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 import static com.mtsmda.word.nonConfig.controller.PageURL.*;
 import static com.mtsmda.word.nonConfig.controller.PageURL.StaticPageURL.ACCESS_DENIED_PAGE_URL;
@@ -27,16 +27,21 @@ import static com.mtsmda.word.nonConfig.controller.PageURL.StaticPageURL.LOGIN_P
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+@Import({SpringSecurityBean.class, SpringSocialConfiguration.class})
+public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private static final String REMEMBER_ME_KEY_NAME = "rem-me-key";
     public static final String REMEMBER_ME_COOKIE_NAME = "remember-me-cookie";
+    static final String REMEMBER_ME_KEY_NAME = "rem-me-key";
 
     @Autowired
     private BasicDataSource basicDataSource;
 
     @Autowired
     private LimitLoginAuthenticationProvider limitLoginAuthenticationProvider;
+
+    @Autowired
+    private SpringSecurityBean springSecurityBean;
 
     /*@Autowired
     private CustomJdbcDaoImplUserDetailsService customJdbcDao;*/
@@ -56,7 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery(QUERY_USER_BY_USERNAME)
                 .authoritiesByUsernameQuery(QUERY_AUTHORITY_BY_USERNAME);*/
         authenticationManagerBuilder.authenticationProvider(limitLoginAuthenticationProvider);
-        authenticationManagerBuilder.authenticationProvider(rememberMeAuthenticationProvider());
+        authenticationManagerBuilder.authenticationProvider(springSecurityBean.rememberMeAuthenticationProvider());
 //        authenticationManagerBuilder.userDetailsService(customJdbcDao());
     }
 
@@ -81,45 +86,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         //httpBasic
         http.httpBasic().realmName(CustomBasicAuthenticationEntryPoint.REALM_NAME)
-                .authenticationEntryPoint(getCustomBasicAuthenticationEntryPoint());
+                .authenticationEntryPoint(springSecurityBean.getCustomBasicAuthenticationEntryPoint());
 
         //rememberMe
         http.rememberMe()/*.rememberMeParameter()*//*.rememberMeCookieName(REMEMBER_ME_COOKIE_NAME)*/
-                .rememberMeServices(tokenBasedRememberMeServices());
+                .rememberMeServices(springSecurityBean.tokenBasedRememberMeServices());
         /*http.rememberMe().tokenValiditySeconds(60 * 60 * 24 * 7).rememberMeParameter("w_remember_me")
                 .tokenRepository(persistentTokenRepository()).key("rem-me-key")
                 .rememberMeCookieName("remember-me-cookie")*//*.userDetailsService(customJdbcDao())*/
-        ;
-    }
-
-//    @Bean
-//    public PersistentTokenRepository persistentTokenRepository() {
-//        return new CustomJdbcTokenRepositoryImpl();
-//    }
-
-    @Bean
-    public TokenBasedRememberMeServices tokenBasedRememberMeServices() {
-        TokenBasedRememberMeServices tokenBasedRememberMeServices = new TokenBasedRememberMeServices(REMEMBER_ME_KEY_NAME, customJdbcDao());
-        tokenBasedRememberMeServices.setTokenValiditySeconds(60 * 60 * 24);
-        tokenBasedRememberMeServices.setParameter("w_remember_me");
-        tokenBasedRememberMeServices.setCookieName(REMEMBER_ME_COOKIE_NAME);
-//        tokenBasedRememberMeServices.setUseSecureCookie(true);
-        return tokenBasedRememberMeServices;
-    }
-
-    @Bean
-    public RememberMeAuthenticationProvider rememberMeAuthenticationProvider() {
-        return new RememberMeAuthenticationProvider(REMEMBER_ME_KEY_NAME);
-    }
-
-    @Bean
-    public RememberMeAuthenticationFilter rememberMeAuthenticationFilter() throws Exception {
-        return new RememberMeAuthenticationFilter(authenticationManager(), tokenBasedRememberMeServices());
-    }
-
-    @Bean
-    public CustomJdbcDaoImplUserDetailsService customJdbcDao() {
-        return new CustomJdbcDaoImplUserDetailsService();
+        //spring social
+        /*http.apply(new SpringSocialConfigurer()).postLoginUrl("/").defaultFailureUrl("/#/login")
+                .alwaysUsePostLoginUrl(true);*/
     }
 
     @Override
@@ -128,17 +105,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //        web.ignoring().antMatchers(HttpMethod.OPTIONS, "*");
     }
 
-    @Bean
-    public CustomBasicAuthenticationEntryPoint getCustomBasicAuthenticationEntryPoint() {
-        return new CustomBasicAuthenticationEntryPoint();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     /*public static void main(String[] args) {
         System.out.println(BCryptPasswordEncoderHelper.getBCryptPasswordEncoder("durov.daniil"));
     }*/
+
+    @Bean
+    public RememberMeAuthenticationFilter rememberMeAuthenticationFilter() throws Exception {
+        return new RememberMeAuthenticationFilter(authenticationManager(), springSecurityBean.tokenBasedRememberMeServices());
+    }
+
+    /*@Deprecated //TODO: will be finished in future
+    @Bean
+    public SocialUserDetailsService socialUserDetailsService() {
+        return new SpringSocialUserDetailsService(userDetailsService());
+    }*/
+
 }

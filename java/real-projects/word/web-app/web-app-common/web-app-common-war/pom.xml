@@ -192,6 +192,45 @@
             <artifactId>mockito-all</artifactId>
         </dependency>
 
+        <!--springframework.social-->
+        <dependency>
+            <groupId>${org.springframework.social.groupId}</groupId>
+            <artifactId>${spring-social.artifactId}-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.social.groupId}</groupId>
+            <artifactId>${spring-social.artifactId}-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.social.groupId}</groupId>
+            <artifactId>${spring-social.artifactId}-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.social.groupId}</groupId>
+            <artifactId>${spring-social.artifactId}-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.social.groupId}</groupId>
+            <artifactId>${spring-social.artifactId}-facebook</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.social.groupId}</groupId>
+            <artifactId>${spring-social.artifactId}-linkedin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.social.groupId}</groupId>
+            <artifactId>${spring-social.artifactId}-twitter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${org.springframework.social.groupId}</groupId>
+            <artifactId>${spring-social.artifactId}-google</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-github</artifactId>
+            <version>1.0.0.M4</version>
+        </dependency>
+
         <!--other modules-->
         <dependency>
             <groupId>com.mtsmda.real.project</groupId>
@@ -205,6 +244,17 @@
         </dependency>
 
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <build>
         <finalName>web-app</finalName>
