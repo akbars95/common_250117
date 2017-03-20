@@ -4,7 +4,7 @@
 
     <groupId>com.mtsmda.workpiece.java</groupId>
     <artifactId>java.helpers</artifactId>
-    <version>2.2.RELEASE.14032017</version>
+    <version>2.4.RELEASE.20032017</version>
     <packaging>jar</packaging>
     <description>
         add unicode converter helper class
@@ -17,6 +17,8 @@
         2.0.RELEASE.04032017 - improve imports, add link to tested classes, check test coverage, add new query gen to_date oracle
         2.1.RELEASE.06032017 - add method for create query and add sql key word
         2.2.RELEASE.14032017 - add to string list content
+        2.3.RELEASE.17032017 - add patterns and list helper methods
+        2.4.RELEASE.20032017 - add pattern for site URL format
     </description>
 
     <parent>

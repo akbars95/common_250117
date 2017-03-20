@@ -51,6 +51,10 @@ public class StructureValidator<T> {
             return successValidation;
         }
 
+        public Boolean isSuccessValidation() {
+            return successValidation;
+        }
+
         public void setSuccessValidation(Boolean successValidation) {
             this.successValidation = successValidation;
         }

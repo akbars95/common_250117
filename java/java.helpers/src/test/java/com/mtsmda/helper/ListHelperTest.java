@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.mtsmda.helper.ListHelper.*;
+import static com.mtsmda.helper.ListHelper.firstListAddSecondList;
 import static org.testng.Assert.*;
 /**
  * Created by dminzat on 9/2/2016.
@@ -72,6 +73,39 @@ public class ListHelperTest {
         assertNotNull(s);
         assertFalse(s.isEmpty());
         assertEquals(s, "First, Second, Third, Forth, Fifth");
+    }
+
+    @Test
+    public void firstListAddSecondListTest(){
+        firstListAddSecondListWithException(null, new ArrayList<String>(), true);
+        firstListAddSecondListWithException(new ArrayList<String>(), new ArrayList<String>(), true);
+        firstListAddSecondListWithException(ListHelper.getListWithData("Name"), null, false);
+        firstListAddSecondListWithException(ListHelper.getListWithData("Name"), new ArrayList<String>(), false);
+
+        List<Integer> first = getListWithData(15, 19, 16, 25, 89);
+        int initFirstSize = first.size();
+        assertFalse(first.contains(30));
+        List<Integer> second = getListWithData(30);
+        firstListAddSecondList(first, second);
+        assertNotNull(first);
+        assertTrue((initFirstSize + second.size()) == first.size());
+        assertTrue(first.contains(30));
+    }
+
+    private <T>void firstListAddSecondListWithException(List<T> mainList, List<T> secondList, boolean isFirst){
+        try{
+            firstListAddSecondList(mainList, secondList);
+        }
+        catch (RuntimeException e){
+            assertNotNull(e);
+            assertNotNull(e.getMessage());
+            assertFalse(e.getMessage().isEmpty());
+            if(isFirst){
+                assertEquals(e.getMessage(), "First list is null or empty");
+            }else{
+                assertEquals(e.getMessage(), "Second list is null or empty");
+            }
+        }
     }
 
     private void testGetListAsStringWithDelimiterProcess(List<String> listWithData, String delimiter){

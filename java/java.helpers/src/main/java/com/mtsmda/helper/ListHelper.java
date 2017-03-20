@@ -71,4 +71,16 @@ public class ListHelper {
         return result.toString();
     }
 
+    public static <T> void firstListAddSecondList(List<T> mainList, List<T> secondList){
+        if(listIsNullOrEmpty(mainList)){
+            throw new RuntimeException("First list is null or empty");
+        }
+        if(listIsNullOrEmpty(secondList)){
+            throw new RuntimeException("Second list is null or empty");
+        }
+        secondList.forEach(t -> {
+            mainList.add(t);
+        });
+    }
+
 }
