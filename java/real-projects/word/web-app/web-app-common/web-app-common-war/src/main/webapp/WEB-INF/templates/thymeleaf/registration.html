@@ -4,13 +4,138 @@
     <title th:text="#{application.registration}"></title>
     <th:block th:include="fragments/f_head_css_js :: head"></th:block>
 </head>
-<body>
+<body ng-app="wordApp" ng-cloak>
 
 <div class="container">
     <th:block th:include="fragments/f_header :: header"></th:block>
     <th:block th:include="fragments/f_menu :: menu"></th:block>
-    <div class="content">
-
+    <div class="content" ng-controller="wordRegistrationCtrl">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <h2 th:text="#{registration.page.name}"></h2>
+            </div>
+            <form name="registrationForm" method="post" novalidate>
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <!--account-->
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="fr_username" th:text="#{registration.page.form.username}"></label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" id="fr_username" name="fr_username" ng-model="fr_username" required>
+                                <span class="requiredField">*</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="fr_password" th:text="#{registration.page.form.password}"></label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="password" id="fr_password" name="fr_password" ng-model="fr_password" required>
+                                <span class="requiredField">*</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="fr_password2" th:text="#{registration.page.form.password.repeat}"></label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="password" id="fr_password2" name="fr_password2" ng-model="fr_password2" required>
+                                <span class="requiredField">*</span>
+                            </div>
+                        </div>
+                        <!--FIO-->
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="fr_firstname" th:text="#{registration.page.form.firstname}"></label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" id="fr_firstname" name="fr_firstname" ng-model="fr_firstname" required>
+                                <span class="requiredField">*</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="fr_lastname" th:text="#{registration.page.form.lastname}"></label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" id="fr_lastname" name="fr_lastname" ng-model="fr_lastname" required>
+                                <span class="requiredField">*</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="fr_middlename" th:text="#{registration.page.form.middlename}"></label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" id="fr_middlename" name="fr_middlename" ng-model="fr_middlename">
+                            </div>
+                        </div>
+                        <!---->
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="fr_email" th:text="#{registration.page.form.email}"></label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" id="fr_email" name="fr_email" ng-model="fr_email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="fr_phone" th:text="#{registration.page.form.phone}"></label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" id="fr_phone" name="fr_phone" ng-model="fr_phone" required>
+                                <span class="requiredField">*</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label th:text="#{registration.page.form.gender}"></label>
+                            </div>
+                            <div class="col-md-5">
+                                <label><input type="radio" id="fr_gender_m" ng-model="fr_gender" name="fr_gender" value="M" required><span
+                                        th:text="#{registration.page.form.gender.m}"></span></label>
+                                <label><input type="radio" id="fr_gender_f" ng-model="fr_gender" name="fr_gender" value="F" required><span
+                                        th:text="#{registration.page.form.gender.f}"></span></label>
+                                <span class="requiredField">*</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="fr_date_of_birth" th:text="#{registration.page.form.date_of_birth}"></label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="date" id="fr_date_of_birth" name="fr_date_of_birth"
+                                       ng-model="fr_date_of_birth"
+                                       placeholder="dd.MM.yyyy" min="01.01.1910" max="01.01.2017" required/>
+                                <span class="requiredField">*</span>
+                            </div>
+                        </div>
+                        <!---->
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="fr_site_url" th:text="#{registration.page.form.site_url}"></label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" id="fr_site_url" name="fr_site_url" ng-model="fr_site_url">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button class="btn btn-danger"><span th:text="#{registration.page.form.btn.reset}" ng-click="reset()"></span></button>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-success"
+                                        ng-disabled="registrationForm.$invalid"><span th:text="#{registration.page.form.btn.registrate}" ng-click="registrate()"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <th:block th:include="fragments/f_footer :: footer"></th:block>
 </div>

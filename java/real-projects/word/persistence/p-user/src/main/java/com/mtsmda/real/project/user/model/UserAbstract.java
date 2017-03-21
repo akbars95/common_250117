@@ -26,8 +26,7 @@ public abstract class UserAbstract implements Serializable{
 
     }
 
-    public UserAbstract(Integer userId, String userFirstName, String userLastName, String userMiddleName, String userEmail, String userPhone, Gender userGender, LocalDate userDateOfBirth, Boolean userIsActive, String userSiteURL) {
-        this.userId = userId;
+    public UserAbstract(String userFirstName, String userLastName, String userMiddleName, String userEmail, String userPhone, Gender userGender, LocalDate userDateOfBirth, Boolean userIsActive, String userSiteURL) {
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.userMiddleName = userMiddleName;
@@ -37,6 +36,11 @@ public abstract class UserAbstract implements Serializable{
         this.userDateOfBirth = userDateOfBirth;
         this.userIsActive = userIsActive;
         this.userSiteURL = userSiteURL;
+    }
+
+    public UserAbstract(Integer userId, String userFirstName, String userLastName, String userMiddleName, String userEmail, String userPhone, Gender userGender, LocalDate userDateOfBirth, Boolean userIsActive, String userSiteURL) {
+        this(userFirstName, userLastName, userMiddleName, userEmail, userPhone, userGender, userDateOfBirth, userIsActive, userSiteURL);
+        this.userId = userId;
     }
 
     public Integer getUserId() {

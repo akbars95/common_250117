@@ -1,5 +1,6 @@
 package com.mtsmda.real.project.user.model;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -19,6 +20,14 @@ public class User extends UserAbstract {
     public User(Integer userId) {
         super();
         this.setUserId(userId);
+    }
+
+    public User(String userFirstName, String userLastName, String userMiddleName, String userEmail, String userPhone, Gender userGender, LocalDate userDateOfBirth, Boolean userIsActive, String userSiteURL, Account account, Set<Role> roles, Set<Privilege> privileges, Group group) {
+        super(userFirstName, userLastName, userMiddleName, userEmail, userPhone, userGender, userDateOfBirth, userIsActive, userSiteURL);
+        this.account = account;
+        this.roles = roles;
+        this.privileges = privileges;
+        this.group = group;
     }
 
     public Account getAccount() {

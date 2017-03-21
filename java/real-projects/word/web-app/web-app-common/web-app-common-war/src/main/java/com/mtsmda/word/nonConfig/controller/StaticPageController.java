@@ -3,7 +3,7 @@ package com.mtsmda.word.nonConfig.controller;
 import com.mtsmda.helper.LocalDateTimeHelper;
 import com.mtsmda.helper.ObjectHelper;
 import com.mtsmda.word.config.security.LimitLoginAuthenticationProvider;
-import com.mtsmda.word.config.security.SecurityConfiguration;
+import com.mtsmda.word.config.security.SpringSecurityConfiguration;
 import com.mtsmda.word.nonConfig.service.UserAttemptService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +80,7 @@ public class StaticPageController {
         LOGGER.info("username is - " + auth.getName());
         LOGGER.info(auth.toString());
         if (ObjectHelper.objectIsNotNull(auth)) {
-            new CookieClearingLogoutHandler("JSESSIONID", SecurityConfiguration.REMEMBER_ME_COOKIE_NAME).logout(request, response, auth);
+            new CookieClearingLogoutHandler("JSESSIONID", SpringSecurityConfiguration.REMEMBER_ME_COOKIE_NAME).logout(request, response, auth);
             new SecurityContextLogoutHandler().logout(request, response, auth);
             System.out.println(auth == null);
         }
