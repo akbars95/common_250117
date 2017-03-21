@@ -45,79 +45,89 @@ public class Account implements Serializable{
         return user;
     }
 
-    public void setUser(User user) {
+    public Account setUser(User user) {
         this.user = user;
+        return this;
     }
 
     public String getAccountUsername() {
         return accountUsername;
     }
 
-    public void setAccountUsername(String accountUsername) {
+    public Account setAccountUsername(String accountUsername) {
         this.accountUsername = accountUsername;
+        return this;
     }
 
     public String getAccountPassword() {
         return accountPassword;
     }
 
-    public void setAccountPassword(String accountPassword) {
+    public Account setAccountPassword(String accountPassword) {
         this.accountPassword = accountPassword;
+        return this;
     }
 
     public Boolean getAccountNonExpired() {
         return accountNonExpired;
     }
 
-    public void setAccountNonExpired(Boolean accountNonExpired) {
+    public Account setAccountNonExpired(Boolean accountNonExpired) {
         this.accountNonExpired = accountNonExpired;
+        return this;
     }
 
     public Boolean getAccountNonLocked() {
         return accountNonLocked;
     }
 
-    public void setAccountNonLocked(Boolean accountNonLocked) {
+    public Account setAccountNonLocked(Boolean accountNonLocked) {
         this.accountNonLocked = accountNonLocked;
+        return this;
     }
 
     public Boolean getCredentialsNonExpired() {
         return credentialsNonExpired;
     }
 
-    public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
+    public Account setCredentialsNonExpired(Boolean credentialsNonExpired) {
         this.credentialsNonExpired = credentialsNonExpired;
+        return this;
     }
 
     public Integer getUserMaxAttempts() {
         return userMaxAttempts;
     }
 
-    public void setUserMaxAttempts(Integer userMaxAttempts) {
+    public Account setUserMaxAttempts(Integer userMaxAttempts) {
         this.userMaxAttempts = userMaxAttempts;
+        return this;
     }
 
     public Integer getUserCountDaysNeedChangePass() {
         return userCountDaysNeedChangePass;
     }
 
-    public void setUserCountDaysNeedChangePass(Integer userCountDaysNeedChangePass) {
+    public Account setUserCountDaysNeedChangePass(Integer userCountDaysNeedChangePass) {
         this.userCountDaysNeedChangePass = userCountDaysNeedChangePass;
+        return this;
     }
 
     public Set<PasswordHistory> getPasswordHistories() {
         return passwordHistories;
     }
 
-    public void setPasswordHistories(Set<PasswordHistory> passwordHistories) {
+    public Account setPasswordHistories(Set<PasswordHistory> passwordHistories) {
         this.passwordHistories = passwordHistories;
+        return this;
     }
 
     public UserAttempt getUserAttempt() {
         return userAttempt;
     }
 
-    public void setUserAttempt(UserAttempt userAttempt) {
+    public Account setUserAttempt(UserAttempt userAttempt) {
         this.userAttempt = userAttempt;
+        return this;
     }
 }

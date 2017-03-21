@@ -25,31 +25,36 @@ public class Group {
         return groupId;
     }
 
-    public void setGroupId(Integer groupId) {
+    public Group setGroupId(Integer groupId) {
         this.groupId = groupId;
+        return this;
     }
 
     public String getGroupName() {
         return groupName;
     }
 
-    public void setGroupName(String groupName) {
+    public Group setGroupName(String groupName) {
         this.groupName = groupName;
+        return this;
     }
 
     public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public Group setRoles(Set<Role> roles) {
         this.roles = roles;
+        return this;
     }
 
     public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public Group setUsers(Set<User> users) {
         this.users = users;
+        return this;
     }
+
 }

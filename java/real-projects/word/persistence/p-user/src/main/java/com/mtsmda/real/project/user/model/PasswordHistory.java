@@ -26,23 +26,26 @@ public class PasswordHistory implements Serializable{
         return account;
     }
 
-    public void setAccount(Account account) {
+    public PasswordHistory setAccount(Account account) {
         this.account = account;
+        return this;
     }
 
     public String getAccountPassword() {
         return accountPassword;
     }
 
-    public void setAccountPassword(String accountPassword) {
+    public PasswordHistory setAccountPassword(String accountPassword) {
         this.accountPassword = accountPassword;
+        return this;
     }
 
     public LocalDateTime getAccountPasswordChangeLocalDateTime() {
         return accountPasswordChangeLocalDateTime;
     }
 
-    public void setAccountPasswordChangeLocalDateTime(LocalDateTime accountPasswordChangeLocalDateTime) {
+    public PasswordHistory setAccountPasswordChangeLocalDateTime(LocalDateTime accountPasswordChangeLocalDateTime) {
         this.accountPasswordChangeLocalDateTime = accountPasswordChangeLocalDateTime;
+        return this;
     }
 }

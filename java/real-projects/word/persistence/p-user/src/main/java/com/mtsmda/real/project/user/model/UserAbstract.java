@@ -47,88 +47,99 @@ public abstract class UserAbstract implements Serializable{
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public UserAbstract setUserId(Integer userId) {
         this.userId = userId;
+        return this;
     }
 
     public String getUserFirstName() {
         return userFirstName;
     }
 
-    public void setUserFirstName(String userFirstName) {
+    public UserAbstract setUserFirstName(String userFirstName) {
         this.userFirstName = userFirstName;
+        return this;
     }
 
     public String getUserLastName() {
         return userLastName;
     }
 
-    public void setUserLastName(String userLastName) {
+    public UserAbstract setUserLastName(String userLastName) {
         this.userLastName = userLastName;
+        return this;
     }
 
     public String getUserMiddleName() {
         return userMiddleName;
     }
 
-    public void setUserMiddleName(String userMiddleName) {
+    public UserAbstract setUserMiddleName(String userMiddleName) {
         this.userMiddleName = userMiddleName;
+        return this;
     }
 
     public String getUserEmail() {
         return userEmail;
     }
 
-    public void setUserEmail(String userEmail) {
+    public UserAbstract setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+        return this;
     }
 
     public String getUserPhone() {
         return userPhone;
     }
 
-    public void setUserPhone(String userPhone) {
+    public UserAbstract setUserPhone(String userPhone) {
         this.userPhone = userPhone;
+        return this;
     }
 
     public Gender getUserGender() {
         return userGender;
     }
 
-    public void setUserGender(Gender userGender) {
+    public UserAbstract setUserGender(Gender userGender) {
         this.userGender = userGender;
+        return this;
     }
 
     public LocalDate getUserDateOfBirth() {
         return userDateOfBirth;
     }
 
-    public void setUserDateOfBirth(LocalDate userDateOfBirth) {
+    public UserAbstract setUserDateOfBirth(LocalDate userDateOfBirth) {
         this.userDateOfBirth = userDateOfBirth;
+        return this;
     }
 
     public Boolean getUserIsActive() {
         return userIsActive;
     }
 
-    public void setUserIsActive(Boolean userIsActive) {
+    public UserAbstract setUserIsActive(Boolean userIsActive) {
         this.userIsActive = userIsActive;
+        return this;
     }
 
     public String getUserSiteURL() {
         return userSiteURL;
     }
 
-    public void setUserSiteURL(String userSiteURL) {
+    public UserAbstract setUserSiteURL(String userSiteURL) {
         this.userSiteURL = userSiteURL;
+        return this;
     }
 
     public LocalDateTime getAddUserLocalDateTime() {
         return addUserLocalDateTime;
     }
 
-    public void setAddUserLocalDateTime(LocalDateTime addUserLocalDateTime) {
+    public UserAbstract setAddUserLocalDateTime(LocalDateTime addUserLocalDateTime) {
         this.addUserLocalDateTime = addUserLocalDateTime;
+        return this;
     }
 
 }

@@ -27,39 +27,44 @@ public class Role implements Serializable{
         return roleId;
     }
 
-    public void setRoleId(Integer roleId) {
+    public Role setRoleId(Integer roleId) {
         this.roleId = roleId;
+        return this;
     }
 
     public String getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public Role setRoleName(String roleName) {
         this.roleName = roleName;
+        return this;
     }
 
     public Set<Privilege> getPrivileges() {
         return privileges;
     }
 
-    public void setPrivileges(Set<Privilege> privileges) {
+    public Role setPrivileges(Set<Privilege> privileges) {
         this.privileges = privileges;
+        return this;
     }
 
     public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public Role setUsers(Set<User> users) {
         this.users = users;
+        return this;
     }
 
     public Set<Group> getGroups() {
         return groups;
     }
 
-    public void setGroups(Set<Group> groups) {
+    public Role setGroups(Set<Group> groups) {
         this.groups = groups;
+        return this;
     }
 }

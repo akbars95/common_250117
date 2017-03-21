@@ -26,31 +26,35 @@ public class Privilege implements Serializable{
         return privilegeId;
     }
 
-    public void setPrivilegeId(Integer privilegeId) {
+    public Privilege setPrivilegeId(Integer privilegeId) {
         this.privilegeId = privilegeId;
+        return this;
     }
 
     public String getPrivilegeName() {
         return privilegeName;
     }
 
-    public void setPrivilegeName(String privilegeName) {
+    public Privilege setPrivilegeName(String privilegeName) {
         this.privilegeName = privilegeName;
+        return this;
     }
 
     public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public Privilege setRoles(Set<Role> roles) {
         this.roles = roles;
+        return this;
     }
 
     public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public Privilege setUsers(Set<User> users) {
         this.users = users;
+        return this;
     }
 }

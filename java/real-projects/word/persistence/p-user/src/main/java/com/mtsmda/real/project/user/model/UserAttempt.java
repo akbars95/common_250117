@@ -37,31 +37,35 @@ public class UserAttempt implements Serializable {
         return userAttemptId;
     }
 
-    public void setUserAttemptId(Integer userAttemptId) {
+    public UserAttempt setUserAttemptId(Integer userAttemptId) {
         this.userAttemptId = userAttemptId;
+        return this;
     }
 
     public Account getAccount() {
         return account;
     }
 
-    public void setAccount(Account user) {
+    public UserAttempt setAccount(Account user) {
         this.account = user;
+        return this;
     }
 
     public Integer getAttempts() {
         return attempts;
     }
 
-    public void setAttempts(Integer attempts) {
+    public UserAttempt setAttempts(Integer attempts) {
         this.attempts = attempts;
+        return this;
     }
 
     public LocalDateTime getLastModified() {
         return lastModified;
     }
 
-    public void setLastModified(LocalDateTime lastModified) {
+    public UserAttempt setLastModified(LocalDateTime lastModified) {
         this.lastModified = lastModified;
+        return this;
     }
 }
