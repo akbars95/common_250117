@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 /**
  * Created by dminzat on 3/14/2017.
  */
-public abstract class LoggerAC implements LoggerI {
+public abstract class LoggerAC extends MessageInfo implements LoggerI {
 
     protected static Logger LOGGER = null;
 

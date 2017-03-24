@@ -6,7 +6,8 @@ function getDateTime(date){
     /*
     * 10:10:25 10.12.10
     * */
-    return setNullInt(dateL.getHours()) + ":" + setNullInt(dateL.getMinutes()) + ":" + setNullInt(dateL.getSeconds()) + " " + getDate(date);
+    return setNullInt(dateL.getHours()) + ":" + setNullInt(dateL.getMinutes()) + ":" + setNullInt(dateL.getSeconds())
+        + " " + getDate(date);
 }
 
 function getDate(date){
@@ -17,7 +18,7 @@ function getDate(date){
     /*
     * 10:10:25 10.12.10
     * */
-    return setNullInt(dateL.getDate()) + "." + setNullInt(dateL.getMonth()) + "." + dateL.getFullYear();
+    return setNullInt(dateL.getDate()) + "." + setNullInt(dateL.getMonth() + 1) + "." + dateL.getFullYear();
 }
 
 function setNullInt(number) {

@@ -109,7 +109,8 @@
                             <div class="col-md-5">
                                 <input type="date" id="fr_date_of_birth" name="fr_date_of_birth"
                                        ng-model="fr_date_of_birth"
-                                       placeholder="dd.MM.yyyy" min="01.01.1910" max="01.01.2017" required/>
+                                       placeholder="{{datePattern}}" min="{{minDate | date:datePattern}}"
+                                       max="{{minDate | date:datePattern}}" required/>
                                 <span class="requiredField">*</span>
                             </div>
                         </div>
@@ -130,6 +131,7 @@
                                 <button class="btn btn-success"
                                         ng-disabled="registrationForm.$invalid"><span th:text="#{registration.page.form.btn.registrate}" ng-click="registrate()"></span>
                                 </button>
+                                <button ng-click="defaultData()">Fiil def</button>
                             </div>
                         </div>
                     </div>

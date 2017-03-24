@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
-import static com.mtsmda.word.nonConfig.controller.PageURL.*;
-import static com.mtsmda.word.nonConfig.controller.PageURL.StaticPageURL.LOGOUT_PAGE_URL;
+import static com.mtsmda.word.nonConfig.controller.url.PageURL.*;
+import static com.mtsmda.word.nonConfig.controller.url.PageURL.StaticPageURL.LOGOUT_PAGE_URL;
 
 /**
  * Created by dminzat on 2/5/2017.

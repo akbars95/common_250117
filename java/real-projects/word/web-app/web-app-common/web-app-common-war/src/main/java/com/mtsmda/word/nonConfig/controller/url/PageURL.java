@@ -1,4 +1,4 @@
-package com.mtsmda.word.nonConfig.controller;
+package com.mtsmda.word.nonConfig.controller.url;
 
 /**
  * Created by dminzat on 2/15/2017.

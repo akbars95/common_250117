@@ -8,6 +8,7 @@ import com.mtsmda.word.nonConfig.repository.UserDetailRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -84,6 +85,10 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider 
             LOGGER.warn("exception authenticate - " + authentication.getName() + "\texception - "
                     + ExceptionMessageHelper.exceptionDescription(e));
             throw new LockedException(error.toString());
+        }
+        catch (AccountStatusException e){
+            LOGGER.info(e.getMessage());
+            throw e;
         }
     }
 }

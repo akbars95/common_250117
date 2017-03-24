@@ -31,10 +31,14 @@ public class Account implements Serializable{
         this.accountUsername = accountUsername;
     }
 
-    public Account(User user, String accountUsername, String accountPassword, Boolean accountNonExpired, Boolean accountNonLocked, Boolean credentialsNonExpired, Integer userMaxAttempts) {
-        this.user = user;
-        this.accountUsername = accountUsername;
+    public Account(String accountUsername, String accountPassword) {
+        this(accountUsername);
         this.accountPassword = accountPassword;
+    }
+
+    public Account(User user, String accountUsername, String accountPassword, Boolean accountNonExpired, Boolean accountNonLocked, Boolean credentialsNonExpired, Integer userMaxAttempts) {
+        this(accountUsername, accountPassword);
+        this.user = user;
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
         this.credentialsNonExpired = credentialsNonExpired;

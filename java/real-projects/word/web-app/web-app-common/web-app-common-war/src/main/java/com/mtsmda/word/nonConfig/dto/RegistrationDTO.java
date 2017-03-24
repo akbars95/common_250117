@@ -1,8 +1,10 @@
 package com.mtsmda.word.nonConfig.dto;
 
+import com.mtsmda.helper.LocalDateTimeHelper;
 import com.mtsmda.pattern.Patterns;
-import com.mtsmda.real.project.user.model.User;
+import com.mtsmda.real.project.user.model.*;
 import com.mtsmda.validation.structure.constraint.*;
+import com.mtsmda.validation.structure.constraint.Gender;
 import com.mtsmda.word.nonConfig.common.ConvertTo;
 import com.mtsmda.word.nonConfig.common.Converter;
 import com.mtsmda.word.nonConfig.validation.order.RegistrationOrder;
@@ -60,7 +62,7 @@ public class RegistrationDTO implements Serializable, ConvertTo<User> {
 
     @NotNull(groups = Default.class)
     @Size(min = 11, max = 12, groups = RegistrationOrder.class)
-    @Email(regexp = Patterns.MOLDOVA_PHONE_NUMBER, groups = RegistrationOrder.class)
+    @Pattern(regexp = Patterns.MOLDOVA_PHONE_NUMBER, groups = RegistrationOrder.class)
     private String phone;
 
     @NotNull(groups = Default.class)
@@ -203,6 +205,7 @@ public class RegistrationDTO implements Serializable, ConvertTo<User> {
 
     @Override
     public User convert() {
-        return new User();
+        return new User(this.firstname, this.lastname, this.middlename, this.email, this.phone, com.mtsmda.real.project.user.model.Gender.valueOf(this.gender), LocalDateTimeHelper.getLocalDateNormalFormat(this.dateOfBirth),
+                false, this.siteUrl).setAccount(new Account(this.username, this.password));
     }
 }

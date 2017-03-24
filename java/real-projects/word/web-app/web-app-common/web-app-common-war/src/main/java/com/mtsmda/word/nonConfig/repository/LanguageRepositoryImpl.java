@@ -38,8 +38,5 @@ public class LanguageRepositoryImpl extends ParentRepository implements Language
         setQuery("select * from " + T_LANGUAGES);
         return getNamedParameterJdbcTemplate().query(getQuery(), new LanguageRowMapper());
     }
-    @Override
-    public void setLogger() {
-        LOGGER = Logger.getLogger(LanguageRepositoryImpl.class);
-    }
+
 }

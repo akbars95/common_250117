@@ -37,6 +37,9 @@ public class QueryWarehouse {
         public static final String QUERY_GET_USER_BY_USERNAME = queryCreator(SELECT_ALL_WITH_SPACE, FROM_WITH_SPACE,
                 UserT.T_USERS, WHERE_SPACE_BOTH, UserT.T_USERS_F_USER_ID,
                 EQUAL_SPACE_BOTH, OPEN_PARENTHESIS, AccountQuery.QUERY_GET_USER_ID_BY_USERNAME, CLOSE_PARENTHESIS);
+        public static final String QUERY_GET_LAST_ADD_USER = queryCreator(SELECT_ALL_WITH_SPACE, FROM_WITH_SPACE,
+                UserT.T_USERS, WHERE_SPACE_BOTH, UserT.T_USERS_F_ADD_USER_DATE_TIME) +
+                " = (SELECT MAX(ADD_USER_DATE_TIME) FROM T_USERS)";
     }
 
     public static class AccountQuery {
@@ -77,8 +80,11 @@ public class QueryWarehouse {
                         PersistentLoginT.T_PERSISTENT_LOGINS_F_ACCOUNT_USER_ID,
                         AccountT.T_ACCOUNTS, AccountT.ACCOUNT_PREFIX, AccountT.T_ACCOUNTS_F_ACCOUNT_USER_ID),
                 WHERE_SPACE_BOTH, getUpdateParam(PersistentLoginT.T_PERSISTENT_LOGINS_F_SERIES, true));
+    }
 
-
+    public static class GroupQuery {
+        public static final String QUERY_GET_GROUP_BY_NAME = queryCreator(SELECT_ALL_WITH_SPACE, FROM_WITH_SPACE,
+                GroupsT.T_GROUPS, WHERE_SPACE_BOTH, getUpdateParam(GroupsT.T_GROUPS_F_GROUP_NAME, true));
     }
 
     public static void main(String[] args) {
@@ -92,6 +98,8 @@ public class QueryWarehouse {
         showQuery("QUERY_SELECT_PERSISTENT_LOGIN_BY_SERIES", PersistentLoginQuery.QUERY_SELECT_PERSISTENT_LOGIN_BY_SERIES);
         showQuery("QUERY_GET_USER_BY_USERNAME_GROUP_AUTHORITY", SpringSecurityQuery.QUERY_GET_USER_BY_USERNAME_GROUP_AUTHORITY);
         showQuery("QUERY_GET_USER_ROLES_BY_USERNAME_GROUP_AUTHORITY", SpringSecurityQuery.QUERY_GET_USER_ROLES_BY_USERNAME_GROUP_AUTHORITY);
+        showQuery("QUERY_GET_GROUP_BY_NAME", GroupQuery.QUERY_GET_GROUP_BY_NAME);
+
     }
 
     private static final void showQuery(String queryName, String query){

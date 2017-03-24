@@ -22,8 +22,12 @@ public class User extends UserAbstract {
         this.setUserId(userId);
     }
 
-    public User(String userFirstName, String userLastName, String userMiddleName, String userEmail, String userPhone, Gender userGender, LocalDate userDateOfBirth, Boolean userIsActive, String userSiteURL, Account account, Set<Role> roles, Set<Privilege> privileges, Group group) {
+    public User(String userFirstName, String userLastName, String userMiddleName, String userEmail, String userPhone, Gender userGender, LocalDate userDateOfBirth, Boolean userIsActive, String userSiteURL){
         super(userFirstName, userLastName, userMiddleName, userEmail, userPhone, userGender, userDateOfBirth, userIsActive, userSiteURL);
+    }
+
+    public User(String userFirstName, String userLastName, String userMiddleName, String userEmail, String userPhone, Gender userGender, LocalDate userDateOfBirth, Boolean userIsActive, String userSiteURL, Account account, Set<Role> roles, Set<Privilege> privileges, Group group) {
+        this(userFirstName, userLastName, userMiddleName, userEmail, userPhone, userGender, userDateOfBirth, userIsActive, userSiteURL);
         this.account = account;
         this.roles = roles;
         this.privileges = privileges;

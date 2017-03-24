@@ -1,6 +1,6 @@
 package com.mtsmda.word.config.security;
 
-import com.mtsmda.word.nonConfig.controller.PageURL;
+import com.mtsmda.word.nonConfig.controller.url.PageURL;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,12 +15,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter;
-import org.springframework.social.security.SocialUserDetailsService;
-import org.springframework.social.security.SpringSocialConfigurer;
 
-import static com.mtsmda.word.nonConfig.controller.PageURL.*;
-import static com.mtsmda.word.nonConfig.controller.PageURL.StaticPageURL.ACCESS_DENIED_PAGE_URL;
-import static com.mtsmda.word.nonConfig.controller.PageURL.StaticPageURL.LOGIN_PAGE_URL;
+import static com.mtsmda.word.nonConfig.controller.url.PageURL.*;
+import static com.mtsmda.word.nonConfig.controller.url.PageURL.StaticPageURL.ACCESS_DENIED_PAGE_URL;
+import static com.mtsmda.word.nonConfig.controller.url.PageURL.StaticPageURL.LOGIN_PAGE_URL;
 
 /**
  * Created by dminzat on 2/15/2017.
@@ -68,6 +66,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(ROOT + PageURL.ProtectedPageURL.PROTECT + TWO_ASTERIX).access("hasRole('ROLE_ADMIN')")
+                .antMatchers(ROOT + TWO_ASTERIX).permitAll()
                 .and().formLogin().loginPage(LOGIN_PAGE_URL).failureUrl(LOGIN_PAGE_URL + QUESTION_MARK + "loginError=loginError")
                 .usernameParameter("w_username").passwordParameter("w_password").permitAll()
                 .and().exceptionHandling().accessDeniedPage(ACCESS_DENIED_PAGE_URL);

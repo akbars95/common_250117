@@ -10,6 +10,6 @@ CREATE TABLE UserConnection(
   secret VARCHAR2(512 byte) null,
   refreshToken VARCHAR2(512 byte) null,
   expireTime NUMBER(25, 0) null,
-  CONSTRAINT UserConnection_PK PRIMARY KEY (userId, providerId, providerUserId),
-  CONSTRAINT UserConnection_UNIQUE UNIQUE (userId, providerId, providerUserId)
+  CONSTRAINT UserConnection_PK PRIMARY KEY (userId, providerId, providerUserId)/*,
+  CONSTRAINT UserConnection_UNIQUE UNIQUE (userId, providerId, providerUserId)*/
 );

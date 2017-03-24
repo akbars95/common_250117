@@ -8,7 +8,10 @@ import com.mtsmda.spring.helper.response.CommonResponse;
  */
 public interface UserRepository {
 
+    CommonResponse<Boolean> insertUser(User user);
+    CommonResponse<Boolean> insertUserGroup(User user);
     CommonResponse<User> getUserByUsername(String username);
+    CommonResponse<User> getLastAddUserBy();
     CommonResponse<User> getUserAndAccountByUsername(String username);
 
 }
