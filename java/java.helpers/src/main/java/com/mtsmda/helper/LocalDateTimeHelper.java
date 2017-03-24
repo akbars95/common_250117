@@ -75,6 +75,10 @@ public class LocalDateTimeHelper {
         return null;
     }
 
+    public static LocalDate getLocalDateNormalFormat(String value) {
+        return LocalDate.parse(value, DateTimeFormatter.ofPattern(NORMAL_DATE_FORMAT));
+    }
+
     /*
     0123456789
     02:15:09

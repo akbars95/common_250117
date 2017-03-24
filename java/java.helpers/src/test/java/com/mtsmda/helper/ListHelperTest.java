@@ -92,6 +92,18 @@ public class ListHelperTest {
         assertTrue(first.contains(30));
     }
 
+    @Test
+    public void getIndexFirstContainsItemTest(){
+        List<String> listWithData = ListHelper.getListWithData("Name", "Fistname", "MiddleName", "LastName", "Username");
+        int username = getIndexFirstContainsItem(listWithData, "username", true);
+        assertEquals(username, -1);
+        username = getIndexFirstContainsItem(listWithData, "name", true);
+        assertEquals(username, 1);
+        username = getIndexFirstContainsItem(listWithData, "Use", true);
+        assertEquals(username, 4);
+
+    }
+
     private <T>void firstListAddSecondListWithException(List<T> mainList, List<T> secondList, boolean isFirst){
         try{
             firstListAddSecondList(mainList, secondList);

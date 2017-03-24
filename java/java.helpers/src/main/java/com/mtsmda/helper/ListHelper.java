@@ -83,4 +83,19 @@ public class ListHelper {
         });
     }
 
+    public static <T>int getIndexFirstContainsItem(List<T> tList, T tOb, boolean containsIsCaseSensitive){
+        for(int i = 0; i < tList.size(); i++){
+            if(containsIsCaseSensitive){
+                if(tList.get(i).toString().contains(tOb.toString())){
+                    return i;
+                }
+            }else{
+                if(tList.get(i).toString().toLowerCase().contains(tOb.toString().toLowerCase())){
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
 }

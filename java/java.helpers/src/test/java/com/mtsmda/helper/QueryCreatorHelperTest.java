@@ -23,7 +23,16 @@ public class QueryCreatorHelperTest {
     public void insertGenerateTrueTest() {
         String cities = insertGenerate(tableName, fields);
         assertNotNull(cities);
-        assertEquals(cities, INSERT_INTO + " " + tableName + " (city_name,city_country_id) " + VALUES + "(:city_name,:city_country_id);");
+        assertEquals(cities, INSERT_INTO + " " + tableName + " (city_name,city_country_id) " + VALUES + "(:city_name,:city_country_id)");
+    }
+
+    @Test
+    public void insertGenerateWithDateTest(){
+        fields.add("date");
+        String cities = insertGenerateWithDate(tableName, fields, ListHelper.getListWithData(getToDateOracleAsParam("date", TO_DATE_ONLY_DATE_ORACLE_PATTERN)));
+        assertNotNull(cities);
+        assertEquals(cities, "INSERT INTO cities (city_name,city_country_id,date) VALUES(:city_name,:city_country_id,TO_DATE(:date, 'dd.mm.yyyy'))");
+
     }
 
     @Test(expectedExceptions = {RuntimeException.class})
@@ -210,6 +219,10 @@ public class QueryCreatorHelperTest {
         String toDateOracle = getToDateOracleAsParam("date");
         assertNotNull(toDateOracle);
         assertEquals(toDateOracle, "TO_DATE(:date, 'hh24:mi:ss dd.mm.yyyy')");
+
+        toDateOracle = getToDateOracleAsParam("date", TO_DATE_ONLY_TIME_ORACLE_PATTERN);
+        assertNotNull(toDateOracle);
+        assertEquals(toDateOracle, "TO_DATE(:date, 'hh24:mi:ss')");
     }
 
     @Test

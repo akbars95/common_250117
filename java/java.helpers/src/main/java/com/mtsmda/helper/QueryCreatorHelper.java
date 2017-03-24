@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dminzat on 9/5/2016.
@@ -68,7 +69,9 @@ public class QueryCreatorHelper {
     public static final String ON_SPACE_BOTH = SPACE + ON + SPACE;
 
     public static final String TO_DATE_ORACLE = "TO_DATE";
-    public static final String TO_DATE_ORACLE_PATTERN = "hh24:mi:ss dd.mm.yyyy";
+    public static final String TO_DATE_ONLY_TIME_ORACLE_PATTERN = "hh24:mi:ss";
+    public static final String TO_DATE_ONLY_DATE_ORACLE_PATTERN = "dd.mm.yyyy";
+    public static final String TO_DATE_ORACLE_PATTERN = TO_DATE_ONLY_TIME_ORACLE_PATTERN + " " + TO_DATE_ONLY_DATE_ORACLE_PATTERN;
 
     public static String queryCreator(String... strings) {
         StringBuilder stringBuilderResult = new StringBuilder();
@@ -78,7 +81,7 @@ public class QueryCreatorHelper {
         return stringBuilderResult.toString();
     }
 
-    /*
+    /**
     * insert into cities (city_name, city_country_id) values(:city_name, city_country_id);
     * */
     public static String insertGenerate(String tableName, List<String> fieldNames) {
@@ -101,7 +104,41 @@ public class QueryCreatorHelper {
         checkEndCommaSymbolAndDeleteHim(sbResult);
         checkEndCommaSymbolAndDeleteHim(temp);
         sbResult.append(CLOSE_PARENTHESIS).append(SPACE).append(VALUES).append(OPEN_PARENTHESIS).append(temp)
-                .append(CLOSE_PARENTHESIS).append(SEMICOLON);
+                .append(CLOSE_PARENTHESIS);
+
+        return sbResult.toString();
+    }
+
+    /**
+     * insert into cities (city_name, city_country_id, date) values(:city_name, city_country_id, TO_DATE(:date, 'dd.mm.yyyy hh24:mi:ss'));
+     * */
+    public static String insertGenerateWithDate(String tableName, List<String> fieldNames, List<String> dataField) {
+        if (StringUtils.isBlank(tableName)) {
+            throw new RuntimeException("table name is null or empty!");
+        }
+        ObjectHelper.objectIsNullThrowException(fieldNames);
+        if (ListHelper.listIsNullOrEmpty(fieldNames)) {
+            throw new RuntimeException("list is null or empty");
+        }
+
+        StringBuilder sbResult = new StringBuilder(INSERT_INTO);
+        sbResult.append(SPACE).append(tableName).append(SPACE).append(OPEN_PARENTHESIS);
+        StringBuilder temp = new StringBuilder();
+        fieldNames.forEach(fieldName -> {
+            ObjectHelper.objectIsNullThrowException(fieldName);
+            sbResult.append(fieldName).append(COMMA);
+            int index = -1;
+            if((index = ListHelper.getIndexFirstContainsItem(dataField, fieldName, true)) != -1){
+                temp.append(dataField.get(index));
+            }else{
+                temp.append(COLON).append(fieldName);
+            }
+            temp.append(COMMA);
+        });
+        checkEndCommaSymbolAndDeleteHim(sbResult);
+        checkEndCommaSymbolAndDeleteHim(temp);
+        sbResult.append(CLOSE_PARENTHESIS).append(SPACE).append(VALUES).append(OPEN_PARENTHESIS).append(temp)
+                .append(CLOSE_PARENTHESIS);
 
         return sbResult.toString();
     }
@@ -296,6 +333,12 @@ public class QueryCreatorHelper {
     public static String getToDateOracleAsParam(String paramName) {
         return new StringBuilder(TO_DATE_ORACLE).append(OPEN_PARENTHESIS).append(getParam(paramName))
                 .append(COMMA).append(SPACE).append(APOSTROF).append(TO_DATE_ORACLE_PATTERN)
+                .append(APOSTROF).append(CLOSE_PARENTHESIS).toString();
+    }
+
+    public static String getToDateOracleAsParam(String paramName, String pattern) {
+        return new StringBuilder(TO_DATE_ORACLE).append(OPEN_PARENTHESIS).append(getParam(paramName))
+                .append(COMMA).append(SPACE).append(APOSTROF).append(pattern)
                 .append(APOSTROF).append(CLOSE_PARENTHESIS).toString();
     }
 
