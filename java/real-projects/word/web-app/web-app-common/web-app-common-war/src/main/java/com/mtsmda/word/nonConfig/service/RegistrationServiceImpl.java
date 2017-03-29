@@ -11,6 +11,7 @@ import com.mtsmda.word.nonConfig.repository.AccountRepository;
 import com.mtsmda.word.nonConfig.repository.GroupRepository;
 import com.mtsmda.word.nonConfig.repository.UserRepository;
 import com.mtsmda.word.nonConfig.validation.order.RegistrationOrder;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -94,4 +95,5 @@ public class RegistrationServiceImpl extends ParentService implements Registrati
 
         return new CommonResponse<>(booleanCommonResponseUser.getObject() && booleanCommonResponseAccount.getObject(), CommonResponse.SUCCESS);
     }
+
 }

@@ -2,6 +2,7 @@ package com.mtsmda.word.config.web;
 
 import com.mtsmda.word.config.other.BeanConfiguration;
 import com.mtsmda.word.config.other.DatabaseConfiguration;
+import com.mtsmda.word.config.other.SchedulerConfiguration;
 import com.mtsmda.word.config.security.SpringSecurityConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.mvc.WebContentInterceptor;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.mtsmda.word")
-@Import({ThymeleafConfiguration.class, BeanConfiguration.class, SpringSecurityConfiguration.class, DatabaseConfiguration.class, SpringMVCBean.class})
+@Import({ThymeleafConfiguration.class, BeanConfiguration.class, SpringSecurityConfiguration.class, DatabaseConfiguration.class, SpringMVCBean.class, SchedulerConfiguration.class})
 public class SpringMVCConfiguration extends WebMvcConfigurerAdapter {
 
 //    @Autowired

@@ -112,4 +112,12 @@ public class TableAndFieldsName {
         public static final String T_GROUP_USERS_F_USER_ID = "USER_ID";
     }
 
+    public static class AccountStatusTypeT {
+        public static final String ACCOUNT_STATUS_TYPE_PREFIX = "AC_S_T";
+        public static final String T_ACCOUNT_STATUS_TYPES = "T_ACCOUNT_STATUS_TYPES";
+        public static final String T_ACCOUNT_STATUS_TYPES_F_STATUS_TYPE_ID = "STATUS_TYPE_ID";
+        public static final String T_ACCOUNT_STATUS_TYPES_F_USER_ID = "USER_ID";
+        public static final String T_ACCOUNT_STATUS_TYPES_F_ACTION_TIMESTAMP = "ACTION_TIMESTAMP";
+    }
+
 }
