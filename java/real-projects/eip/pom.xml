@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.mtsmda.workpiece.maven</groupId>
         <artifactId>common</artifactId>
-        <version>4.4.RELEASE.11022017</version>
+        <version>4.8.1.RELEASE.15032017</version>
     </parent>
 
     <modules>

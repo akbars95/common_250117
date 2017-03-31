@@ -1,5 +1,6 @@
 package com.mtsmda.apache.camel.withspring;
 
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -9,7 +10,7 @@ public class SpringRunMain {
 
     public static void main(String[] args) {
         try {
-            AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(CustomCamelConfiguration.class);
+            AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(CustomConfiguration.class);
             annotationConfigApplicationContext.start();
             Thread.sleep(1_000 * 100);
             annotationConfigApplicationContext.stop();

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by dminzat on 2/14/2017.
  */
-@Component
+//@Component
 public class ActiveMQRoute extends RouteBuilder {
 
     @Override
